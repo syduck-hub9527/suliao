@@ -1,0 +1,23 @@
+# 密码文件
+.env
+
+# 本地数据（数据库、上传文件）
+data/
+*.sqlite3
+*.sqlite3-*
+media/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Django 打包出来的静态文件
+staticfiles/
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

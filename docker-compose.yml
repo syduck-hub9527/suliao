@@ -1,0 +1,20 @@
+name: suliao
+
+services:
+  web:
+    build:
+      context: .
+      args:
+        PIP_INDEX_URL: ${PIP_INDEX_URL:-https://mirrors.aliyun.com/pypi/simple/}
+    image: suliao-web
+    env_file: .env
+    volumes:
+      # 数据库和上传的文件都在这个数据卷里，和代码分开；重建容器、更新代码都不会丢
+      - suliao-data:/data
+    ports:
+      # 只对服务器本机开放；从你的电脑通过 SSH 隧道访问
+      - "127.0.0.1:${WEB_PORT:-8000}:8000"
+    restart: unless-stopped
+
+volumes:
+  suliao-data:
