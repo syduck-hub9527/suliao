@@ -59,6 +59,12 @@
            padding: 9px 0; border-bottom: 1px solid var(--line); }
     .row:last-child { border-bottom: none; }
 
+    table.data { width: 100%; border-collapse: collapse; font-size: 15px; }
+    table.data th, table.data td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    table.data th { font-size: 13px; color: var(--muted); font-weight: 500; background: #fafbfc; }
+    table.data tr:last-child td { border-bottom: none; }
+    .table-wrap { overflow-x: auto; }
+
     @media (max-width: 720px) {
       .topbar .inner { flex-wrap: wrap; gap: 10px 16px; }
       .topsearch { order: 3; flex-basis: 100%; }
@@ -77,6 +83,7 @@
         <a href="{% url 'kb:home' %}" class="{% if name == 'home' %}on{% endif %}">首页</a>
         <a href="{% url 'kb:learn' %}" class="{% if name == 'learn' %}on{% endif %}">学习路线</a>
         <a href="{% url 'kb:browse' %}" class="{% if name == 'browse' or name == 'browse_kind' %}on{% endif %}">分类浏览</a>
+        <a href="{% url 'kb:grades' %}" class="{% if name == 'grades' or name == 'grade' or name == 'company' %}on{% endif %}">牌号库</a>
         {% endwith %}
       </nav>
       <form class="topsearch" method="get" action="{% url 'kb:search' %}">

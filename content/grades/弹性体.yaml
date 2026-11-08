@@ -1,0 +1,34 @@
+# 弹性体（TPU 等）常见牌号。查阅日期 2026-11-08。
+
+grades:
+  - code: 1185A10
+    full_name: Elastollan 1185 A 10
+    manufacturer: 巴斯夫
+    brand: Elastollan
+    material: TPU
+    product_type: resin
+    grade_class: 聚醚型，邵氏 85A
+    lifecycle: active
+    verify: partial
+    aliases: [1185A, Elastollan 1185A, 11 85 A 10, 巴斯夫1185A]
+    summary: 巴斯夫聚醚型 TPU，硬度邵氏 85A，耐水解、低温柔韧，用途很广（线缆护套、软管、薄膜等）。
+    description: |
+      **Elastollan 牌号怎么读**（巴斯夫产品目录的命名规则）：`11 85 A 10`
+      - **11**：系列。11 系列是**聚醚型** TPU，特点是耐水解、低温下仍然柔软；
+      - **85A**：硬度，邵氏 A 85；
+      - **10** 及后面的字母、数字：配方和添加剂代号（具体含义以巴斯夫的命名说明为准）。
+
+      TPU 有**聚醚型**和**聚酯型**两大类：聚醚型耐水解、耐霉菌，适合潮湿环境；
+      聚酯型耐磨、耐油更好，但怕水解。选 TPU 时这是第一个要问的问题。
+
+      TPU 的物性表和硬塑料不一样：不看弯曲强度、热变形温度，而看**硬度、拉伸强度、断裂伸长率、撕裂强度、压缩永久变形**。
+      下面的数据是巴斯夫美国公司 TDS 的转载，单位是 psi（1 psi ≈ 0.0069 MPa，5200 psi 约 36 MPa）。
+    sources:
+      - {id: tds, title: "Elastollan 1185A TDS（BASF Corporation，IEWC 网站转载）", url: "https://media.iewc.com/SpecificationSheets/1185A.pdf", publisher: BASF Corporation, kind: maker_doc, accessed: 2026-11-08}
+      - {id: range, title: Elastollan 产品目录（命名规则与系列说明）, url: "https://basf.com/dam/jcr:f7c775d7-afe0-3dca-a44c-856e0853a81d/basf/www/kr/documents/ko/product/Thermoplastic%20Polyurethane_Elastollan_Product%20Range.pdf", publisher: BASF, kind: maker_doc, accessed: 2026-11-08}
+    properties:
+      - {prop: 邵氏硬度, value: "85A", standard: ASTM D2240, source: tds}
+      - {prop: 拉伸强度, value: "5200", unit: psi, standard: ASTM D412, source: tds}
+      - {prop: 断裂伸长率, value: "530", unit: "%", standard: ASTM D412, source: tds}
+      - {prop: 撕裂强度, value: "630", unit: lb/in, conditions: "Die C", standard: ASTM D624, source: tds}
+      - {prop: 弯曲模量, value: "4200", unit: psi, standard: ASTM D790, source: tds}

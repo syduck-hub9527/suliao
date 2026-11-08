@@ -17,12 +17,12 @@
 {% block content %}
   <div class="card hero">
     <h1>想学什么，直接搜</h1>
-    <div class="muted">材料、缩写、行业俗称、术语都能搜，比如：pp、聚丙烯、赛钢、热固性、MFR</div>
+    <div class="muted">材料、缩写、俗称、术语、牌号都能搜，比如：pp、聚丙烯、赛钢、熔融指数、T30S、757</div>
     <form class="bigsearch" method="get" action="{% url 'kb:search' %}">
       <input name="q" placeholder="输入关键词……" autofocus autocomplete="off">
       <button type="submit">搜索</button>
     </form>
-    <div class="small muted">共 {{ entry_count }} 个知识词条 · 全部内容由 AI 整理，标有“待核对”，重要结论请以厂家资料为准</div>
+    <div class="small muted">共 {{ entry_count }} 个知识词条、{{ grade_count }} 个常见牌号 · 知识内容由 AI 整理，标有“待核对”，重要结论请以厂家资料为准</div>
   </div>
 
   <div class="two">
@@ -67,6 +67,7 @@
 
   <h2>按类别浏览</h2>
   <div class="grid">
+    <a class="tile" href="{% url 'kb:grades' %}"><b>牌号库</b><span>{{ grade_count }} 个常见牌号</span></a>
     {% for t in kind_tiles %}
       <a class="tile" href="{% url 'kb:browse_kind' t.kind %}"><b>{{ t.label }}</b><span>{{ t.count }} 个词条</span></a>
     {% endfor %}

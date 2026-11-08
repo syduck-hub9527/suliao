@@ -1,0 +1,69 @@
+# 聚丙烯（PP）常见牌号。查阅日期 2026-11-08。
+
+grades:
+  - code: T30S
+    full_name: PPH-T03（T30S）
+    producers: 中国石化九江、镇海、中天、石家庄炼化等（据贸易商转载的中国石化 TDS）；其他石化企业也有同名产品
+    material: PP-H
+    product_type: resin
+    grade_class: 拉丝级
+    lifecycle: active
+    verify: unverified
+    aliases: [PPH-T03, T03, PP T30S]
+    summary: 国内 PP 拉丝料的代表牌号，编织袋的主要原料；PP 现货行情里最常被报价的牌号之一。
+    description: |
+      均聚聚丙烯拉丝料。中国石化的规范叫法是 **PPH-T03**，市场上一直沿用老名字 **T30S**。
+
+      主要用途是**扁丝编织**：编织袋（装化肥、水泥、粮食、饲料）、集装袋（吨袋）、篷布、地毯底布、绳索。
+      这类用途要求拉伸强度高、拉丝稳定，所以资料里最重要的指标是熔体流动速率、拉伸屈服强度和等规指数。
+
+      **这张表是学“保证值”和“典型值”区别的好例子**：同一项指标有两行——
+      - 保证值（质量指标），例如拉伸屈服强度“≥30.0 MPa”，是厂家承诺每批都能达到的底线；
+      - 典型值，例如“32.7 MPa”，是平时测出来的常见水平，不是承诺。
+      给客户做承诺时只能引用保证值。
+
+      各家工厂的 T30S 指标略有不同，下面的数据来自贸易商转载的中国石化资料，以具体工厂的质检单为准。
+    sources:
+      - {id: chem, title: "Sinopec PPH-T03 (T30S) Yarn Grade TDS（贸易商转载）", url: "https://www.chemategroup.com/wp-content/uploads/2026/05/Sinopec-PP-T03T30S-TDS.pdf", publisher: Chemate（郑州贸易商）, kind: trader, accessed: 2026-11-08}
+    properties:
+      - {prop: MFR, value: "3.0±0.5", unit: g/10min, type: guaranteed, conditions: "资料未注明", source: chem, note: "聚丙烯通常按 230°C/2.16kg 测；这份资料没写，需向厂家确认"}
+      - {prop: MFR, value: "3.0", unit: g/10min, conditions: "资料未注明", source: chem}
+      - {prop: 拉伸屈服强度, value: "≥30.0", unit: MPa, type: guaranteed, source: chem}
+      - {prop: 拉伸屈服强度, value: "32.7", unit: MPa, source: chem}
+      - {prop: 拉伸断裂强度, value: "≥16.0", unit: MPa, type: guaranteed, source: chem}
+      - {prop: 拉伸断裂强度, value: "27.9", unit: MPa, source: chem}
+      - {prop: 断裂伸长率, value: "≥150", unit: "%", type: guaranteed, source: chem, note: "原文为“断裂拉伸标称应变”"}
+      - {prop: 断裂伸长率, value: "540", unit: "%", source: chem, note: "原文为“断裂拉伸标称应变”"}
+      - {prop: 等规指数, value: "≥96.0", unit: "%", type: guaranteed, source: chem}
+      - {prop: 等规指数, value: "97.5", unit: "%", source: chem}
+      - {prop: 灰分, value: "≤0.030", unit: "%", type: guaranteed, source: chem}
+      - {prop: 灰分, value: "0.018", unit: "%", source: chem}
+
+  - code: K8003
+    producers: 中国石化燕山石化、上海赛科（据中国石化产品资料）；中国石油独山子石化也有同名牌号登记 UL 黄卡
+    material: PP-B
+    product_type: resin
+    grade_class: 注塑级
+    lifecycle: active
+    verify: unverified
+    aliases: [PP K8003]
+    summary: 低熔指的抗冲共聚 PP，刚韧平衡好，常用于负重件、周转箱、汽车零件。
+    description: |
+      抗冲共聚聚丙烯（PP-B），在均聚 PP 里分散了乙丙橡胶相，所以比均聚 PP 耐冲击得多，尤其是低温冲击。
+      熔指比较低（约 2.5），适合需要韧性的厚壁注塑件，资料写的用途是负重部件和汽车部件。
+
+      有一篇期刊论文专门比较了 K8303、K8003 和 EPS-30R 三种低熔指共聚 PP：
+      K8303、K8003 的橡胶相含量更高、球晶更小，所以冲击韧性明显更好。
+      这说明：同样叫“共聚 PP”，橡胶相多少会直接决定耐冲击能力。
+
+      下面的数据来自贸易商网页，只能当参考。原网页把冲击强度单位写成了 kJ/m³，应是 kJ/m² 的笔误；
+      网页上还写了一个 23°C 冲击值，和同页其他说法对不上，这里没有收录。
+    sources:
+      - {id: chem, title: PP K8003 产品页, url: "https://www.chemategroup.com/pp-k8003/", publisher: Chemate（郑州贸易商）, kind: trader, accessed: 2026-11-08}
+      - {id: ul, title: SECCO K8003（UL Prospector 条目）, url: "https://betaplastics.ulprospector.com/plastics/en/datasheet/288961/secco-k8003", publisher: UL Prospector（数据库）, kind: other, accessed: 2026-11-08}
+      - {id: paper, title: 比较 K8303、K8003、EPS-30R 三种低熔指共聚 PP 的期刊论文（摘要页）, url: "https://opaj.napstic.cn/periodicalArticle/0120170401639299", publisher: "期刊论文摘要（opaj.napstic.cn）", kind: media, accessed: 2026-11-08}
+    properties:
+      - {prop: MFR, value: "2.5", unit: g/10min, conditions: "230°C/2.16kg", source: chem}
+      - {prop: 拉伸屈服强度, value: "23.5", unit: MPa, source: chem}
+      - {prop: 悬臂梁缺口冲击强度, value: "5.8", unit: kJ/m², conditions: "-20°C", source: chem, note: "原网页单位写作 KJ/m³，应为笔误"}
+      - {prop: 弯曲模量, value: "1310", unit: MPa, source: chem}

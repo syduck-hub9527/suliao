@@ -1,0 +1,226 @@
+# 工程塑料（PC、PA、POM）常见牌号。查阅日期 2026-11-08。
+
+grades:
+  # ---------------- PC ----------------
+  - code: "2805"
+    full_name: Makrolon 2805
+    manufacturer: 科思创
+    brand: Makrolon
+    material: PC
+    product_type: resin
+    grade_class: 通用注塑级（中黏度）
+    lifecycle: active
+    verify: verified
+    aliases: [Makrolon2805, 拜耳2805, PC 2805]
+    summary: 科思创（原拜耳）中等黏度通用级 PC，易脱模，透明、半透明、不透明颜色都有。
+    description: |
+      厂家写法：MVR（300°C/1.2kg）9.0 cm³/10min，通用级，**中等黏度**，易脱模。
+
+      **Makrolon 牌号的规律**：第二位数字大体代表黏度档次。2405 是低黏度（MVR 约 19，好流动，适合薄壁），
+      2805 是中黏度（MVR 9），3105 黏度更高（更韧、更适合厚壁和挤出）。
+      PC 的熔指一律在 **300°C/1.2kg** 下测，和 PP、PE 的测试条件完全不同，不能拿数字直接比。
+
+      维卡软化温度来自 UL Prospector 转载的资料；其余数据来自科思创官网。
+    sources:
+      - {id: cov, title: Makrolon 2805 产品页, url: "https://solutions.covestro.com/nl/products/makrolon/makrolon-2805_57534382-00009647", publisher: Covestro, kind: maker_web, accessed: 2026-11-08}
+      - {id: covja, title: Makrolon 2805 产品页（日文）, url: "https://solutions.covestro.com/ja/products/makrolon/makrolon-2805_57534382-00009647", publisher: Covestro, kind: maker_web, accessed: 2026-11-08}
+      - {id: ul, title: "Makrolon 2805 数据表（UL Prospector，Protolabs 转载）", url: "https://www.protolabs.com/media/3z2llptj/makrolon-2805.pdf", publisher: UL Prospector, kind: other, accessed: 2026-11-08}
+    properties:
+      - {prop: MVR, value: "9", unit: cm³/10min, conditions: "300°C/1.2kg", standard: ISO 1133, source: covja}
+      - {prop: MFR, value: "10", unit: g/10min, conditions: "300°C/1.2kg", standard: ISO 1133, source: covja}
+      - {prop: 成型收缩率, value: "0.65", unit: "%", conditions: "60×60×2 mm³，500 bar", standard: ISO 294-4, direction: flow, source: covja}
+      - {prop: 成型收缩率, value: "0.7", unit: "%", conditions: "60×60×2 mm³，500 bar", standard: ISO 294-4, direction: cross, source: covja}
+      - {prop: 表观密度, value: "660", unit: kg/m³, conditions: "粒料", standard: ISO 60, source: covja}
+      - {prop: 拉伸模量, value: "2400", unit: MPa, conditions: "1 mm/min", standard: "ISO 527-1,-2", source: cov}
+      - {prop: 拉伸屈服强度, value: "66", unit: MPa, conditions: "50 mm/min", standard: "ISO 527-1,-2", source: cov}
+      - {prop: 拉伸屈服应变, value: "6.2", unit: "%", conditions: "50 mm/min", standard: "ISO 527-1,-2", source: cov}
+      - {prop: 拉伸断裂强度, value: "70", unit: MPa, conditions: "50 mm/min", standard: "ISO 527-1,-2", source: cov}
+      - {prop: 断裂伸长率, value: "130", unit: "%", conditions: "50 mm/min", standard: "ISO 527-1,-2", source: cov}
+      - {prop: 密度, value: "1.20", unit: g/cm³, conditions: "23°C", standard: ISO 1183, source: ul, verify: partial}
+      - {prop: 维卡软化温度, value: "146", unit: °C, conditions: "B120（50 N，120°C/h）", standard: ISO 306, source: ul, verify: partial}
+      - {prop: 维卡软化温度, value: "144", unit: °C, conditions: "B50（50 N，50°C/h）", standard: ISO 306, source: ul, verify: partial}
+
+  - code: 141R
+    full_name: LEXAN 141R
+    manufacturer: 沙特基础工业
+    brand: LEXAN
+    material: PC
+    product_type: resin
+    grade_class: 通用注塑级（中黏度）
+    lifecycle: active
+    verify: partial
+    aliases: [Lexan141R, GE 141R]
+    summary: SABIC（原 GE 塑料）中等黏度通用级 PC，含内脱模剂，国内常和 Makrolon 2805 对比选用。
+    description: |
+      GE 塑料时代的 TDS 原话：中等黏度的多用途牌号，含**脱模剂**便于加工，透明、半透明、不透明颜色都有。
+      LEXAN 原属 GE 塑料，2007 年起归 SABIC。
+
+      **和 Makrolon 2805 对比**（两者都是 ISO 标准、300°C/1.2kg）：MVR 12 对 9，141R 流动性略好；
+      拉伸屈服强度 63 对 66 MPa，很接近。同一档次的 PC，不同厂家的牌号可以互相参考，但换料前要试模。
+
+      表里的热变形温度测的是“侧立”（edgewise）放置的 120×10×4 mm 试样，跨距 100 mm；
+      不同放置方式测出来的数不一样，所以 TDS 会把试样写得这么细。
+    sources:
+      - {id: sabic, title: "LEXAN Resin 141R 欧洲版 TDS（SABIC，plasticker.de 转载）", url: "https://plasticker.de/docs/recybase/39248_1756367725.pdf", publisher: SABIC, kind: maker_doc, accessed: 2026-11-08}
+      - {id: ge, title: "PC LEXAN 141R 数据表（GE Plastics 2005 年版，ROLEC 转载）", url: "https://rolec.com/fileadmin/Media/58/d3/Datenblatt_technoCASE_PC_LEXAN%2B141R_en.pdf", publisher: GE Plastics, kind: maker_doc, accessed: 2026-11-08}
+    properties:
+      - {prop: MVR, value: "12", unit: cm³/10min, conditions: "300°C/1.2kg", standard: ISO 1133, source: sabic}
+      - {prop: 密度, value: "1.2", unit: g/cm³, standard: ISO 1183, source: sabic}
+      - {prop: 拉伸屈服强度, value: "63", unit: MPa, conditions: "50 mm/min", standard: ISO 527, source: sabic}
+      - {prop: 拉伸断裂强度, value: "70", unit: MPa, conditions: "50 mm/min", standard: ISO 527, source: sabic}
+      - {prop: HDT, value: "136", unit: °C, conditions: "0.45 MPa，侧立 120×10×4 mm，跨距 100 mm", standard: ISO 75/Be, source: sabic}
+      - {prop: HDT, value: "125", unit: °C, conditions: "1.8 MPa，侧立 120×10×4 mm，跨距 100 mm", standard: ISO 75/Ae, source: sabic}
+      - {prop: 吸水率, value: "0.35", unit: "%", conditions: "23°C 浸水饱和", standard: ISO 62, source: sabic}
+      - {prop: 吸水率, value: "0.15", unit: "%", conditions: "23°C/50%RH 平衡", standard: ISO 62, source: sabic}
+      - {prop: 透光率, value: "88～90", unit: "%", standard: ASTM D1003, thickness_mm: 2.54, source: sabic}
+      - {prop: 雾度, value: "<0.8", unit: "%", standard: ASTM D1003, thickness_mm: 2.54, source: sabic}
+
+  # ---------------- PA66 ----------------
+  - code: A3K
+    full_name: Ultramid A3K
+    manufacturer: 巴斯夫
+    brand: Ultramid
+    material: PA66
+    product_type: resin
+    grade_class: 通用注塑级（易流动）
+    lifecycle: active
+    verify: verified
+    aliases: [UltramidA3K, 巴斯夫A3K]
+    summary: 巴斯夫未增强 PA66，易流动、加工快，用于轴承等高负荷技术零件。
+    description: |
+      厂家原话的意思：易流动的注塑级，加工快，用于**高应力的技术零件**，例如轴承。
+
+      **尼龙的数据一定要看“干态 / 调湿”**：尼龙会吸收空气里的水分，吸水后变软变韧。
+      A3K 的拉伸模量干态 3000 MPa，调湿后（23°C/50%RH 吸湿平衡）只有 1100 MPa，差了将近三倍。
+      客户说“这个尼龙件刚注塑出来很硬、放几天变软了”，就是这个原因。
+
+      **Ultramid 牌号规律**：A 开头是 PA66，B 开头是 PA6；带 G 和数字的是玻纤增强，
+      例如 A3EG6 表示 PA66 加 30% 玻纤。
+    sources:
+      - {id: tds, title: "Ultramid A3K 产品数据表（亚太/欧洲版，02/2026）", url: "https://download.basf.com/p1/8a8082587fd4b608017fd64108ab6d3b/en/ULTRAMID_A3K_Product_Data_Sheet_Asia_PacificEurope_English.pdf", publisher: BASF, kind: maker_doc, accessed: 2026-11-08}
+      - {id: range, title: "Ultramid（PA）产品目录（欧洲）", url: "https://download.basf.com/p1/8a8081c57fd4b609017fdf6c58512210/en/Ultramid%253Csup%253E%25C2%25AE%253Csup%253E_%2528PA%2529_%25E2%2580%2592_Product_Range", publisher: BASF, kind: maker_doc, accessed: 2026-11-08}
+    properties:
+      - {prop: 拉伸模量, value: "3000", unit: MPa, state: dry, standard: "ISO 527-1/-2", source: tds}
+      - {prop: 拉伸模量, value: "1100", unit: MPa, state: conditioned, standard: "ISO 527-1/-2", source: tds}
+      - {prop: 拉伸屈服强度, value: "85", unit: MPa, state: dry, conditions: "50 mm/min", standard: "ISO 527-1/-2", source: tds}
+      - {prop: 拉伸屈服强度, value: "50", unit: MPa, state: conditioned, conditions: "50 mm/min", standard: "ISO 527-1/-2", source: tds}
+      - {prop: 拉伸屈服应变, value: "4.5", unit: "%", state: dry, conditions: "50 mm/min", standard: "ISO 527-1/-2", source: tds}
+      - {prop: 拉伸屈服应变, value: "20", unit: "%", state: conditioned, conditions: "50 mm/min", standard: "ISO 527-1/-2", source: tds}
+      - {prop: 熔点, value: "260", unit: °C, conditions: "DSC", standard: "ISO 11357-1/-3", source: range}
+      - {prop: 密度, value: "1130", unit: kg/m³, standard: ISO 1183, source: range}
+      - {prop: 弯曲模量, value: "2900", unit: MPa, state: dry, standard: ISO 178, source: range}
+      - {prop: 吸水率, value: "2.50～3.10", unit: "%", conditions: "23°C/50%RH 吸湿平衡", standard: ISO 62, source: range}
+
+  - code: 101L NC010
+    full_name: Zytel 101L NC010
+    manufacturer: 塞拉尼斯
+    brand: Zytel
+    material: PA66
+    product_type: resin
+    grade_class: 通用注塑级（含润滑剂）
+    lifecycle: active
+    verify: partial
+    aliases: [101L, Zytel 101L, 杜邦101L, 101LNC010]
+    summary: 原杜邦、现塞拉尼斯的经典未增强 PA66，含润滑剂，国内常叫“杜邦 101L”。
+    description: |
+      杜邦资料原话的意思：**含润滑剂的 PA66 注塑树脂**。NC010 是本色（未着色）的颜色代号。
+      Zytel 原属杜邦，2022 年杜邦把这块业务卖给了塞拉尼斯，所以新资料上的厂家是 Celanese，
+      但市场上很多人还叫它“杜邦 101L”。
+
+      同样要分**干态（DAM，刚注塑出来）和调湿（50%RH）**：缺口冲击强度干态 5 kJ/m²，调湿后 15 kJ/m²，
+      吸水让尼龙明显变韧；弯曲模量则从 2800 降到 1200 MPa。
+
+      数据来自 UL Prospector 和旧版杜邦资料的转载，版本不同的资料个别数字有出入
+      （0.45 MPa 热变形温度有的写 190 °C、有的写 200 °C），以塞拉尼斯最新 TDS 为准。
+    sources:
+      - {id: ul, title: "Zytel 101L NC010 数据表（UL Prospector，Protolabs 转载）", url: "https://Protolabs.com/media/tcebrq5j/zytel-101l.pdf", publisher: UL Prospector, kind: other, accessed: 2026-11-08}
+      - {id: dp, title: "Zytel 101L NC010 Product Information（杜邦旧版资料，Scribd 用户上传）", url: "https://www.scribd.com/document/514286573/com", publisher: DuPont, kind: maker_doc, accessed: 2026-11-08}
+      - {id: ss, title: "Zytel 101L NC010 物性表（转载 UL Prospector 数据）", url: "https://sushengpolymer.com/media/pdf/DoOICH_Zytel-101L-NC010.pdf", publisher: 上海苏盛（贸易商）, kind: trader, accessed: 2026-11-08}
+      - {id: cel, title: "Zytel 101L NC010 数据表（Celanese Materials Database，Quickparts 转载）", url: "https://quickparts.com/wp-content/uploads/2023/04/zytel®-101l-nc010-gb.pdf", publisher: Celanese, kind: maker_doc, accessed: 2026-11-08}
+    properties:
+      - {prop: 弯曲模量, value: "2800", unit: MPa, state: dry, standard: ISO 178, source: ul}
+      - {prop: 弯曲模量, value: "1200", unit: MPa, state: conditioned, standard: ISO 178, source: ul}
+      - {prop: HDT, value: "190", unit: °C, state: dry, conditions: "0.45 MPa，未退火", standard: ISO 75-2/B, source: ul, note: "另一份转载资料写 200 °C"}
+      - {prop: HDT, value: "70", unit: °C, state: dry, conditions: "1.8 MPa，未退火", standard: ISO 75-2/A, source: ss, verify: unverified}
+      - {prop: 简支梁缺口冲击强度, value: "5", unit: kJ/m², state: dry, conditions: "23°C", standard: ISO 179/1eA, source: dp}
+      - {prop: 简支梁缺口冲击强度, value: "15", unit: kJ/m², state: conditioned, conditions: "23°C，50%RH", standard: ISO 179/1eA, source: dp}
+      - {prop: 简支梁缺口冲击强度, value: "4", unit: kJ/m², state: dry, conditions: "-30°C", standard: ISO 179/1eA, source: dp}
+      - {prop: 熔点, value: "262", unit: °C, state: dry, standard: ISO 11357-3, source: ss, verify: unverified}
+      - {prop: 玻璃化转变温度, value: "60", unit: °C, state: dry, standard: ISO 11357-2, source: ss, verify: unverified}
+      - {prop: 维卡软化温度, value: "240", unit: °C, state: dry, conditions: "B50", standard: ISO 306, source: ss, verify: unverified}
+
+  # ---------------- PA6 ----------------
+  - code: B3S
+    full_name: Ultramid B3S
+    manufacturer: 巴斯夫
+    brand: Ultramid
+    material: PA6
+    product_type: resin
+    grade_class: 通用注塑级（易流动、快速成型）
+    lifecycle: active
+    verify: partial
+    aliases: [UltramidB3S, 巴斯夫B3S]
+    summary: 巴斯夫未增强 PA6，易流动、细晶，成型周期短，适合薄壁件。
+    description: |
+      厂家原话的意思：易流动、**细晶**的注塑级，加工非常快，用于薄壁零件。
+
+      和 PA66（A3K）对比，最直观的区别是**熔点**：PA6 约 220 °C，PA66 约 260 °C，
+      所以 PA66 更耐热，PA6 更好加工、价格通常更低。
+
+      吸水数据要看清条件：在水里泡到饱和是 9～10%，在 23°C/50%RH 空气里放到平衡是 2.6～3.4%。
+      两个条件不同，数字差好几倍。
+    sources:
+      - {id: tds, title: "Ultramid B3S 产品数据表（BASF，09/2019，Scribd 用户上传）", url: "https://www.scribd.com/document/444924651/Ultramid-B3S-en-SI", publisher: BASF, kind: maker_doc, accessed: 2026-11-08}
+    properties:
+      - {prop: 熔点, value: "220", unit: °C, conditions: "DSC", standard: "ISO 11357-1/-3", source: tds}
+      - {prop: MVR, value: "160", unit: cm³/10min, conditions: "275°C/5kg", standard: ISO 1133, source: tds}
+      - {prop: 吸水率, value: "9～10", unit: "%", conditions: "23°C 浸水饱和", standard: "类似 ISO 62", source: tds}
+      - {prop: 吸水率, value: "2.60～3.40", unit: "%", conditions: "23°C/50%RH 吸湿平衡", standard: "类似 ISO 62", source: tds}
+
+  # ---------------- POM ----------------
+  - code: M90-44
+    full_name: DURACON M90-44
+    manufacturer: 宝理塑料
+    brand: DURACON
+    material: POM
+    product_type: resin
+    grade_class: 通用注塑级（中黏度）
+    lifecycle: active
+    verify: partial
+    aliases: [M90, M9044, 宝理M90]
+    summary: 宝理中等黏度共聚 POM，熔指 9，通用注塑；国内俗称“宝理 M90”。
+    description: |
+      经销商说明：中等黏度（MFR 9）的共聚 POM，通用注塑。特点：抗蠕变、尺寸稳定、耐疲劳、摩擦小、耐磨。
+
+      **POM 牌号里的数字常常就是熔指**：M90 的 MFR 是 9，M270 是 27（更好流动），M25 是 2.5（更韧、适合挤出）。
+      后缀 -44 和 -57 是不同的稳定体系：经销商提示 -44 系列的认证有限，食品和饮用水用途建议看 -57 系列。
+    sources:
+      - {id: up, title: Duracon M90-44 产品页, url: "https://ultrapolymers.com/en/products/101518-duracon-m90-44", publisher: Ultrapolymers（Ravago 集团经销商）, kind: trader, accessed: 2026-11-08}
+    properties:
+      - {prop: 密度, value: "1.41", unit: g/cm³, standard: ISO 1183, source: up}
+      - {prop: MFR, value: "9.0", unit: g/10min, conditions: "190°C/2.16kg", standard: ISO 1133, source: up}
+      - {prop: 阻燃等级（UL 94）, value: "HB", conditions: "资料未注明厚度", source: up}
+
+  - code: F20-03
+    full_name: Kepital F20-03
+    manufacturer: 韩国工程塑料
+    brand: Kepital
+    material: POM
+    product_type: resin
+    grade_class: 通用注塑级（中黏度）
+    lifecycle: active
+    verify: partial
+    aliases: [F2003, KEP F20-03]
+    summary: KEP 中等黏度通用注塑 POM，和宝理 M90-44 同一档次（熔指都是 9）。
+    description: |
+      厂家原话的意思：中等黏度的通用注塑级。
+
+      **和 DURACON M90-44 对比**：密度都是 1.41，熔指都是 9（190°C/2.16kg），属于同一档次的通用 POM。
+      POM 的成型收缩率很大（约 2%），远大于 ABS、PC 这类非结晶塑料（约 0.5%），换料或改模时要特别注意。
+    sources:
+      - {id: ul, title: "Kepital F20-03 数据表（UL Prospector，plasticker.de 转载）", url: "https://plasticker.de/docs/recybase/34667_1719500328.pdf", publisher: UL Prospector, kind: other, accessed: 2026-11-08}
+    properties:
+      - {prop: 密度, value: "1.41", unit: g/cm³, standard: ISO 1183, source: ul}
+      - {prop: MFR, value: "9.0", unit: g/10min, conditions: "190°C/2.16kg", standard: ISO 1133, source: ul}
+      - {prop: 成型收缩率, value: "2.0", unit: "%", conditions: "2.00 mm", direction: flow, standard: 厂家内部方法, source: ul}
+      - {prop: 吸水率, value: "0.20", unit: "%", conditions: "23°C/50%RH 平衡", standard: ISO 62, source: ul}

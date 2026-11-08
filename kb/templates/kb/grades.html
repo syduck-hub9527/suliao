@@ -1,0 +1,42 @@
+{% extends "kb/base.html" %}
+
+{% block title %}牌号库 · 塑料学习资料库{% endblock %}
+
+{% block style %}
+  .jump { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 18px; }
+  .jump a { font-size: 14px; background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 2px 12px; color: var(--text); }
+  .jump a:hover { border-color: var(--accent); text-decoration: none; }
+  .fam { margin-bottom: 16px; scroll-margin-top: 70px; }
+  .fam h2 { margin: 0 0 10px; }
+  td.code, td.maker { white-space: nowrap; }
+{% endblock %}
+
+{% block content %}
+  <h1>牌号库</h1>
+  <p class="muted">收录国内市场上常见、常被报价的牌号，共 {{ count }} 个。每个数字都附来源，没有出处的数字不收录。</p>
+  <div class="jump">
+    {% for family, rows in families %}<a href="#f{{ family.pk }}">{{ family.abbr|default:family.name_zh }}（{{ rows|length }}）</a>{% endfor %}
+  </div>
+
+  {% for family, rows in families %}
+    <div class="card fam" id="f{{ family.pk }}">
+      <h2><a href="{% url 'kb:entry' family.pk %}">{{ family }}</a></h2>
+      <div class="table-wrap">
+        <table class="data">
+          <tr><th>牌号</th><th>厂家</th><th>类型</th><th>熔融指数</th><th>一句话</th></tr>
+          {% for r in rows %}
+            <tr>
+              <td class="code"><a href="{% url 'kb:grade' r.grade.pk %}"><b>{{ r.grade.code }}</b></a></td>
+              <td class="small maker">{% if r.grade.manufacturer %}<a href="{% url 'kb:company' r.grade.manufacturer.pk %}">{{ r.grade.manufacturer }}</a>{% else %}<span class="muted">多家生产</span>{% endif %}</td>
+              <td class="small">{{ r.grade.base_entry.abbr|default:r.grade.base_entry.name_zh }}{% if r.grade.grade_class %} · {{ r.grade.grade_class }}{% endif %}</td>
+              <td class="small">{{ r.mfr|default:'—' }}</td>
+              <td class="small muted">{{ r.grade.summary }}</td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+  {% empty %}
+    <div class="card"><p class="muted">还没有收录牌号。</p></div>
+  {% endfor %}
+{% endblock %}

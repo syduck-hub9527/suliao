@@ -176,7 +176,16 @@ class Importer:
         for entry, meta in entries:
             if entry is not None:
                 self._import_links(entry, meta)
+                if entry.kind == m.EntryKind.PROPERTY:
+                    self._link_property_definition(entry)
         return self.report
+
+    def _link_property_definition(self, entry):
+        """性能指标词条 ↔ 预置的性能指标定义（按缩写或中文名对上），让性能表里的指标可以点进讲解页。"""
+        cond = m.PropertyDefinition.objects.filter(name_zh=entry.name_zh)
+        if entry.abbr:
+            cond = cond | m.PropertyDefinition.objects.filter(abbr__iexact=entry.abbr)
+        cond.filter(entry__isnull=True).update(entry=entry)
 
     def _import_entry(self, meta, source, seen):
         where = meta.get("_source", "")

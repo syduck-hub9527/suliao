@@ -1,0 +1,38 @@
+# 聚氯乙烯（PVC）常见型号。查阅日期 2026-11-08。
+
+grades:
+  - code: SG-5
+    full_name: 悬浮法通用型聚氯乙烯树脂 SG5 型
+    producers: 国内绝大多数 PVC 生产企业都生产（电石法、乙烯法都有）
+    material: PVC
+    product_type: resin
+    grade_class: 通用型（悬浮法）
+    lifecycle: active
+    verify: unverified
+    aliases: [SG5, SG 5, 5型, 五型, PVC SG5]
+    summary: 国内用量最大的 PVC 型号，大商所 PVC 期货的交割标准品就是 SG5 型一等品。
+    description: |
+      SG-5 不是某一家厂的牌号，而是国家标准 **GB/T 5761《悬浮法通用型聚氯乙烯树脂》** 里的一个**型号**：
+      - **S**：悬浮法（Suspension）生产；**G**：通用型（General）；
+      - 后面的数字 1～8 按分子量（黏数、K 值、聚合度）从高到低排，**数字越小分子量越高**。
+
+      SG-5 的分子量居中，K 值 66～68，主要用来做**硬制品**：管材、型材（门窗）、板材、管件。
+      软制品（电线皮、薄膜、人造革）多用分子量更高的 SG-3。
+
+      **和期货的关系**：大连商品交易所 PVC 期货的标准品是“符合 GB/T 5761-2018 的 SG5 型一等品”，
+      优等品可以替代交割。所以看 PVC 期货价，实际看的就是 SG-5 的价格。
+
+      下面的指标是标准规定的范围（规格值），来自供应商页面引用的 GB/T 5761-2006，
+      **现行标准是 2018 版**，个别指标可能有调整，正式使用请查标准原文。
+      有的企业写黏数 110～118，比国标 107～118 更窄，那是企业自己的内控范围。
+    sources:
+      - {id: mic, title: "PVC 树脂 SG5 规格表（引用 GB/T 5761-2006）", url: "https://m.made-in-china.com/amp/product/Paste-PVC-Resin-PVC-Paste-Resin-740051852.html", publisher: 中国制造网（供应商页面）, kind: trader, accessed: 2026-11-08}
+      - {id: jh, title: "PVC 树脂 SG3/SG5/SG8 规格表", url: "https://nl.jinhetec.com/pvc-resin/57917819.html", publisher: Jinhe（供应商）, kind: trader, accessed: 2026-11-08}
+      - {id: dce, title: 大连商品交易所聚氯乙烯期货业务细则（2025 年修订公告附件）, url: "https://np-newsimg.dfcfw.com/download/A2_cms_f_20250714170458634336?direct=1", publisher: 大连商品交易所（东方财富网转载）, kind: exchange, accessed: 2026-11-08}
+    properties:
+      - {prop: 黏数, value: "107～118", unit: mL/g, type: guaranteed, standard: GB/T 5761-2006, source: mic}
+      - {prop: 黏数, value: "110～118", unit: mL/g, type: guaranteed, source: jh, note: "这家供应商写的范围更窄，应为企业内控指标"}
+      - {prop: K 值, value: "66～68", type: guaranteed, standard: GB/T 5761-2006, source: mic}
+      - {prop: 平均聚合度, value: "1000～1100", type: guaranteed, standard: GB/T 5761-2006, source: mic}
+      - {prop: 挥发物含量, value: "≤0.4", unit: "%", type: guaranteed, conditions: "含水分", standard: GB/T 5761-2006, source: mic}
+      - {prop: 表观密度, value: "≥0.48", unit: g/mL, type: guaranteed, standard: GB/T 5761-2006, source: mic}

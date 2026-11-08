@@ -1,0 +1,56 @@
+# 聚酯类（PET、PBT）常见牌号。查阅日期 2026-11-08。
+
+grades:
+  - code: CR-8828
+    manufacturer: 华润化学材料
+    brand: CR-BRIGHT
+    material: PET
+    product_type: resin
+    grade_class: 瓶级（碳酸饮料瓶）
+    lifecycle: active
+    verify: unverified
+    aliases: [CR8828, 华润8828]
+    summary: 华润的瓶级 PET 切片，专为碳酸饮料瓶开发，是国内瓶片行情里常见的牌号。
+    description: |
+      资料写的特点：为**碳酸饮料瓶**开发的瓶级 PET。重金属和乙醛（A.A.）含量低、色值好、黏度稳定；
+      加工温度低、加工窗口宽、透明度好、强度高、成品率高。
+
+      瓶级 PET 最关键的指标是**特性黏度（IV）**。按专利文献的说法，瓶用聚酯要经过固相缩聚把 IV 提到 0.75 dL/g 以上，
+      而普通熔融聚合得到的 IV 一般不超过 0.62，多用于纤维和薄膜。IV 越高分子量越大，瓶子越结实；
+      碳酸饮料瓶要承受气体内压，对强度要求更高。
+      这个牌号的具体 IV 等数字暂时没找到可靠出处，先不收录。
+    sources:
+      - {id: ins, title: CR-8828 产品页, url: "https://instamine.in/cr-8828.html", publisher: Instamine（印度 B2B 平台）, kind: trader, accessed: 2026-11-08}
+      - {id: pat, title: CN107629198A 一种瓶用聚酯的生产方法（专利，背景技术里说明瓶用聚酯 IV 要求）, url: "https://patents.google.com/patent/CN107629198A/zh", publisher: Google Patents, kind: other, accessed: 2026-11-08}
+
+  - code: 1100-211M
+    full_name: LONGLITE PBT 1100-211M
+    manufacturer: 长春集团
+    brand: LONGLITE
+    material: PBT
+    product_type: resin
+    grade_class: 纯树脂（未增强）
+    lifecycle: unknown
+    verify: unverified
+    aliases: [1100211M, 长春1100-211M]
+    summary: 长春 PBT 纯树脂（不加玻纤），1100 系列是长春 PBT 的未增强系列。
+    description: |
+      长春 PBT 的产品表把牌号分成几类：**纯树脂**（1100 系列）、阻燃（2100）、玻纤增强（3015/3020/3030，
+      后两位就是玻纤含量 15%、20%、30%）、增强阻燃（4115、4130……）、无卤（5630）、低翘曲（6730）。
+      看懂这个规律，同一家的牌号基本能猜出是什么料。
+
+      同为纯树脂，1100-211M 和 1100-211X 的熔指差很多：211M 是 18～22，211X 是 4～7（黏度更高、更韧，
+      断裂伸长率也更大）。
+
+      下面的数据来自台湾经销商的产品表，单位是老式的 kg/cm²。表里热变形温度的负荷写成“1.86 kg/cm²”，
+      按常规应是 18.6 kg/cm²（约 1.82 MPa）的笔误；熔指只写了 235°C，没写负荷。
+    sources:
+      - {id: gtai, title: PBT（LONGLITE）产品表, url: "https://gtai.com.tw/en/?p=2570", publisher: GTAI（台湾经销商）, kind: trader, accessed: 2026-11-08}
+    properties:
+      - {prop: 密度, value: "1.3～1.32", source: gtai, note: "原文是比重，数值约等于密度 g/cm³"}
+      - {prop: 拉伸强度, value: "500～600", unit: kg/cm², source: gtai}
+      - {prop: 断裂伸长率, value: "≥120", unit: "%", source: gtai}
+      - {prop: 悬臂梁缺口冲击强度, value: "≥4.5", unit: kg·cm/cm, source: gtai}
+      - {prop: HDT, value: "60", unit: °C, conditions: "原文写 1.86 kg/cm²，应为 18.6 kg/cm²（约 1.82 MPa）", source: gtai}
+      - {prop: 阻燃等级（UL 94）, value: "HB", thickness_mm: 1.6, source: gtai}
+      - {prop: MFR, value: "18～22", unit: g/10min, conditions: "235°C，资料未注明负荷", source: gtai}

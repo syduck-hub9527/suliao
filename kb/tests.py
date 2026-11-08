@@ -40,8 +40,8 @@ class DataRuleTests(TestCase):
             code="ab-100", full_name="EXAMPLE AB-100", product_type=m.Grade.ProductType.RESIN,
             base_entry=cls.pp, manufacturer=cls.maker,
         )
-        cls.tensile = m.PropertyDefinition.objects.create(
-            name_zh="拉伸强度", group=m.PropertyDefinition.Group.MECHANICAL, si_unit="MPa",
+        cls.tensile, _ = m.PropertyDefinition.objects.get_or_create(
+            name_zh="拉伸强度", defaults={"group": m.PropertyDefinition.Group.MECHANICAL, "si_unit": "MPa"},
         )
 
     # —— 别名与搜索 ——
@@ -324,3 +324,155 @@ class RepoContentTests(TestCase):
         html = md_to_html("它的特点：\n- 轻\n- 耐热")
         self.assertIn("<ul>", html)
         self.assertIn("<li>轻</li>", html)
+
+
+# ============================================================
+# 牌号库导入
+# ============================================================
+
+def _material(name, abbr):
+    return m.Entry.objects.create(kind=m.EntryKind.MATERIAL, name_zh=name, abbr=abbr)
+
+
+def _grade_item(**over):
+    item = {
+        "code": "2805", "manufacturer": "科思创", "material": "PC", "full_name": "Makrolon 2805",
+        "verify": "verified", "_source": "test.yaml",
+        "sources": [{"id": "s1", "title": "TDS", "url": "https://example.com/tds", "kind": "maker_doc"}],
+        "properties": [
+            {"prop": "MVR", "value": "9", "unit": "cm³/10min", "conditions": "300°C/1.2kg", "source": "s1"},
+        ],
+    }
+    item.update(over)
+    return item
+
+
+@override_settings(STORAGES=NO_MANIFEST)
+class GradeImportTests(TestCase):
+    def setUp(self):
+        self.pc = _material("聚碳酸酯", "PC")
+        self.pp = _material("均聚聚丙烯", "PP-H")
+
+    def run_import(self, grades, companies=None):
+        from .grades_import import GradeImporter
+        return GradeImporter(companies or [{"name": "科思创", "aliases": ["Covestro"]}], grades).run()
+
+    def test_parse_value(self):
+        from .grades_import import _parse_value
+        self.assertEqual(_parse_value("62"), (62.0, None, None))
+        self.assertEqual(_parse_value("60～65"), (None, 60.0, 65.0))
+        self.assertEqual(_parse_value("3.0±0.5"), (None, 2.5, 3.5))
+        self.assertEqual(_parse_value("≥30.0"), (None, 30.0, None))
+        self.assertEqual(_parse_value("≤0.030"), (None, None, 0.03))
+        self.assertEqual(_parse_value(">1,000"), (None, 1000.0, None))
+        self.assertEqual(_parse_value("12,000"), (12000.0, None, None))
+        self.assertEqual(_parse_value("HB"), (None, None, None))
+        self.assertEqual(_parse_value("R-110"), (None, None, None))
+
+    def test_creates_grade_with_sourced_values(self):
+        report = self.run_import([_grade_item()])
+        self.assertEqual(report.warnings, [])
+        g = m.Grade.objects.get(code="2805")
+        self.assertEqual(g.manufacturer.name, "科思创")
+        self.assertEqual(g.base_entry, self.pc)
+        pv = g.property_values.get()
+        self.assertEqual((pv.value_num, pv.value_si, pv.conditions), (9.0, 9.0, "300°C/1.2kg"))
+        self.assertTrue(pv.from_content)
+        self.assertEqual(pv.source.url, "https://example.com/tds")
+
+    def test_value_without_source_is_dropped(self):
+        item = _grade_item(properties=[{"prop": "MVR", "value": "9", "unit": "cm³/10min"}])
+        report = self.run_import([item])
+        self.assertFalse(m.PropertyValue.objects.exists())
+        self.assertTrue(any("没有有效来源" in w for w in report.warnings))
+
+    def test_reimport_is_idempotent_and_updates(self):
+        self.run_import([_grade_item()])
+        report = self.run_import([_grade_item()])
+        self.assertEqual(len(report.unchanged), 1)
+        changed = _grade_item(summary="新的一句话")
+        report = self.run_import([changed])
+        self.assertEqual(len(report.updated), 1)
+        self.assertEqual(m.Grade.objects.get().summary, "新的一句话")
+        self.assertEqual(m.PropertyValue.objects.count(), 1)
+
+    def test_admin_edits_are_not_overwritten(self):
+        self.run_import([_grade_item()])
+        pv = m.PropertyValue.objects.get()
+        pv.value_text = "9.5"
+        pv.save()
+        report = self.run_import([_grade_item(summary="内容文件改了")])
+        self.assertEqual(len(report.skipped_edited), 1)
+        self.assertEqual(m.PropertyValue.objects.get().value_text, "9.5")
+        self.assertEqual(m.Grade.objects.get().summary, "")
+
+    def test_multi_producer_grade_without_manufacturer(self):
+        item = _grade_item(code="T30S", manufacturer=None, material="PP-H", producers="中国石化多家企业",
+                           properties=[{"prop": "MFR", "value": "3.0±0.5", "unit": "g/10min",
+                                        "type": "guaranteed", "source": "s1"}])
+        report = self.run_import([item])
+        self.assertEqual(report.warnings, [])
+        g = m.Grade.objects.get(code="T30S")
+        self.assertIsNone(g.manufacturer)
+        self.assertEqual(g.producers_note, "中国石化多家企业")
+        pv = g.property_values.get()
+        self.assertEqual((pv.value_min, pv.value_max, pv.value_type), (2.5, 3.5, "guaranteed"))
+        # 再导入一次不会重复建
+        report = self.run_import([item])
+        self.assertEqual(len(report.unchanged), 1)
+        self.assertEqual(m.Grade.objects.filter(code="T30S").count(), 1)
+
+    def test_grade_needs_manufacturer_or_producers(self):
+        report = self.run_import([_grade_item(manufacturer=None)])
+        self.assertFalse(m.Grade.objects.exists())
+        self.assertTrue(any("producers" in w for w in report.warnings))
+
+    def test_conditioning_state_is_recorded(self):
+        props = [
+            {"prop": "拉伸模量", "value": "3000", "unit": "MPa", "state": "dry", "source": "s1"},
+            {"prop": "拉伸模量", "value": "1100", "unit": "MPa", "state": "调湿", "source": "s1"},
+        ]
+        self.run_import([_grade_item(properties=props)])
+        states = sorted(m.PropertyValue.objects.values_list("conditioning", flat=True))
+        self.assertEqual(states, ["conditioned", "dry"])
+
+    def test_manufacturer_matched_by_alias(self):
+        self.run_import([_grade_item(manufacturer="Covestro")])
+        self.assertEqual(m.Company.objects.count(), 1)
+        self.assertEqual(m.Grade.objects.get().manufacturer.name, "科思创")
+
+    def test_unknown_material_is_skipped(self):
+        report = self.run_import([_grade_item(material="不存在的材料")])
+        self.assertFalse(m.Grade.objects.exists())
+        self.assertTrue(any("没找到对应词条" in w for w in report.warnings))
+
+    def test_grade_pages_render(self):
+        item = _grade_item(code="T30S", manufacturer=None, material="PP-H", producers="多家企业")
+        self.run_import([_grade_item(), item])
+        g = m.Grade.objects.get(code="2805")
+        for url in ["/grades/", f"/g/{g.pk}/", f"/c/{g.manufacturer_id}/", f"/e/{self.pc.pk}/",
+                    f"/g/{m.Grade.objects.get(code='T30S').pk}/", "/search/?q=2805"]:
+            resp = self.client.get(url)
+            self.assertEqual(resp.status_code, 200, url)
+        self.assertContains(self.client.get("/grades/"), "多家生产")
+
+
+class RepoGradesTests(TestCase):
+    """仓库 content/grades 里的牌号必须能无警告地导入，并且每个数字都有来源。"""
+
+    def test_repo_grades_import_cleanly(self):
+        from django.conf import settings
+        from .content import Importer, read_content_dir
+        from .grades_import import GradeImporter, read_grades_dir
+        Importer(read_content_dir(settings.CONTENT_DIR)).run()
+        companies, grades = read_grades_dir(settings.CONTENT_DIR / "grades")
+        self.assertGreaterEqual(len(grades), 20)
+        report = GradeImporter(companies, grades).run()
+        self.assertEqual(report.warnings, [])
+        self.assertEqual(len(report.created), len(grades))
+        self.assertFalse(m.PropertyValue.objects.filter(source__isnull=True).exists())
+        # 每个牌号都写了一句话介绍和来源
+        for g in m.Grade.objects.all():
+            self.assertTrue(g.summary, g.code)
+            self.assertTrue(g.sources.exists(), g.code)
+            self.assertTrue(g.manufacturer_id or g.producers_note, g.code)

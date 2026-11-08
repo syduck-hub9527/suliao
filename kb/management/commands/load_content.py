@@ -8,6 +8,7 @@ from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
 from kb.content import ContentError, Importer, read_content_dir
+from kb.grades_import import GradeImporter, read_grades_dir
 
 
 class Command(BaseCommand):
@@ -23,6 +24,8 @@ class Command(BaseCommand):
             return
         try:
             items = read_content_dir(content_dir)
+            grades_dir = content_dir / "grades"
+            companies, grades = read_grades_dir(grades_dir) if grades_dir.exists() else ([], [])
         except ContentError as exc:
             raise CommandError(f"知识文件格式错误：{exc}") from exc
 
@@ -32,3 +35,11 @@ class Command(BaseCommand):
             self.stdout.write("以下词条在后台改过，保留你的修改、没有覆盖：" + "、".join(report.skipped_edited))
         for warning in report.warnings:
             self.stdout.write(self.style.WARNING("提醒：" + warning))
+
+        if companies or grades:
+            greport = GradeImporter(companies, grades).run()
+            self.stdout.write(self.style.SUCCESS(f"牌号导入完成：{greport.summary()}"))
+            if greport.skipped_edited:
+                self.stdout.write("以下牌号在后台改过，保留你的修改、没有覆盖：" + "、".join(greport.skipped_edited))
+            for warning in greport.warnings:
+                self.stdout.write(self.style.WARNING("提醒：" + warning))

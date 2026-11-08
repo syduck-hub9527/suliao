@@ -1,0 +1,143 @@
+{% extends "kb/base.html" %}
+
+{% block title %}{{ grade.code }} · {{ grade.manufacturer|default:'多家生产' }} · 牌号库{% endblock %}
+
+{% block style %}
+  .layout { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 20px; align-items: start; }
+  @media (max-width: 860px) { .layout { grid-template-columns: minmax(0, 1fr); } }
+  .crumbs { font-size: 14px; color: var(--muted); margin-bottom: 8px; }
+  .sub { color: var(--soft); margin: 2px 0 10px; }
+  .badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  .oneliner { font-size: 18px; padding: 14px 18px; background: var(--accent-soft); border-radius: 10px; margin-bottom: 18px; }
+  .sec { margin-bottom: 16px; }
+  .sec h2 { margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .sec h2::before { content: ""; width: 4px; height: 18px; border-radius: 2px; background: var(--accent); }
+  .prose p { margin: 0 0 12px; }
+  .prose ul, .prose ol { margin: 0 0 12px; padding-left: 22px; }
+  .prose a.term { color: var(--text); border-bottom: 1px dashed var(--accent); }
+  .group-title { font-size: 14px; color: var(--soft); font-weight: 600; margin: 14px 0 4px; }
+  .group-title:first-of-type { margin-top: 0; }
+  td.val { white-space: nowrap; font-weight: 600; }
+  table.data td:first-child { min-width: 6.5em; }
+  .sec .table-wrap table.data { min-width: 620px; }
+  .side .card { margin-bottom: 14px; padding: 14px 16px; }
+  .side h3 { font-size: 15px; margin: 0 0 8px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { font-size: 14px; background: #f1f3f6; border-radius: 6px; padding: 1px 8px; color: var(--text); }
+  .kv { display: grid; grid-template-columns: 72px 1fr; gap: 4px 8px; font-size: 14px; }
+  .kv dt { color: var(--muted); }
+  .kv dd { margin: 0; }
+  ol.srcs { padding-left: 20px; margin: 0; font-size: 14px; }
+  ol.srcs li { margin: 4px 0; }
+  .disclaimer { font-size: 13px; color: var(--muted); margin-top: 10px; }
+{% endblock %}
+
+{% block content %}
+<div class="layout">
+  <article>
+    <div class="crumbs">
+      <a href="{% url 'kb:grades' %}">牌号库</a> ·
+      <a href="{% url 'kb:entry' grade.base_entry.pk %}">{{ grade.base_entry }}</a>
+    </div>
+    <h1>{{ grade.code }}</h1>
+    <div class="sub">
+      {% if grade.full_name %}{{ grade.full_name }} · {% endif %}
+      {% if grade.manufacturer %}<a href="{% url 'kb:company' grade.manufacturer.pk %}">{{ grade.manufacturer }}</a>{% else %}多家企业生产的通用牌号{% endif %}
+    </div>
+    <div class="badges">
+      <span class="badge gray">{{ grade.get_product_type_display }}</span>
+      {% if grade.grade_class %}<span class="badge">{{ grade.grade_class }}</span>{% endif %}
+      {% if grade.lifecycle == 'discontinued' %}<span class="badge red">已停产</span>{% endif %}
+      {% if grade.verify_status == 'verified' %}<span class="badge green">资料有官方出处</span>
+      {% elif grade.verify_status == 'partial' %}<span class="badge amber">转载的厂家资料</span>
+      {% else %}<span class="badge amber">资料待核实</span>{% endif %}
+    </div>
+
+    {% if grade.summary %}<div class="oneliner">{{ grade.summary }}</div>{% endif %}
+
+    {% if description %}
+      <section class="card sec">
+        <h2>特点与用途</h2>
+        <div class="prose">{{ description }}</div>
+      </section>
+    {% endif %}
+
+    <section class="card sec">
+      <h2>性能数据</h2>
+      {% if groups %}
+        <p class="small muted" style="margin-top:0">数字只有在测试条件相同时才能和别的牌号比较。点指标名可以看它是什么意思。</p>
+        {% for group, rows in groups.items %}
+          <div class="group-title">{{ group }}</div>
+          <div class="table-wrap">
+            <table class="data">
+              <tr><th>指标</th><th>数值</th><th>测试条件</th><th>标准</th><th>类型</th><th>来源</th></tr>
+              {% for pv in rows %}
+                <tr>
+                  <td>{% if pv.prop.entry_id %}<a href="{% url 'kb:entry' pv.prop.entry_id %}">{{ pv.prop.name_zh }}</a>{% else %}{{ pv.prop.name_zh }}{% endif %}</td>
+                  <td class="val">{{ pv.value_text }} {{ pv.unit }}</td>
+                  <td class="small">{% if pv.conditioning %}<span class="badge {% if pv.conditioning == 'dry' %}gray{% endif %}">{{ pv.get_conditioning_display }}</span> {% endif %}{{ pv.conditions|default:'—' }}{% if pv.direction %}，{{ pv.get_direction_display }}{% endif %}{% if pv.thickness_mm %}，厚 {{ pv.thickness_mm }} mm{% endif %}{% if pv.note %}<div class="muted">{{ pv.note }}</div>{% endif %}</td>
+                  <td class="small">{{ pv.standard|default:pv.standard_text|default:'—' }}</td>
+                  <td class="small">{{ pv.get_value_type_display }}</td>
+                  <td class="small">{% if pv.source.url %}<a href="{{ pv.source.url }}" target="_blank" rel="noopener">{{ pv.source.publisher|default:'查看' }}</a>{% else %}{{ pv.source.title }}{% endif %}{% if pv.verify_status != grade.verify_status %}<div class="muted">{% if pv.verify_status == 'verified' %}官方出处{% elif pv.verify_status == 'partial' %}厂家资料转载{% else %}待核实{% endif %}</div>{% endif %}</td>
+                </tr>
+              {% endfor %}
+            </table>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p class="muted">暂时没有找到带出处的性能数据。没有出处的数字不会收录，宁可空着。</p>
+      {% endif %}
+    </section>
+
+    {% if sources %}
+      <section class="card sec">
+        <h2>资料来源</h2>
+        <ol class="srcs">
+          {% for s in sources %}
+            <li>{% if s.url %}<a href="{{ s.url }}" target="_blank" rel="noopener">{{ s.title }}</a>{% else %}{{ s.title }}{% endif %}
+              <span class="muted">· {{ s.get_kind_display }}{% if s.accessed_on %} · {{ s.accessed_on|date:"Y-m-d" }} 查阅{% endif %}</span></li>
+          {% endfor %}
+        </ol>
+      </section>
+    {% endif %}
+
+    <div class="disclaimer">
+      可信度分三档：<b>资料有官方出处</b>（厂家官网或厂家文件）、<b>转载的厂家资料</b>（数据库或经销商转载）、<b>资料待核实</b>（贸易商、B2B 平台）。
+      牌号信息由 AI 根据公开资料整理，数字来自上面列出的来源。厂家可能更新 TDS，采购、设计、给客户承诺前，请向厂家或供应商索取最新版 TDS 核对。
+      发现错误？<a href="{{ admin_url }}">在后台修改</a>（改过的内容不会被自动导入覆盖）。
+    </div>
+  </article>
+
+  <aside class="side">
+    <div class="card">
+      <h3>基本信息</h3>
+      <dl class="kv">
+        <dt>牌号</dt><dd>{{ grade.code }}</dd>
+        <dt>材料</dt><dd><a href="{% url 'kb:entry' grade.base_entry.pk %}">{{ grade.base_entry }}</a></dd>
+        {% if grade.manufacturer %}<dt>厂家</dt><dd><a href="{% url 'kb:company' grade.manufacturer.pk %}">{{ grade.manufacturer }}</a></dd>
+        {% elif grade.producers_note %}<dt>生产企业</dt><dd>{{ grade.producers_note }}</dd>{% endif %}
+        {% if grade.brand %}<dt>品牌</dt><dd>{{ grade.brand }}</dd>{% endif %}
+        <dt>生产状态</dt><dd>{{ grade.get_lifecycle_display }}</dd>
+      </dl>
+    </div>
+
+    {% if aliases %}
+      <div class="card">
+        <h3>其他叫法</h3>
+        <div class="chips">{% for a in aliases %}<span class="chip">{{ a.text }}</span>{% endfor %}</div>
+      </div>
+    {% endif %}
+
+    {% if siblings %}
+      <div class="card">
+        <h3>{{ family.abbr|default:family.name_zh }} 的其他常见牌号</h3>
+        <ul class="plain small">
+          {% for s in siblings %}
+            <li class="row"><a href="{% url 'kb:grade' s.pk %}">{{ s.code }}</a><span class="muted">{{ s.manufacturer|default:'多家生产' }}</span></li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  </aside>
+</div>
+{% endblock %}

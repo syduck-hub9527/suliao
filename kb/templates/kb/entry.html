@@ -4,7 +4,7 @@
 
 {% block style %}
   .layout { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 20px; align-items: start; }
-  @media (max-width: 860px) { .layout { grid-template-columns: 1fr; } }
+  @media (max-width: 860px) { .layout { grid-template-columns: minmax(0, 1fr); } }
   .crumbs { font-size: 14px; color: var(--muted); margin-bottom: 8px; }
   .names { color: var(--soft); margin: 2px 0 10px; }
   .badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
@@ -67,6 +67,25 @@
     {% empty %}
       <div class="card"><p class="muted">这个词条还没有正文。</p></div>
     {% endfor %}
+
+    {% if grades %}
+      <section class="card sec">
+        <h2>常见牌号</h2>
+        <div class="table-wrap">
+          <table class="data">
+            <tr><th>牌号</th><th>厂家</th><th>类型</th><th>一句话</th></tr>
+            {% for g in grades %}
+              <tr>
+                <td><a href="{% url 'kb:grade' g.pk %}"><b>{{ g.code }}</b></a></td>
+                <td>{% if g.manufacturer %}<a href="{% url 'kb:company' g.manufacturer.pk %}">{{ g.manufacturer }}</a>{% else %}<span class="muted">多家生产</span>{% endif %}</td>
+                <td class="small">{{ g.base_entry.abbr|default:g.base_entry.name_zh }}{% if g.grade_class %} · {{ g.grade_class }}{% endif %}</td>
+                <td class="small muted">{{ g.summary }}</td>
+              </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </section>
+    {% endif %}
 
     {% if path_item %}
       <div class="pager">
@@ -132,14 +151,6 @@
       </div>
     {% endif %}
 
-    {% if grades %}
-      <div class="card">
-        <h3>收录的牌号</h3>
-        <ul class="plain small">
-          {% for g in grades %}<li class="row">{{ g }}<span class="muted">{{ g.manufacturer|default:'' }}</span></li>{% endfor %}
-        </ul>
-      </div>
-    {% endif %}
   </aside>
 </div>
 {% endblock %}

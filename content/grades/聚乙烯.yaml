@@ -1,0 +1,119 @@
+# 聚乙烯（PE）常见牌号。查阅日期 2026-11-08。
+
+grades:
+  - code: 2426H
+    full_name: Lupolen 2426 H
+    manufacturer: 利安德巴赛尔
+    brand: Lupolen
+    material: LDPE
+    product_type: resin
+    grade_class: 吹膜/流延膜级
+    lifecycle: active
+    verify: verified
+    aliases: [Lupolen 2426H]
+    summary: 含爽滑剂和开口剂的通用 LDPE 薄膜料，“2426H”这个牌号名在国内也很常见。
+    description: |
+      厂家说明：加了添加剂的低密度聚乙烯，含**爽滑剂**（芥酸酰胺）和**开口剂**（天然二氧化硅），
+      加工性和力学性能平衡好，做出的薄膜光学性能好。用于吹膜和流延膜：袋子、食品包装膜、卫材膜、衬膜、收缩膜。
+      厂家注明不用于医疗和药品用途。
+
+      国内也有企业用同一个牌号名“2426H”生产 LDPE（见下面茂名石化的 2426H）。
+      名字一样、数据接近，但**不是同一个产品**，报价和选料时要说清楚是哪家的。
+    sources:
+      - {id: lyb, title: Lupolen 2426H 产品页, url: "https://lyondellbasell.com/en/polymers/p/Lupolen-2426H/90121372-9e7b-4888-b14d-00410c344618", publisher: LyondellBasell, kind: maker_web, accessed: 2026-11-08}
+    properties:
+      - {prop: MFR, value: "1.9", unit: g/10min, conditions: "190°C/2.16kg", source: lyb}
+      - {prop: 密度, value: "0.924", unit: g/cm³, source: lyb}
+      - {prop: 拉伸模量, value: "260", unit: MPa, source: lyb}
+      - {prop: 拉伸屈服强度, value: "11", unit: MPa, source: lyb}
+      - {prop: 维卡软化温度, value: "94", unit: °C, conditions: "A/50", source: lyb}
+      - {prop: 熔点, value: "111", unit: °C, conditions: "峰值熔点", source: lyb}
+      - {prop: 雾度, value: "<8", unit: "%", conditions: "50 µm 薄膜", source: lyb}
+
+  - code: 2426H
+    manufacturer: 茂名石化
+    material: LDPE
+    product_type: resin
+    grade_class: 薄膜级
+    lifecycle: unknown
+    verify: unverified
+    summary: 国产 LDPE 薄膜料里常被报价的牌号之一，和巴赛尔 Lupolen 2426 H 同名。
+    description: |
+      国内 LDPE 薄膜料的常见牌号。目前只找到供应商上传的物性表（注明数据来自 17suzao.com），
+      没有找到茂名石化自己发布的资料，所以标“待核实”。
+
+      和利安德巴赛尔的 Lupolen 2426 H 对比：熔指都是 1.9、密度都在 0.924 左右，屈服强度也接近。
+      **同名不等于同一个产品**，给客户报价时要写清楚厂家。
+    sources:
+      - {id: gs, title: "LDPE 2426H 物性表（标注来自 17suzao.com）", url: "https://p.globalsources.com/IMAGES/PDT/SPEC/575/K1233192575.pdf", publisher: 环球资源网（供应商上传）, kind: trader, accessed: 2026-11-08}
+    properties:
+      - {prop: 密度, value: "924.2", unit: kg/m³, conditions: "23°C", standard: GB/T 1033, source: gs}
+      - {prop: MFR, value: "1.9", unit: g/10min, conditions: "资料未注明温度和负荷", standard: GB/T 3682, source: gs}
+      - {prop: 拉伸屈服强度, value: "11.4", unit: MPa, standard: ASTM D638, source: gs}
+      - {prop: 断裂伸长率, value: "561", unit: "%", standard: ASTM D638, source: gs}
+      - {prop: 雾度, value: "6.5", unit: "%", conditions: "资料未注明试样厚度", standard: ASTM D1003, source: gs}
+
+  - code: HD5000S
+    full_name: InnoPlus HD5000S
+    manufacturer: PTTGC
+    brand: InnoPlus
+    material: HDPE
+    product_type: resin
+    grade_class: 单丝/拉丝级
+    lifecycle: active
+    verify: verified
+    aliases: [5000S]
+    summary: HDPE 单丝料。“5000S”是拉丝、单丝用 HDPE 里流传很广的牌号名，很多厂家都有同名或近似牌号。
+    description: |
+      厂家说明：单丝（monofilament）用 HDPE，用于渔网、绳索、农用网、篷布、蚊帐。
+
+      “5000S”这个名字在 HDPE 拉丝料里非常常见：泰国 PTTGC 的 HD5000S、乐天化学的 HIVOREX 5000S、
+      日本 Prime Polymer 的 HI-ZEX 5000S、伊朗 JAM 的 HD5000S 都叫这个名字，国内也有企业生产 5000S。
+      各家数据接近（熔指 0.8～1 左右、密度 0.95 左右），但**不是同一个产品**。
+
+      看这张表时注意两点：
+      - 力学数据的单位是 **kg/cm²**（老式写法），1 kg/cm² ≈ 0.098 MPa，290 kg/cm² 大约 28 MPa；
+      - 冲击强度后面的“P”表示**部分断裂**：试样被打裂了但没完全断开。
+    sources:
+      - {id: ptt, title: "InnoPlus HDPE 单丝与纱线产品手册（HD5000S、HD5800S）", url: "https://productsandsolutions.pttgcgroup.com/customer-support/files/HD5800S-BROCHURE-20250430161022.pdf", publisher: PTT Global Chemical, kind: maker_doc, accessed: 2026-11-08}
+      - {id: ptt2, title: "PTT HDPE HD5000S TDS（贸易商转载）", url: "https://juyuans.com/wp-content/uploads/2025/02/PTT-HDPE-HD5000S_TDS.pdf", publisher: Juyuans（贸易商）, kind: trader, accessed: 2026-11-08}
+    properties:
+      - {prop: MFR, value: "0.8", unit: g/10min, conditions: "190°C/2.16kg", standard: ASTM D1238, source: ptt}
+      - {prop: 密度, value: "0.954", unit: g/cm³, standard: ASTM D1505, source: ptt}
+      - {prop: 熔点, value: "134", unit: °C, standard: ASTM D3418, source: ptt}
+      - {prop: 拉伸屈服强度, value: "290", unit: kg/cm², standard: ASTM D638, source: ptt}
+      - {prop: 拉伸断裂强度, value: "390", unit: kg/cm², standard: ASTM D638, source: ptt}
+      - {prop: 断裂伸长率, value: ">1,000", unit: "%", standard: ASTM D638, source: ptt}
+      - {prop: 弯曲模量, value: "12,000", unit: kg/cm², standard: ASTM D790, source: ptt}
+      - {prop: 悬臂梁缺口冲击强度, value: "17", unit: kg·cm/cm, standard: ASTM D256, source: ptt, note: "原文标 P：部分断裂"}
+      - {prop: 维卡软化温度, value: "125", unit: °C, standard: ASTM D1525, source: ptt}
+      - {prop: 熔点, value: "125", unit: °C, standard: ASTM D3418, source: ptt2, verify: unverified, note: "贸易商转载的单张 TDS 写 125 °C，和厂家手册的 134 °C 不一致，以厂家最新资料为准"}
+
+  - code: "7042"
+    full_name: DFDA-7042
+    producers: 中国石化、中国石油旗下多家企业（贸易商资料只写“Sinopec / CNPC”）；阿曼 Orpic 也有同名牌号 Luban DFDA-7042
+    material: LLDPE
+    product_type: resin
+    grade_class: 吹膜级
+    lifecycle: active
+    verify: unverified
+    aliases: [DFDA-7042, DFDA7042, 7042]
+    summary: 国内最常见的 LLDPE 吹膜料之一，行情报道里常拿它代表 LLDPE 现货。
+    description: |
+      丁烯共聚的线性低密度聚乙烯，主要用来吹膜：包装膜、农膜、内衬袋、购物袋等。
+      “7042”已经成了行业里的通用叫法，很多企业都在生产，所以这里不挂在某一家厂家名下。
+
+      下面的数据来自一家贸易商的页面，只能当参考：各家工厂的 7042 数据会有差别，要以具体厂家的质检单为准。
+      薄膜的力学性能分**纵向（MD，沿挤出方向）**和**横向（TD）**，两个方向数值差别可能很大。
+    sources:
+      - {id: idkg, title: "LLDPE F182MC (DFDA-7042) 产品页", url: "https://idkg-trade-site.pages.dev/products/dfda7042", publisher: IDKG Limited（贸易商）, kind: trader, accessed: 2026-11-08}
+      - {id: orpic, title: Luban DFDA-7042 产品介绍, url: "https://www.specialchem.com/plastics/product/orpic-luban-dfda-7042", publisher: SpecialChem（数据库）, kind: other, accessed: 2026-11-08}
+    properties:
+      - {prop: MFR, value: "2", unit: g/10min, conditions: "190°C/2.16kg", source: idkg}
+      - {prop: 密度, value: "0.918", unit: g/cm³, source: idkg}
+      - {prop: 熔点, value: "121", unit: °C, conditions: "峰值熔点", source: idkg}
+      - {prop: 拉伸断裂强度, value: "49", unit: MPa, conditions: "薄膜纵向（MD）", source: idkg}
+      - {prop: 拉伸断裂强度, value: "29", unit: MPa, conditions: "薄膜横向（TD）", source: idkg}
+      - {prop: 断裂伸长率, value: "600", unit: "%", conditions: "薄膜纵向（MD）", source: idkg}
+      - {prop: 断裂伸长率, value: "800", unit: "%", conditions: "薄膜横向（TD）", source: idkg}
+      - {prop: 雾度, value: "4.4", unit: "%", conditions: "资料未注明薄膜厚度", source: idkg}

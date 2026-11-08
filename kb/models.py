@@ -520,12 +520,19 @@ class Grade(NameAliasMixin, TimeStamped):
     code_norm = models.CharField("搜索键", max_length=100, db_index=True, editable=False)
     full_name = models.CharField("完整叫法", max_length=200, blank=True, help_text="例：LEXAN 141R")
     product_type = models.CharField("产品类型", max_length=20, choices=ProductType.choices)
+    grade_class = models.CharField("级别/用途", max_length=50, blank=True, help_text="例：拉丝级、注塑级、薄膜级、管材级")
+    summary = models.CharField("一句话介绍", max_length=200, blank=True)
     base_entry = models.ForeignKey(
         Entry, verbose_name="属于什么材料/助剂", on_delete=models.PROTECT, related_name="grades",
         limit_choices_to={"kind__in": [EntryKind.MATERIAL, EntryKind.ADDITIVE]},
     )
     manufacturer = models.ForeignKey(Company, verbose_name="生产商", on_delete=models.PROTECT,
-                                     null=True, blank=True, related_name="grades")
+                                     null=True, blank=True, related_name="grades",
+                                     help_text="只有一家厂家时填。T30S、SG-5 这类多家都在生产的通用牌号留空，写在下面")
+    producers_note = models.CharField(
+        "生产企业（多家时）", max_length=300, blank=True,
+        help_text="没有单一厂家的通用牌号，写清楚有哪些企业在生产，例：中国石化镇海、九江等多家",
+    )
     brand = models.ForeignKey(Brand, verbose_name="品牌", on_delete=models.SET_NULL,
                               null=True, blank=True, related_name="grades")
     description = models.TextField("特点与用途", blank=True, help_text="尽量照厂家原话")
@@ -545,6 +552,10 @@ class Grade(NameAliasMixin, TimeStamped):
     sources = models.ManyToManyField(Source, verbose_name="来源", blank=True, related_name="grades")
     aliases = GenericRelation(Alias)
     note = models.TextField("备注", blank=True)
+    imported_hash = models.CharField(
+        "导入指纹", max_length=64, blank=True, editable=False,
+        help_text="从 content/grades 导入时记下的内容指纹；在后台改过的牌号不会被再次导入覆盖",
+    )
 
     class Meta:
         verbose_name = verbose_name_plural = "牌号"
@@ -730,6 +741,7 @@ class PropertyValue(TimeStamped):
     verify_status = models.CharField("核验状态", max_length=20, choices=VerifyStatus.choices,
                                      default=VerifyStatus.UNVERIFIED)
     note = models.CharField("备注", max_length=300, blank=True)
+    from_content = models.BooleanField("来自内容文件", default=False, editable=False)
 
     class Meta:
         verbose_name = verbose_name_plural = "性能值"

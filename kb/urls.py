@@ -12,4 +12,7 @@ urlpatterns = [
     path("browse/", views.browse, name="browse"),
     path("browse/<str:kind>/", views.browse, name="browse_kind"),
     path("learn/", views.learn, name="learn"),
+    path("grades/", views.grades_list, name="grades"),
+    path("g/<int:pk>/", views.grade_detail, name="grade"),
+    path("c/<int:pk>/", views.company_detail, name="company"),
 ]

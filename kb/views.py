@@ -18,6 +18,12 @@ from .search import search
 def _object_url(obj) -> str:
     if isinstance(obj, m.Entry):
         return reverse("kb:entry", args=[obj.pk])
+    if isinstance(obj, m.Grade):
+        return reverse("kb:grade", args=[obj.pk])
+    if isinstance(obj, m.Company):
+        return reverse("kb:company", args=[obj.pk])
+    if isinstance(obj, m.Brand) and obj.owner_id:
+        return reverse("kb:company", args=[obj.owner_id])
     meta = obj._meta
     return reverse(f"admin:{meta.app_label}_{meta.model_name}_change", args=[obj.pk])
 
@@ -26,10 +32,8 @@ def _summary(obj) -> str:
     if isinstance(obj, m.Entry):
         return obj.one_liner or obj.get_kind_display()
     if isinstance(obj, m.Grade):
-        parts = [str(obj.base_entry), obj.get_product_type_display()]
-        if obj.manufacturer:
-            parts.append(str(obj.manufacturer))
-        return " · ".join(parts)
+        parts = [p for p in [str(obj.manufacturer or "多家生产"), str(obj.base_entry), obj.grade_class] if p]
+        return " · ".join(parts) + (f" — {obj.summary}" if obj.summary else "")
     if isinstance(obj, m.Company):
         return obj.country or "公司"
     if isinstance(obj, m.Brand):
@@ -90,6 +94,7 @@ def home(request):
         "percent": round(done * 100 / total) if total else 0,
         "next_up": next_up, "kind_tiles": kind_tiles, "recent": recent,
         "entry_count": m.Entry.objects.count(),
+        "grade_count": m.Grade.objects.count(),
     })
 
 
@@ -161,7 +166,8 @@ def entry_detail(request, pk):
         "children": entry.children.order_by("name_zh"), "progress": progress,
         "statuses": m.EntryProgress.Status.choices, "path_item": path_item,
         "prev_item": prev_item, "next_item": next_item,
-        "grades": entry.grades.select_related("manufacturer")[:30],
+        "grades": (m.Grade.objects.filter(Q(base_entry=entry) | Q(base_entry__parent=entry))
+                   .select_related("manufacturer", "base_entry").order_by("base_entry__name_zh", "code_norm")),
         "admin_url": reverse("admin:kb_entry_change", args=[entry.pk]),
     })
 
@@ -220,4 +226,73 @@ def learn(request):
     return render(request, "kb/learn.html", {
         "path": path, "stages": stages, "confused": confused, "starred": starred,
         "total": total, "done": done, "percent": round(done * 100 / total) if total else 0,
+    })
+
+
+# ---------------- 牌号 ----------------
+
+# 性能数据按“先基础、再加工、再力学和热”的阅读顺序分组，和大多数 TDS 的排法一致
+_GROUP_ORDER = {g: i for i, g in enumerate(["basic", "processing", "mechanical", "thermal", "flame",
+                                             "electrical", "optical", "other"])}
+
+
+def _mfr_map(grade_ids) -> dict:
+    """每个牌号的熔融指数（列表里快速参考用）。"""
+    result = {}
+    qs = (m.PropertyValue.objects.filter(grade_id__in=grade_ids)
+          .filter(Q(prop__abbr__in=["MFR", "MVR"]))
+          .select_related("prop").order_by("prop__order", "pk"))
+    for pv in qs:
+        if pv.grade_id not in result:
+            result[pv.grade_id] = f"{pv.value_text} {pv.unit}".strip() + (f"（{pv.conditions}）" if pv.conditions else "")
+    return result
+
+
+def grades_list(request):
+    grades = list(m.Grade.objects.select_related("base_entry", "base_entry__parent", "manufacturer"))
+    mfr = _mfr_map([g.pk for g in grades])
+    path_order = dict(m.PathItem.objects.values_list("entry_id", "order"))
+    families = OrderedDict()
+    for g in grades:
+        family = g.base_entry.parent or g.base_entry
+        families.setdefault(family, []).append({"grade": g, "mfr": mfr.get(g.pk, "")})
+    ordered = sorted(families.items(), key=lambda kv: (path_order.get(kv[0].pk, 10**6), kv[0].name_zh))
+    for _, rows in ordered:
+        rows.sort(key=lambda r: (r["grade"].base_entry.name_zh, r["grade"].code_norm))
+    return render(request, "kb/grades.html", {"families": ordered, "count": len(grades)})
+
+
+def grade_detail(request, pk):
+    grade = get_object_or_404(m.Grade.objects.select_related("base_entry", "base_entry__parent", "manufacturer",
+                                                             "brand"), pk=pk)
+    linker = TermLinker()
+    description = linker.render(grade.description) if grade.description else ""
+
+    groups = OrderedDict()
+    pvs = sorted(grade.property_values.select_related("prop", "prop__entry", "source", "standard"),
+                 key=lambda pv: (_GROUP_ORDER.get(pv.prop.group, 99), pv.prop.order, pv.pk))
+    for pv in pvs:
+        groups.setdefault(pv.prop.get_group_display(), []).append(pv)
+
+    own = {m.normalize(x) for x in [grade.code, grade.full_name] if x}
+    aliases = [a for a in grade.aliases.all() if a.norm not in own]
+
+    family = grade.base_entry.parent or grade.base_entry
+    siblings = (m.Grade.objects.filter(Q(base_entry=family) | Q(base_entry__parent=family))
+                .exclude(pk=grade.pk).select_related("manufacturer", "base_entry").order_by("base_entry__name_zh",
+                                                                                           "code_norm")[:16])
+    return render(request, "kb/grade.html", {
+        "grade": grade, "description": description, "groups": groups, "aliases": aliases,
+        "sources": grade.sources.all().order_by("title"), "siblings": siblings, "family": family,
+        "admin_url": reverse("admin:kb_grade_change", args=[grade.pk]),
+    })
+
+
+def company_detail(request, pk):
+    company = get_object_or_404(m.Company.objects.select_related("parent"), pk=pk)
+    grades = company.grades.select_related("base_entry").order_by("base_entry__name_zh", "code_norm")
+    return render(request, "kb/company.html", {
+        "company": company, "grades": grades, "types": company.types.all(),
+        "brands": company.brands.all(), "subsidiaries": company.subsidiaries.all(),
+        "admin_url": reverse("admin:kb_company_change", args=[company.pk]),
     })

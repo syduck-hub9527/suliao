@@ -1,0 +1,163 @@
+# 苯乙烯类（ABS、GPPS、HIPS）常见牌号。查阅日期 2026-11-08。
+
+grades:
+  # ---------------- ABS ----------------
+  - code: PA-757
+    full_name: POLYLAC PA-757
+    manufacturer: 奇美
+    brand: POLYLAC
+    material: ABS
+    product_type: resin
+    grade_class: 通用注塑级
+    lifecycle: active
+    verify: unverified
+    aliases: [PA757, 757, 奇美757]
+    summary: 国内最常见的通用 ABS 牌号之一，高光泽、刚性好、中等冲击，常被当作 ABS 行情的代表。
+    description: |
+      奇美 ABS 的代表性通用牌号：高光泽、高刚性、中等冲击强度。
+      常用于家电和办公设备外壳、电子产品外壳、复印机外壳、电话外壳、化妆品盒。
+
+      PA-757 衍生出很多型号，例如 PA-757H（高流动）、PA-757K、PA-757F 等，性能各有不同，
+      **报价和下单时后缀不能省**。
+
+      下面的数据来自贸易商网页，网页没写熔指的测试条件，只能当参考。
+    sources:
+      - {id: suke, title: Chimei Polylac PA-757 产品页, url: "https://sukeplastics.com/?p=3160", publisher: Suke Plastics（贸易商）, kind: trader, accessed: 2026-11-08}
+      - {id: mdc, title: POLYLAC 牌号列表, url: "https://www.materialdatacenter.com/ms/en/Polylac/Chi+Mei+Corporation/544", publisher: Material Data Center（数据库）, kind: other, accessed: 2026-11-08}
+    properties:
+      - {prop: 密度, value: "1.05", unit: g/cm³, source: suke}
+      - {prop: MVR, value: "19", unit: cm³/10min, conditions: "资料未注明温度和负荷", source: suke, note: "原文写 19 ml/10 min"}
+      - {prop: 悬臂梁缺口冲击强度, value: "19", unit: kJ/m², conditions: "23°C", source: suke}
+      - {prop: 悬臂梁缺口冲击强度, value: "9", unit: kJ/m², conditions: "-30°C", source: suke}
+      - {prop: 成型收缩率, value: "0.4～0.7", unit: "%", source: suke}
+
+  - code: AG15A1-H
+    full_name: TAIRILAC AG15A1-H
+    manufacturer: 台化
+    brand: TAIRILAC
+    material: ABS
+    product_type: resin
+    grade_class: 通用级
+    lifecycle: active
+    verify: partial
+    aliases: [AG15A1H]
+    summary: 台化通用级 ABS，高光泽、中等冲击；同系列还有 AG15A1，市场上常一起报价。
+    description: |
+      厂家 TDS 写的特点：**高光泽、中等冲击**。用途（经销商资料）：玩具、计算器、电话和钟表外壳、音响外壳、行李箱。
+      UL 94 HB 级（1.8 mm，所有颜色）。
+
+      这份 TDS 有两个值得学的地方：
+      - **同一张表里同时写 ASTM 和 ISO 两套标准、两套单位**（kg/cm² 和 MPa），换标准后数值会变，
+        不能拿 ASTM 的数和别家 ISO 的数直接比；
+      - 热变形温度分**未退火 85 °C** 和**退火后 95 °C** 两个数，差了 10 °C，比较时要看清条件。
+
+      AG15A1 和 AG15A1-H 是否完全相同，资料没有说明，以台化为准。
+    sources:
+      - {id: sc, title: TAIRILAC ABS AG15A1 产品介绍, url: "https://www.specialchem.com/plastics/supplier/formosa-chemicals-fibre/tairilac-abs", publisher: SpecialChem（数据库）, kind: other, accessed: 2026-11-08}
+      - {id: tds, title: "TAIRILAC ABS AG15A1-H TDS（台化，经销商网站转载）", url: "https://www.polydisteurope.com/assets/uploads/files/Formosa_Tairilac_ABS_AG15A1-H.pdf", publisher: Polydist Europe（经销商）, kind: maker_doc, accessed: 2026-11-08}
+    properties:
+      - {prop: 拉伸强度, value: "47", unit: MPa, conditions: "23°C", standard: "ASTM D638（ISO 527）", source: tds, note: "原文同时写 475 kg/cm²"}
+      - {prop: 弯曲强度, value: "78", unit: MPa, conditions: "23°C", standard: "ASTM D790（ISO 178）", source: tds, note: "原文同时写 800 kg/cm²"}
+      - {prop: 弯曲模量, value: "2650", unit: MPa, conditions: "23°C", standard: "ASTM D790（ISO 178）", source: tds, note: "原文同时写 27000 kg/cm²"}
+      - {prop: 洛氏硬度, value: "R-110", conditions: "23°C，R 标尺", standard: ASTM D785, source: tds}
+      - {prop: 悬臂梁缺口冲击强度, value: "216", unit: J/m, conditions: "23°C，1/4 英寸试样", standard: ASTM D256, source: tds, note: "原文同时写 22 kg·cm/cm"}
+      - {prop: 维卡软化温度, value: "100", unit: °C, conditions: "1 kg 负荷", standard: ASTM D1525, source: tds}
+      - {prop: HDT, value: "85", unit: °C, conditions: "18.6 kg/cm²（约 1.82 MPa），1/2 英寸试样，未退火", standard: ASTM D648, source: tds}
+      - {prop: HDT, value: "95", unit: °C, conditions: "18.6 kg/cm²（约 1.82 MPa），退火 80°C×8h", standard: ASTM D648, source: tds}
+      - {prop: MFR, value: "2.2", unit: g/10min, conditions: "200°C/5kg", standard: ASTM D1238, source: tds}
+      - {prop: MFR, value: "22", unit: g/10min, conditions: "220°C/10kg", standard: ASTM D1238, source: tds}
+      - {prop: 密度, value: "1.05", conditions: "23°C/23°C", standard: ASTM D792, source: tds, note: "原文是比重（无单位），数值约等于密度 g/cm³"}
+      - {prop: 阻燃等级（UL 94）, value: "HB", conditions: "所有颜色", thickness_mm: 1.8, source: tds}
+
+  - code: HI121H
+    full_name: LG ABS HI121H
+    manufacturer: LG 化学
+    material: ABS
+    product_type: resin
+    grade_class: 通用注塑级
+    lifecycle: active
+    verify: partial
+    aliases: [HI-121H, HI 121 H, LG121H]
+    summary: LG 化学的通用耐冲击 ABS，用于电子电器外壳和日用品。
+    description: |
+      LG 化学的通用级 ABS，特点是耐冲击、综合性能平衡，用于电子电器和各类日用品，也可电镀。
+      还有一个不带 H 的 HI121，资料显示两者冲击和流动都不一样，不能混用。
+
+      注意冲击强度和试样厚度有关：同一个材料，3.2 mm 试样测出 270 J/m，6.4 mm 试样只有 220 J/m。
+      比较冲击数据时，厚度必须一致。
+    sources:
+      - {id: entec, title: LG Chem ABS HI121H 产品页, url: "https://entecpolymers.com/es-MX/productos/100037692-lg-chem-abs-hi121h", publisher: Entec Polymers（Ravago 集团经销商）, kind: trader, accessed: 2026-11-08}
+      - {id: hi121, title: "LG ABS HI121 物性表（对比用，转载 UL Prospector 数据）", url: "https://sushengpolymer.com/media/pdf/uxGtiN_LG-ABS-HI121.pdf", publisher: 上海苏盛（贸易商）, kind: trader, accessed: 2026-11-08}
+      - {id: pl, title: ABS LG HI121H 物性表, url: "https://www.plastech.pl/oferty-b2b/abs-lg-hi121h-granulat-naturalny-133306", publisher: Plastech.pl（波兰经销商页面）, kind: trader, accessed: 2026-11-08}
+    properties:
+      - {prop: 密度, value: "1.05", unit: g/cm³, standard: ASTM D792, source: entec}
+      - {prop: MFR, value: "22", unit: g/10min, conditions: "220°C/10kg", standard: ASTM D1238, source: entec}
+      - {prop: 悬臂梁缺口冲击强度, value: "270", unit: J/m, conditions: "23°C，3.2 mm，注塑试样", standard: ASTM D256, source: entec}
+      - {prop: 悬臂梁缺口冲击强度, value: "220", unit: J/m, conditions: "23°C，6.4 mm，注塑试样", standard: ASTM D256, source: entec}
+      - {prop: 阻燃等级（UL 94）, value: "HB", thickness_mm: 1.5, source: entec}
+      - {prop: 拉伸屈服强度, value: "50", unit: MPa, conditions: "23°C，3.2 mm", standard: ASTM D638, source: pl, verify: unverified}
+      - {prop: 弯曲模量, value: "2550", unit: MPa, conditions: "23°C，6.4 mm", standard: ASTM D790, source: pl, verify: unverified}
+      - {prop: 弯曲强度, value: "82", unit: MPa, conditions: "23°C，6.4 mm", standard: ASTM D790, source: pl, verify: unverified}
+      - {prop: HDT, value: "85", unit: °C, conditions: "1.8 MPa，未退火，6.4 mm", standard: ASTM D648, source: pl, verify: unverified}
+      - {prop: 维卡软化温度, value: "93", unit: °C, standard: ASTM D1525, source: pl, verify: unverified}
+
+  # ---------------- GPPS ----------------
+  - code: PG-383
+    full_name: POLYREX PG-383
+    manufacturer: 奇美
+    brand: POLYREX
+    material: GPPS
+    product_type: resin
+    grade_class: 通用级
+    lifecycle: active
+    verify: unverified
+    aliases: [PG383]
+    summary: 奇美高强度通用级 PS（透苯），用于一次性餐具、食品容器、玩具、文具。
+    description: |
+      高强度的通用级聚苯乙烯（GPPS，俗称透苯），透明、轻、可注塑也可挤出。
+      推荐用途：一次性餐具（勺、刀、叉）、食品容器、玩具、文具。
+
+      这张表又是一个“条件决定数值”的例子：同一个 PG-383，
+      - 熔指 200°C/5kg 是 2.2，220°C/10kg 就是 8.5；
+      - 维卡软化温度按 ISO 306 的不同方法测，从 103 °C 到 110 °C 都有。
+    sources:
+      - {id: ss, title: POLYREX PG-383 物性表（转载 UL Prospector 数据）, url: "https://www.sushengpolymer.com/plasmain/6b2VQc_POLYREX-PG-383", publisher: 上海苏盛（贸易商）, kind: trader, accessed: 2026-11-08}
+      - {id: sc, title: POLYREX PG-383 产品介绍, url: "https://www.specialchem.com/plastics/product/chi-mei-polyrex-pg-383", publisher: SpecialChem（数据库）, kind: other, accessed: 2026-11-08}
+    properties:
+      - {prop: 密度, value: "1.05", unit: g/cm³, standard: "ASTM D792, ISO 1183", source: ss, note: "原文写比重"}
+      - {prop: MFR, value: "2.2", unit: g/10min, conditions: "200°C/5kg", standard: ASTM D1238, source: ss}
+      - {prop: MFR, value: "8.5", unit: g/10min, conditions: "220°C/10kg", standard: ASTM D1238, source: ss}
+      - {prop: MVR, value: "2.2", unit: cm³/10min, conditions: "200°C/5kg", standard: ISO 1133, source: ss}
+      - {prop: HDT, value: "85", unit: °C, conditions: "1.8 MPa，未退火", standard: ISO 75-2/A, source: ss}
+      - {prop: HDT, value: "99", unit: °C, conditions: "1.8 MPa，退火", standard: "ASTM D648, ISO 75-2/A", source: ss}
+      - {prop: 维卡软化温度, value: "106", unit: °C, conditions: "A50（10 N，50°C/h）", standard: ISO 306, source: ss}
+      - {prop: 维卡软化温度, value: "103", unit: °C, conditions: "B50（50 N，50°C/h）", standard: ISO 306, source: ss}
+      - {prop: 阻燃等级（UL 94）, value: "HB", thickness_mm: 1.6, source: ss}
+
+  # ---------------- HIPS ----------------
+  - code: PH-88
+    full_name: POLYREX PH-88
+    manufacturer: 奇美
+    brand: POLYREX
+    material: HIPS
+    product_type: resin
+    grade_class: 高抗冲注塑级
+    lifecycle: active
+    verify: partial
+    aliases: [PH88]
+    summary: 奇美高抗冲 PS（HIPS，俗称改苯），用于家电外壳、玩具、日用品。
+    description: |
+      高抗冲聚苯乙烯（HIPS），在 PS 里引入橡胶相来提高韧性，代价是不再透明、刚性和耐热略降。
+      对比同一家的透明 GPPS PG-383：都按 ISO 306 A 法，维卡软化温度从 106 °C 降到 96 °C 左右。
+
+      同系列还有挤出级 PH-88S、高光泽 PH-888G 等，后缀不同性能不同。
+    sources:
+      - {id: mdc, title: POLYREX PH-88 数据表, url: "https://materialdatacenter.com/ms/en/Polyrex/Chi+Mei+Corporation/POLYREX+PH-88/b4aeee47/545", publisher: Material Data Center（M-Base 数据库）, kind: other, accessed: 2026-11-08}
+    properties:
+      - {prop: MVR, value: "5.5", unit: cm³/10min, conditions: "200°C/5kg", standard: ISO 1133, source: mdc}
+      - {prop: MFR, value: "6", unit: g/10min, conditions: "200°C/5kg", standard: ASTM D1238, source: mdc}
+      - {prop: 悬臂梁缺口冲击强度, value: "11", unit: kJ/m², conditions: "23°C", standard: ISO 180/1A, source: mdc}
+      - {prop: 悬臂梁缺口冲击强度, value: "98.2", unit: J/m, conditions: "1/8 英寸试样", standard: ASTM D256, source: mdc}
+      - {prop: 拉伸断裂强度, value: "23.5", unit: MPa, standard: ASTM D638, source: mdc}
+      - {prop: 维卡软化温度, value: "96", unit: °C, conditions: "A 法", standard: ISO 306, source: mdc}
+      - {prop: 维卡软化温度, value: "90", unit: °C, conditions: "B 法", standard: ISO 306, source: mdc}
