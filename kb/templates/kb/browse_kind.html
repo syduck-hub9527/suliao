@@ -1,0 +1,46 @@
+{% extends "kb/base.html" %}
+
+{% block title %}{{ label }} · 分类浏览 · 塑料学习资料库{% endblock %}
+
+{% block style %}
+  .cat { margin-bottom: 14px; }
+  .cat h2 { margin: 0 0 10px; font-size: 18px; }
+  .cat h3 { margin: 14px 0 8px; font-size: 16px; color: var(--soft); }
+  .entries { display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+  .entry { display: block; padding: 10px 12px; border: 1px solid var(--line); border-radius: 9px; color: var(--text); background: #fff; }
+  .entry:hover { border-color: var(--accent); text-decoration: none; }
+  .entry b { font-size: 15px; }
+  .entry .d { font-size: 13px; color: var(--muted); line-height: 1.5; margin-top: 2px; }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-left: 6px; vertical-align: 2px; }
+  .dot.mastered { background: var(--green); }
+  .dot.learning { background: var(--accent); }
+  .dot.confused { background: var(--amber); }
+{% endblock %}
+
+{% block content %}
+  <div class="crumbs small muted"><a href="{% url 'kb:browse' %}">分类浏览</a> · {{ label }}</div>
+  <h1>{{ label }}</h1>
+  <p class="muted small">共 {{ count }} 个词条。<span class="dot mastered"></span> 已掌握 <span class="dot learning"></span> 学习中 <span class="dot confused"></span> 还不懂</p>
+
+  {% for node in tree %}
+    <div class="card cat">
+      <h2>{{ node.cat.name }}</h2>
+      {% if node.rows %}{% include "kb/_entry_cards.html" with rows=node.rows %}{% endif %}
+      {% for child in node.children %}
+        <h3>{{ child.cat.name }}</h3>
+        {% if child.rows %}{% include "kb/_entry_cards.html" with rows=child.rows %}{% endif %}
+        {% for g in child.children %}
+          <h3>{{ child.cat.name }} · {{ g.cat.name }}</h3>
+          {% include "kb/_entry_cards.html" with rows=g.rows %}
+        {% endfor %}
+      {% endfor %}
+    </div>
+  {% endfor %}
+
+  {% if uncategorized %}
+    <div class="card cat">
+      <h2>其他</h2>
+      {% include "kb/_entry_cards.html" with rows=uncategorized %}
+    </div>
+  {% endif %}
+{% endblock %}

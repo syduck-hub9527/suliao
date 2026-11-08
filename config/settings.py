@@ -36,6 +36,17 @@ if not SECRET_KEY:
         raise ImproperlyConfigured("缺少 DJANGO_SECRET_KEY：请在 .env 文件里设置。")
 
 ALLOWED_HOSTS = env_list("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1")
+
+# 免登录模式：只有你一个人用，打开就直接进入，没有登录页。
+# 安全前提：网站只能从服务器本机访问（你通过 SSH 隧道进来，SSH 登录就是那道“门”）。
+# 所以开启时只允许本机地址，防止以后不小心开放到公网。
+SINGLE_USER_MODE = env_bool("SINGLE_USER_MODE", True)
+_LOCAL_HOSTS = {"localhost", "127.0.0.1", "[::1]"}
+if SINGLE_USER_MODE and not set(ALLOWED_HOSTS) <= _LOCAL_HOSTS:
+    raise ImproperlyConfigured(
+        "免登录模式只允许本机访问：DJANGO_ALLOWED_HOSTS 只能是 localhost,127.0.0.1。"
+        "如果要对外开放网站，请先把 SINGLE_USER_MODE 改成 false 并设置登录。"
+    )
 CSRF_TRUSTED_ORIGINS = env_list("DJANGO_CSRF_TRUSTED_ORIGINS", "http://localhost:8000,http://127.0.0.1:8000")
 
 DATA_DIR = Path(os.environ.get("DJANGO_DATA_DIR", BASE_DIR / "data"))
@@ -64,6 +75,7 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "kb.middleware.SingleUserMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
@@ -73,7 +85,7 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -115,6 +127,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 LOGIN_URL = "admin:login"
+
+# 知识内容文件所在目录（部署时自动导入）
+CONTENT_DIR = BASE_DIR / "content"
 
 
 # ---------- 语言和时区 ----------

@@ -1,4 +1,6 @@
-FROM python:3.12-slim
+# 基础镜像可以在 .env 里用 PYTHON_IMAGE 换成镜像站地址（官方地址下载不了时用）
+ARG PYTHON_IMAGE=python:3.12-slim
+FROM ${PYTHON_IMAGE}
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \

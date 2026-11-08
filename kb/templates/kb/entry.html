@@ -1,0 +1,145 @@
+{% extends "kb/base.html" %}
+
+{% block title %}{{ entry }} · 塑料学习资料库{% endblock %}
+
+{% block style %}
+  .layout { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 20px; align-items: start; }
+  @media (max-width: 860px) { .layout { grid-template-columns: 1fr; } }
+  .crumbs { font-size: 14px; color: var(--muted); margin-bottom: 8px; }
+  .names { color: var(--soft); margin: 2px 0 10px; }
+  .badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  .oneliner { font-size: 18px; padding: 14px 18px; background: var(--accent-soft); border-radius: 10px; margin-bottom: 18px; }
+  .sec { margin-bottom: 16px; }
+  .sec h2 { margin: 0 0 8px; display: flex; align-items: center; gap: 8px; }
+  .sec h2::before { content: ""; width: 4px; height: 18px; border-radius: 2px; background: var(--accent); }
+  .sec.pro h2::before { background: #7c3aed; }
+  .sec.pitfall h2::before { background: var(--amber); }
+  .sec.pitfall { background: #fffcf6; border-color: #f4e3c1; }
+  .prose p { margin: 0 0 12px; }
+  .prose ul, .prose ol { margin: 0 0 12px; padding-left: 22px; }
+  .prose li { margin: 4px 0; }
+  .prose h3 { font-size: 17px; margin: 18px 0 8px; }
+  .prose table { border-collapse: collapse; margin: 8px 0 14px; width: 100%; font-size: 15px; display: block; overflow-x: auto; }
+  .prose th, .prose td { border: 1px solid var(--line); padding: 6px 10px; text-align: left; vertical-align: top; }
+  .prose th { background: #f3f5f8; }
+  .prose a.term { color: var(--text); border-bottom: 1px dashed var(--accent); }
+  .prose a.term:hover { color: var(--accent); text-decoration: none; }
+  .side .card { margin-bottom: 14px; padding: 14px 16px; }
+  .side h3 { font-size: 15px; margin: 0 0 8px; }
+  .status-form { display: flex; flex-wrap: wrap; gap: 6px; }
+  .status-form button { font: inherit; font-size: 13px; padding: 4px 10px; border-radius: 7px; cursor: pointer;
+                        border: 1px solid var(--line); background: #fff; color: var(--soft); }
+  .status-form button.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .star { font: inherit; font-size: 13px; border: none; background: none; color: var(--accent); cursor: pointer; padding: 0; margin-top: 8px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { font-size: 14px; background: #f1f3f6; border-radius: 6px; padding: 1px 8px; color: var(--text); }
+  a.chip:hover { background: var(--accent-soft); text-decoration: none; }
+  .pager { display: flex; justify-content: space-between; gap: 12px; margin-top: 8px; font-size: 15px; }
+  .disclaimer { font-size: 13px; color: var(--muted); margin-top: 10px; }
+{% endblock %}
+
+{% block content %}
+<div class="layout">
+  <article>
+    <div class="crumbs">
+      <a href="{% url 'kb:browse_kind' entry.kind %}">{{ entry.get_kind_display }}</a>
+      {% if entry.category %} · {{ entry.category }}{% endif %}
+      {% if entry.parent %} · 属于 <a href="{% url 'kb:entry' entry.parent.pk %}">{{ entry.parent }}</a>{% endif %}
+    </div>
+    <h1>{% if entry.abbr %}{{ entry.abbr }} {% endif %}{{ entry.name_zh }}</h1>
+    {% if entry.name_en %}<div class="names">{{ entry.name_en }}</div>{% endif %}
+    <div class="badges">
+      <span class="badge gray">难度：{{ entry.get_difficulty_display }}</span>
+      {% if entry.origin == 'ai_draft' %}<span class="badge amber">AI 整理 · 待核对</span>
+      {% elif entry.origin == 'ai_checked' %}<span class="badge green">AI 整理 · 已核对</span>
+      {% else %}<span class="badge gray">{{ entry.get_origin_display }}</span>{% endif %}
+      {% if entry.verify_status == 'verified' %}<span class="badge green">已核实</span>{% endif %}
+      {% if entry.verify_status == 'disputed' %}<span class="badge red">有争议</span>{% endif %}
+    </div>
+
+    {% if entry.one_liner %}<div class="oneliner">{{ entry.one_liner }}</div>{% endif %}
+
+    {% for s in sections %}
+      <section class="card sec {{ s.css }}">
+        <h2>{{ s.title }}</h2>
+        <div class="prose">{{ s.html }}</div>
+      </section>
+    {% empty %}
+      <div class="card"><p class="muted">这个词条还没有正文。</p></div>
+    {% endfor %}
+
+    {% if path_item %}
+      <div class="pager">
+        <span>{% if prev_item %}← <a href="{% url 'kb:entry' prev_item.entry.pk %}">{{ prev_item.entry }}</a>{% endif %}</span>
+        <span class="muted small">{{ path_item.stage }}</span>
+        <span>{% if next_item %}<a href="{% url 'kb:entry' next_item.entry.pk %}">{{ next_item.entry }}</a> →{% endif %}</span>
+      </div>
+    {% endif %}
+
+    <div class="disclaimer">
+      本页内容由 AI 整理，用于学习入门。涉及给客户的承诺、安全、食品接触、阻燃等级等重要结论，请以生产商最新的 TDS/SDS 和官方标准为准。
+      发现错误？<a href="{{ admin_url }}">在后台修改</a>（改过的内容不会被自动导入覆盖）。
+    </div>
+  </article>
+
+  <aside class="side">
+    <div class="card" id="progress">
+      <h3>学习状态</h3>
+      <form class="status-form" method="post" action="{% url 'kb:entry_progress' entry.pk %}">
+        {% csrf_token %}
+        {% for value, label in statuses %}
+          <button type="submit" name="status" value="{{ value }}" class="{% if progress.status == value %}on{% endif %}">{{ label }}</button>
+        {% endfor %}
+      </form>
+      <form method="post" action="{% url 'kb:entry_progress' entry.pk %}">
+        {% csrf_token %}
+        {% if progress.starred %}
+          <button class="star" name="star" value="0">★ 已收藏（点击取消）</button>
+        {% else %}
+          <button class="star" name="star" value="1">☆ 收藏</button>
+        {% endif %}
+      </form>
+      <div class="small muted" style="margin-top:6px">看过 {{ progress.view_count }} 次</div>
+    </div>
+
+    {% if aliases %}
+      <div class="card">
+        <h3>其他叫法</h3>
+        <div class="chips">
+          {% for a in aliases %}<span class="chip" title="{{ a.get_kind_display }}">{{ a.text }}</span>{% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if relation_groups %}
+      <div class="card">
+        <h3>相关知识</h3>
+        {% for label, rows in relation_groups.items %}
+          <div class="small muted" style="margin:6px 0 4px">{{ label }}</div>
+          <div class="chips">
+            {% for r in rows %}<a class="chip" href="{% url 'kb:entry' r.entry.pk %}" title="{{ r.note|default:r.entry.one_liner }}">{{ r.entry }}</a>{% endfor %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if children %}
+      <div class="card">
+        <h3>细分类型</h3>
+        <div class="chips">
+          {% for c in children %}<a class="chip" href="{% url 'kb:entry' c.pk %}">{{ c }}</a>{% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if grades %}
+      <div class="card">
+        <h3>收录的牌号</h3>
+        <ul class="plain small">
+          {% for g in grades %}<li class="row">{{ g }}<span class="muted">{{ g.manufacturer|default:'' }}</span></li>{% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  </aside>
+</div>
+{% endblock %}

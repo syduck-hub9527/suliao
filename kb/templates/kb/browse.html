@@ -1,0 +1,15 @@
+{% extends "kb/base.html" %}
+
+{% block title %}分类浏览 · 塑料学习资料库{% endblock %}
+
+{% block content %}
+  <h1>分类浏览</h1>
+  <p class="muted">按类别查看所有词条。</p>
+  <div class="grid" style="margin-top:16px">
+    {% for t in tiles %}
+      <a class="tile" href="{% url 'kb:browse_kind' t.kind %}"><b>{{ t.label }}</b><span>{{ t.count }} 个词条</span></a>
+    {% empty %}
+      <p class="muted">还没有词条。</p>
+    {% endfor %}
+  </div>
+{% endblock %}

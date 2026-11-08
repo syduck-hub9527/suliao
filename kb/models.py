@@ -291,6 +291,10 @@ class Entry(NameAliasMixin, TimeStamped):
                                      default=VerifyStatus.UNVERIFIED)
     sources = models.ManyToManyField(Source, verbose_name="来源", blank=True, related_name="entries")
     aliases = GenericRelation("Alias")
+    imported_hash = models.CharField(
+        "导入指纹", max_length=64, blank=True, editable=False,
+        help_text="从 content/ 知识文件导入时记下的内容指纹；在后台改过的词条不会被再次导入覆盖",
+    )
 
     class Meta:
         verbose_name = verbose_name_plural = "词条"
@@ -777,7 +781,6 @@ class PriceSeries(TimeStamped):
         EX_WORKS = "ex_works", "厂家出厂价"
         DISTRIBUTOR = "distributor", "代理/经销商报价"
         TRADER = "trader", "贸易商报价"
-        COMPANY = "company", "本公司报价/成交价"
         IMPORT = "import", "进口价"
         EXPORT = "export", "出口价"
         OTHER = "other", "其他"

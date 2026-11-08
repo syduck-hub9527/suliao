@@ -1,0 +1,8 @@
+<div class="entries">
+  {% for r in rows %}
+    <a class="entry" href="{% url 'kb:entry' r.entry.pk %}">
+      <b>{{ r.entry }}</b>{% if r.progress and r.progress.status != 'new' %}<span class="dot {{ r.progress.status }}"></span>{% endif %}
+      {% if r.entry.one_liner %}<div class="d">{{ r.entry.one_liner }}</div>{% endif %}
+    </a>
+  {% endfor %}
+</div>

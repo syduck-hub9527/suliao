@@ -1,0 +1,32 @@
+{% extends "kb/base.html" %}
+
+{% block title %}{{ query }} · 搜索 · 塑料学习资料库{% endblock %}
+
+{% block style %}
+  .result { padding: 14px 18px; margin-bottom: 10px; }
+  .result .t { font-size: 17px; font-weight: 600; }
+  .result .meta { color: var(--muted); font-size: 14px; margin-top: 2px; }
+{% endblock %}
+
+{% block content %}
+  {% if query %}
+    <h1>“{{ query }}”</h1>
+    <p class="muted small">找到 {{ results|length }} 个结果。大小写、空格、横杠不影响搜索。</p>
+    {% for r in results %}
+      <div class="card result">
+        <a class="t" href="{{ r.url }}">{{ r.title }}</a>
+        <span class="badge gray">{{ r.type }}</span>
+        {% if not r.exact %}<span class="badge amber">模糊匹配</span>{% endif %}
+        <div class="meta">{% if r.summary %}{{ r.summary }} · {% endif %}命中：{{ r.reason }}</div>
+      </div>
+    {% empty %}
+      <div class="card">
+        <p>暂时没有“{{ query }}”的内容。</p>
+        <p class="muted small">可以换个叫法试试（中文名、英文缩写、俗称）。知识库会按学习路线一批批扩充。</p>
+      </div>
+    {% endfor %}
+  {% else %}
+    <h1>搜索</h1>
+    <p class="muted">在上方搜索框输入关键词。</p>
+  {% endif %}
+{% endblock %}

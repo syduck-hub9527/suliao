@@ -1,0 +1,67 @@
+{% extends "kb/base.html" %}
+
+{% block title %}学习路线 · 塑料学习资料库{% endblock %}
+
+{% block style %}
+  .stage { margin-bottom: 16px; }
+  .stage-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .stage-head h2 { margin: 0; }
+  .item { display: grid; grid-template-columns: 1fr auto; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+  .item:last-child { border-bottom: none; }
+  .item .goal { font-size: 14px; color: var(--muted); line-height: 1.5; }
+  .lists { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  @media (max-width: 720px) { .lists { grid-template-columns: 1fr; } }
+{% endblock %}
+
+{% block content %}
+  <h1>学习路线</h1>
+  {% if path %}
+    <p class="muted">{{ path.description }}</p>
+    <div class="bar" style="max-width:420px"><i style="width: {{ percent }}%"></i></div>
+    <p class="small muted">已掌握 {{ done }} / {{ total }}（{{ percent }}%）。在每个词条页面右侧可以标记“已掌握”或“还不懂”。</p>
+  {% endif %}
+
+  <div class="lists">
+    <div class="card">
+      <h2 style="margin-top:0">生词本：还不懂的</h2>
+      {% if confused %}
+        <ul class="plain">{% for p in confused %}<li class="row small"><a href="{% url 'kb:entry' p.entry.pk %}">{{ p.entry }}</a>
+          <span class="muted">{{ p.entry.one_liner|truncatechars:24 }}</span></li>{% endfor %}</ul>
+      {% else %}<p class="muted small">没有标记“还不懂”的词条。</p>{% endif %}
+    </div>
+    <div class="card">
+      <h2 style="margin-top:0">收藏</h2>
+      {% if starred %}
+        <ul class="plain">{% for p in starred %}<li class="row small"><a href="{% url 'kb:entry' p.entry.pk %}">{{ p.entry }}</a>
+          <span class="muted">{{ p.get_status_display }}</span></li>{% endfor %}</ul>
+      {% else %}<p class="muted small">还没有收藏。</p>{% endif %}
+    </div>
+  </div>
+
+  {% for s in stages %}
+    <div class="card stage" id="stage-{{ forloop.counter }}">
+      <div class="stage-head">
+        <h2>{{ s.name }}</h2>
+        <span class="small muted">{{ s.done }}/{{ s.total }} 已掌握</span>
+      </div>
+      <div class="bar" style="margin:8px 0 6px"><i style="width: {{ s.percent }}%"></i></div>
+      {% for r in s.rows %}
+        <div class="item">
+          <div>
+            <a href="{% url 'kb:entry' r.entry.pk %}"><b>{{ r.entry }}</b></a>
+            {% if r.entry.one_liner %}<span class="small muted"> — {{ r.entry.one_liner }}</span>{% endif %}
+            {% if r.item.goal %}<div class="goal">学完能：{{ r.item.goal }}</div>{% endif %}
+          </div>
+          <div>
+            {% if r.status == 'mastered' %}<span class="badge green">已掌握</span>
+            {% elif r.status == 'learning' %}<span class="badge">学习中</span>
+            {% elif r.status == 'confused' %}<span class="badge amber">还不懂</span>
+            {% else %}<span class="badge gray">未学</span>{% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% empty %}
+    <div class="card"><p class="muted">还没有学习路线。</p></div>
+  {% endfor %}
+{% endblock %}

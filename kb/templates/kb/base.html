@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}塑料学习资料库{% endblock %}</title>
+  <style>
+    :root {
+      --bg: #f6f7f9; --card: #ffffff; --text: #1f2430; --soft: #4b5563; --muted: #8a919e;
+      --line: #e6e8ec; --accent: #1f6feb; --accent-soft: #eaf1fe;
+      --green: #15803d; --green-soft: #e8f5ec; --amber: #b45309; --amber-soft: #fdf3e2;
+      --red: #b42318; --red-soft: #fdecea;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text);
+           font: 16px/1.75 -apple-system, "PingFang SC", "Microsoft YaHei", "Segoe UI", "Noto Sans CJK SC", sans-serif; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .topbar { background: var(--card); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 10; }
+    .topbar .inner { max-width: 1040px; margin: 0 auto; padding: 10px 20px; display: flex; gap: 20px; align-items: center; }
+    .brand { font-weight: 700; color: var(--text); white-space: nowrap; }
+    .brand:hover { text-decoration: none; }
+    .nav { display: flex; gap: 16px; font-size: 15px; white-space: nowrap; }
+    .nav a { color: var(--soft); }
+    .nav a.on { color: var(--accent); font-weight: 600; }
+    .topsearch { flex: 1; display: flex; }
+    .topsearch input { width: 100%; padding: 7px 12px; border: 1px solid var(--line); border-radius: 8px;
+                       font-size: 15px; background: var(--bg); }
+    .topsearch input:focus { outline: none; border-color: var(--accent); background: #fff; }
+    .admin-link { font-size: 13px; color: var(--muted); white-space: nowrap; }
+
+    main { max-width: 1040px; margin: 28px auto 60px; padding: 0 20px; }
+    h1 { font-size: 28px; line-height: 1.35; margin: 0 0 6px; }
+    h2 { font-size: 19px; margin: 28px 0 12px; }
+    .muted { color: var(--muted); }
+    .small { font-size: 14px; }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; }
+
+    .badge { display: inline-block; font-size: 12px; line-height: 20px; padding: 0 8px; border-radius: 5px;
+             background: var(--accent-soft); color: var(--accent); vertical-align: 2px; white-space: nowrap; }
+    .badge.green { background: var(--green-soft); color: var(--green); }
+    .badge.amber { background: var(--amber-soft); color: var(--amber); }
+    .badge.red { background: var(--red-soft); color: var(--red); }
+    .badge.gray { background: #eef0f3; color: var(--soft); }
+
+    .grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+    .tile { display: block; background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+            padding: 14px 16px; color: var(--text); }
+    .tile:hover { border-color: var(--accent); text-decoration: none; }
+    .tile b { display: block; font-size: 17px; }
+    .tile span { color: var(--muted); font-size: 14px; }
+
+    .bar { height: 8px; background: #eceef2; border-radius: 99px; overflow: hidden; }
+    .bar i { display: block; height: 100%; background: var(--green); border-radius: 99px; }
+
+    ul.plain { list-style: none; padding: 0; margin: 0; }
+    .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+           padding: 9px 0; border-bottom: 1px solid var(--line); }
+    .row:last-child { border-bottom: none; }
+
+    @media (max-width: 720px) {
+      .topbar .inner { flex-wrap: wrap; gap: 10px 16px; }
+      .topsearch { order: 3; flex-basis: 100%; }
+      .admin-link { display: none; }
+      h1 { font-size: 24px; }
+    }
+    {% block style %}{% endblock %}
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="inner">
+      <a class="brand" href="{% url 'kb:home' %}">塑料学习资料库</a>
+      <nav class="nav">
+        {% with name=request.resolver_match.url_name %}
+        <a href="{% url 'kb:home' %}" class="{% if name == 'home' %}on{% endif %}">首页</a>
+        <a href="{% url 'kb:learn' %}" class="{% if name == 'learn' %}on{% endif %}">学习路线</a>
+        <a href="{% url 'kb:browse' %}" class="{% if name == 'browse' or name == 'browse_kind' %}on{% endif %}">分类浏览</a>
+        {% endwith %}
+      </nav>
+      <form class="topsearch" method="get" action="{% url 'kb:search' %}">
+        <input name="q" value="{{ query|default:'' }}" placeholder="搜材料、缩写、俗称、术语……" autocomplete="off">
+      </form>
+      <a class="admin-link" href="{% url 'admin:index' %}">后台</a>
+    </div>
+  </div>
+  <main>{% block content %}{% endblock %}</main>
+</body>
+</html>
