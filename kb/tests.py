@@ -466,3 +466,49 @@ class RepoGradesTests(TestCase):
             self.assertTrue(g.summary, g.code)
             self.assertTrue(g.sources.exists(), g.code)
             self.assertTrue(g.manufacturer_id or g.producers_note, g.code)
+
+
+@override_settings(STORAGES=NO_MANIFEST)
+class OverviewPageTests(TestCase):
+    """原料总览、厂商一览、材料页的“常用厂商和牌号”。"""
+
+    def setUp(self):
+        from .grades_import import GradeImporter
+        self.pp = m.Entry.objects.create(kind=m.EntryKind.MATERIAL, name_zh="聚丙烯", abbr="PP",
+                                         category=m.Category.objects.create(kind="material", name="通用塑料"))
+        self.pph = m.Entry.objects.create(kind=m.EntryKind.MATERIAL, name_zh="均聚聚丙烯", abbr="PP-H", parent=self.pp,
+                                          category=self.pp.category)
+        src = [{"id": "s", "title": "资料", "url": "https://example.com", "kind": "maker_web"}]
+        GradeImporter(
+            [{"name": "台塑", "country": "中国台湾"}, {"name": "巴斯夫", "country": "德国"}, {"name": "镇海", "country": "中国"}],
+            [
+                {"code": "1080", "manufacturer": "台塑", "material": "PP-H", "brand": "台塑PP", "summary": "a", "sources": src},
+                {"code": "HP500N", "manufacturer": "巴斯夫", "material": "PP", "summary": "b", "sources": src},
+                {"code": "M60T", "manufacturer": "镇海", "material": "PP-H", "summary": "c", "sources": src},
+                {"code": "T30S", "producers": "多家", "material": "PP-H", "summary": "d", "sources": src},
+            ],
+        ).run()
+
+    def test_entry_groups_by_maker_domestic_first(self):
+        resp = self.client.get(f"/e/{self.pp.pk}/")
+        makers = resp.context["makers"]
+        self.assertEqual([r["company"].name if r["company"] else None for r in makers], ["镇海", "台塑", "巴斯夫", None])
+        self.assertEqual((resp.context["maker_count"], resp.context["grade_total"]), (3, 4))
+        self.assertContains(resp, "常用厂商和牌号")
+        self.assertContains(resp, "多家企业生产")
+
+    def test_materials_overview(self):
+        resp = self.client.get("/materials/")
+        self.assertEqual(resp.status_code, 200)
+        rows = {r["entry"].abbr: r for sec in resp.context["sections"] for b in sec["blocks"] for r in b["rows"]}
+        self.assertEqual(rows["PP"]["grades"], 4)          # 含子类的牌号
+        self.assertEqual(rows["PP"]["maker_count"], 3)
+        self.assertEqual(rows["PP-H"]["grades"], 3)
+        self.assertTrue(rows["PP-H"]["is_child"])
+
+    def test_companies_page_groups_by_region(self):
+        resp = self.client.get("/companies/")
+        regions = [name for name, _ in resp.context["groups"]]
+        self.assertEqual(regions, ["中国大陆", "中国台湾", "欧洲"])
+        company = m.Company.objects.get(name="巴斯夫")
+        self.assertContains(self.client.get(f"/c/{company.pk}/"), "HP500N")

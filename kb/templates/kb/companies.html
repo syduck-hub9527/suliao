@@ -1,0 +1,35 @@
+{% extends "kb/base.html" %}
+{% block title %}厂商一览 · 塑料学习资料库{% endblock %}
+
+{% block style %}
+  .sec { margin-bottom: 16px; }
+  .sec h2 { margin: 0 0 10px; }
+  .cgrid { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); }
+  .co { display: block; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; color: var(--text); background: #fff; }
+  .co:hover { border-color: var(--accent); text-decoration: none; }
+  .co .en { font-size: 13px; color: var(--muted); }
+  .co .line { font-size: 13px; color: var(--soft); margin-top: 4px; line-height: 1.6; }
+  .toc { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 18px; }
+{% endblock %}
+
+{% block content %}
+  <h1>厂商一览</h1>
+  <div class="muted">共 {{ count }} 家，按国家/地区分组。点进去看这家厂的介绍和收录的全部牌号。</div>
+  <div class="toc">{% for region, items in groups %}<a class="badge" href="#r{{ forloop.counter }}">{{ region }}（{{ items|length }}）</a>{% endfor %}</div>
+
+  {% for region, items in groups %}
+    <div class="card sec" id="r{{ forloop.counter }}">
+      <h2>{{ region }}</h2>
+      <div class="cgrid">
+        {% for r in items %}
+          <a class="co" href="{% url 'kb:company' r.company.pk %}">
+            <b>{{ r.company }}</b>{% if r.company.country and r.region != r.company.country %} <span class="badge gray">{{ r.company.country }}</span>{% endif %}
+            {% if r.company.name_en %}<div class="en">{{ r.company.name_en }}</div>{% endif %}
+            {% if r.brands %}<div class="line">品牌：{{ r.brands|join:"、" }}</div>{% endif %}
+            <div class="line">{% if r.materials %}材料：{% for e in r.materials %}{{ e.abbr|default:e.name_zh }}{% if not forloop.last %}、{% endif %}{% endfor %} · {{ r.grades }} 个牌号{% else %}<span class="muted">暂未收录牌号</span>{% endif %}</div>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+{% endblock %}

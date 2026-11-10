@@ -68,22 +68,16 @@
       <div class="card"><p class="muted">这个词条还没有正文。</p></div>
     {% endfor %}
 
-    {% if grades %}
+    {% if makers %}
+      <section class="card sec" id="makers">
+        <h2>常用厂商和牌号</h2>
+        <p class="small muted" style="margin-top:-6px">收录 {{ maker_count }} 家厂商、{{ grade_total }} 个牌号。点牌号看详情；鼠标停在牌号上可以看一句话介绍。这里只收录查得到出处的牌号，不代表这家厂只生产这些。</p>
+        {% include "kb/_makers.html" with makers=makers show_subtype=show_subtype %}
+      </section>
+    {% elif entry.kind == 'material' %}
       <section class="card sec">
-        <h2>常见牌号</h2>
-        <div class="table-wrap">
-          <table class="data">
-            <tr><th>牌号</th><th>厂家</th><th>类型</th><th>一句话</th></tr>
-            {% for g in grades %}
-              <tr>
-                <td><a href="{% url 'kb:grade' g.pk %}"><b>{{ g.code }}</b></a></td>
-                <td>{% if g.manufacturer %}<a href="{% url 'kb:company' g.manufacturer.pk %}">{{ g.manufacturer }}</a>{% else %}<span class="muted">多家生产</span>{% endif %}</td>
-                <td class="small">{{ g.base_entry.abbr|default:g.base_entry.name_zh }}{% if g.grade_class %} · {{ g.grade_class }}{% endif %}</td>
-                <td class="small muted">{{ g.summary }}</td>
-              </tr>
-            {% endfor %}
-          </table>
-        </div>
+        <h2>常用厂商和牌号</h2>
+        <p class="muted small">还没有收录这种材料的牌号。</p>
       </section>
     {% endif %}
 

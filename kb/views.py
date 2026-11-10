@@ -163,13 +163,17 @@ def entry_detail(request, pk):
         prev_item = siblings[idx - 1] if idx > 0 else None
         next_item = siblings[idx + 1] if idx + 1 < len(siblings) else None
 
+    makers = maker_groups(m.Grade.objects.filter(Q(base_entry=entry) | Q(base_entry__parent=entry))
+                          .select_related("manufacturer", "base_entry", "brand"))
     return render(request, "kb/entry.html", {
         "entry": entry, "sections": sections, "relation_groups": groups, "aliases": aliases,
         "children": entry.children.order_by("name_zh"), "progress": progress,
         "statuses": m.EntryProgress.Status.choices, "path_item": path_item,
         "prev_item": prev_item, "next_item": next_item,
-        "grades": (m.Grade.objects.filter(Q(base_entry=entry) | Q(base_entry__parent=entry))
-                   .select_related("manufacturer", "base_entry").order_by("base_entry__name_zh", "code_norm")),
+        "makers": makers,
+        "maker_count": sum(1 for r in makers if r["company"]),
+        "grade_total": sum(len(r["grades"]) for r in makers),
+        "show_subtype": entry.children.exists(),
         "admin_url": reverse("admin:kb_entry_change", args=[entry.pk]),
     })
 
@@ -229,6 +233,53 @@ def learn(request):
         "path": path, "stages": stages, "confused": confused, "starred": starred,
         "total": total, "done": done, "percent": round(done * 100 / total) if total else 0,
     })
+
+
+# ---------------- 厂商分组 ----------------
+
+# 国家/地区 → 大区，以及大区的显示顺序（先国内，再按亚洲、中东、欧洲、美洲）
+REGIONS = ["中国大陆", "中国台湾", "日本", "韩国", "东南亚和南亚", "中东", "欧洲", "北美", "其他"]
+_COUNTRY_REGION = {
+    "中国": "中国大陆", "中国大陆": "中国大陆", "中国香港": "中国大陆", "中国台湾": "中国台湾",
+    "日本": "日本", "韩国": "韩国",
+    "泰国": "东南亚和南亚", "新加坡": "东南亚和南亚", "马来西亚": "东南亚和南亚", "印度尼西亚": "东南亚和南亚",
+    "印度": "东南亚和南亚", "越南": "东南亚和南亚",
+    "沙特阿拉伯": "中东", "阿联酋": "中东", "伊朗": "中东", "卡塔尔": "中东", "阿曼": "中东", "以色列": "中东",
+    "科威特": "中东",
+    "德国": "欧洲", "法国": "欧洲", "比利时": "欧洲", "荷兰": "欧洲", "瑞士": "欧洲", "英国": "欧洲",
+    "意大利": "欧洲", "奥地利": "欧洲", "瑞典": "欧洲", "芬兰": "欧洲", "西班牙": "欧洲", "挪威": "欧洲",
+    "丹麦": "欧洲", "卢森堡": "欧洲", "波兰": "欧洲",
+    "美国": "北美", "加拿大": "北美", "墨西哥": "北美",
+}
+
+
+def region_of(country: str) -> str:
+    return _COUNTRY_REGION.get((country or "").strip(), "其他")
+
+
+def _region_rank(country: str) -> int:
+    return REGIONS.index(region_of(country))
+
+
+def maker_groups(grades):
+    """把一批牌号按厂商分组：[{company, region, brands, grades}]，多家生产的通用牌号放最后一组。"""
+    groups, common = OrderedDict(), []
+    for g in grades:
+        if g.manufacturer_id is None:
+            common.append(g)
+            continue
+        row = groups.setdefault(g.manufacturer_id, {"company": g.manufacturer, "brands": [], "grades": []})
+        row["grades"].append(g)
+        if g.brand_id and g.brand.name not in row["brands"]:
+            row["brands"].append(g.brand.name)
+    rows = list(groups.values())
+    for row in rows:
+        row["region"] = region_of(row["company"].country)
+        row["grades"].sort(key=lambda g: g.code_norm)
+    rows.sort(key=lambda r: (_region_rank(r["company"].country), -len(r["grades"]), r["company"].name))
+    if common:
+        rows.append({"company": None, "region": "", "brands": [], "grades": sorted(common, key=lambda g: g.code_norm)})
+    return rows
 
 
 # ---------------- 牌号 ----------------
@@ -297,9 +348,95 @@ def grade_detail(request, pk):
 
 def company_detail(request, pk):
     company = get_object_or_404(m.Company.objects.select_related("parent"), pk=pk)
-    grades = company.grades.select_related("base_entry").order_by("base_entry__name_zh", "code_norm")
+    grades = list(company.grades.select_related("base_entry", "brand").order_by("base_entry__name_zh", "code_norm"))
+    by_material = OrderedDict()
+    for g in grades:
+        by_material.setdefault(g.base_entry, []).append(g)
     return render(request, "kb/company.html", {
-        "company": company, "grades": grades, "types": company.types.all(),
+        "company": company, "grades": grades, "by_material": list(by_material.items()), "types": company.types.all(),
+        "region": region_of(company.country),
         "brands": company.brands.all(), "subsidiaries": company.subsidiaries.all(),
         "admin_url": reverse("admin:kb_company_change", args=[company.pk]),
+    })
+
+
+# ---------------- 原料总览、厂商一览 ----------------
+
+def materials(request):
+    """原料总览：按大类列出每种材料、主要厂商和收录的牌号数。"""
+    entries = list(m.Entry.objects.filter(kind=m.EntryKind.MATERIAL).select_related("category", "parent"))
+    grades = list(m.Grade.objects.select_related("manufacturer", "base_entry"))
+    own = {}
+    for g in grades:
+        for key in {g.base_entry_id, g.base_entry.parent_id}:
+            if key:
+                own.setdefault(key, []).append(g)
+    progress = _progress_map([e.pk for e in entries])
+
+    def row(e):
+        gs = own.get(e.pk, [])
+        counts = {}
+        for g in gs:
+            if g.manufacturer_id:
+                counts.setdefault(g.manufacturer, 0)
+                counts[g.manufacturer] += 1
+        makers = sorted(counts, key=lambda c: (_region_rank(c.country), -counts[c], c.name))
+        return {"entry": e, "grades": len(gs), "makers": makers[:6], "more": max(0, len(makers) - 6),
+                "maker_count": len(makers), "common": sum(1 for g in gs if not g.manufacturer_id),
+                "progress": progress.get(e.pk)}
+
+    by_cat = OrderedDict()
+    for e in entries:
+        by_cat.setdefault(e.category_id, []).append(e)
+    path_order = dict(m.PathItem.objects.values_list("entry_id", "order"))
+
+    def sort_entries(items):
+        # 父类在前、子类紧跟其后
+        tops = sorted([e for e in items if not e.parent_id or e.parent_id not in {x.pk for x in items}],
+                      key=lambda e: (path_order.get(e.pk, 10**6), e.name_zh))
+        out = []
+        for t in tops:
+            out.append((t, False))
+            kids = sorted([e for e in items if e.parent_id == t.pk], key=lambda e: (path_order.get(e.pk, 10**6), e.name_zh))
+            out.extend((k, True) for k in kids)
+        return out
+
+    sections = []
+    for top in m.Category.objects.filter(kind=m.EntryKind.MATERIAL, parent=None).order_by("order", "name"):
+        cats = [top] + list(m.Category.objects.filter(parent=top).order_by("order", "name"))
+        blocks = []
+        for cat in cats:
+            items = by_cat.get(cat.pk, [])
+            if items:
+                rows = []
+                for e, is_child in sort_entries(items):
+                    r = row(e)
+                    r["is_child"] = is_child
+                    rows.append(r)
+                blocks.append({"name": "" if cat == top else cat.name, "rows": rows})
+        if blocks:
+            sections.append({"cat": top, "blocks": blocks, "count": sum(len(b["rows"]) for b in blocks)})
+    return render(request, "kb/materials.html", {
+        "sections": sections, "count": len(entries), "grade_count": len(grades),
+        "company_count": m.Company.objects.filter(grades__isnull=False).distinct().count(),
+    })
+
+
+def companies(request):
+    """厂商一览：按国家/地区分组，每家列出品牌和生产的材料。"""
+    rows = []
+    for c in m.Company.objects.prefetch_related("brands", "grades__base_entry").order_by("name"):
+        gs = list(c.grades.all())
+        mats = OrderedDict()
+        for g in sorted(gs, key=lambda g: g.base_entry.abbr or g.base_entry.name_zh):
+            mats.setdefault(g.base_entry_id, g.base_entry)
+        rows.append({"company": c, "region": region_of(c.country), "grades": len(gs),
+                     "materials": list(mats.values()), "brands": [b.name for b in c.brands.all()]})
+    groups = OrderedDict((r, []) for r in REGIONS)
+    for r in rows:
+        groups[r["region"]].append(r)
+    for items in groups.values():
+        items.sort(key=lambda r: (-r["grades"], r["company"].name))
+    return render(request, "kb/companies.html", {
+        "groups": [(k, v) for k, v in groups.items() if v], "count": len(rows),
     })

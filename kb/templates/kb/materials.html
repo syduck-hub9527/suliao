@@ -1,0 +1,55 @@
+{% extends "kb/base.html" %}
+{% block title %}原料总览 · 塑料学习资料库{% endblock %}
+
+{% block style %}
+  .sec { margin-bottom: 16px; }
+  .sec h2 { margin: 0 0 4px; }
+  .sec h3 { font-size: 15px; color: var(--soft); margin: 16px 0 6px; }
+  table.mat td { vertical-align: top; }
+  table.mat td.nm { min-width: 10em; }
+  table.mat td.nm.child { padding-left: 26px; }
+  table.mat td.num { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .mk a { white-space: nowrap; }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-left: 6px; vertical-align: 2px; }
+  .dot.mastered { background: var(--green); }
+  .dot.learning { background: var(--accent); }
+  .dot.confused { background: var(--amber); }
+  .toc { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 18px; }
+{% endblock %}
+
+{% block content %}
+  <h1>原料总览</h1>
+  <div class="muted">共 {{ count }} 种塑料原料，收录 {{ company_count }} 家厂商的 {{ grade_count }} 个牌号。点材料名看讲解和它的常用厂商、牌号。</div>
+  <div class="toc">
+    {% for sec in sections %}<a class="badge" href="#c{{ sec.cat.pk }}">{{ sec.cat.name }}（{{ sec.count }}）</a>{% endfor %}
+  </div>
+
+  {% for sec in sections %}
+    <div class="card sec" id="c{{ sec.cat.pk }}">
+      <h2>{{ sec.cat.name }}</h2>
+      {% for b in sec.blocks %}
+        {% if b.name %}<h3>{{ b.name }}</h3>{% endif %}
+        <div class="table-wrap">
+          <table class="data mat">
+            <tr><th>材料</th><th>主要厂商（已收录）</th><th class="num">牌号</th></tr>
+            {% for r in b.rows %}
+              <tr>
+                <td class="nm {% if r.is_child %}child{% endif %}">
+                  <a href="{% url 'kb:entry' r.entry.pk %}"><b>{{ r.entry.abbr|default:r.entry.name_zh }}</b></a>{% if r.progress and r.progress.status != 'new' %}<span class="dot {{ r.progress.status }}"></span>{% endif %}
+                  {% if r.entry.abbr %}<div class="small muted">{{ r.entry.name_zh }}</div>{% endif %}
+                </td>
+                <td class="small mk">
+                  {% for c in r.makers %}<a href="{% url 'kb:company' c.pk %}">{{ c }}</a>{% if not forloop.last %}、{% endif %}{% endfor %}{% if r.more %} 等 {{ r.maker_count }} 家{% endif %}
+                  {% if r.common %}{% if r.makers %}；{% endif %}另有 {{ r.common }} 个多家生产的通用牌号{% endif %}
+                  {% if not r.makers and not r.common %}<span class="muted">暂未收录</span>{% endif %}
+                </td>
+                <td class="num">{% if r.grades %}<a href="{% url 'kb:entry' r.entry.pk %}#makers">{{ r.grades }}</a>{% else %}<span class="muted">0</span>{% endif %}</td>
+              </tr>
+            {% endfor %}
+          </table>
+        </div>
+      {% endfor %}
+    </div>
+  {% endfor %}
+  <p class="small muted">“牌号”一列包含它下面细分类型的牌号（例如 PE 包含 LDPE、LLDPE、HDPE 的牌号）。</p>
+{% endblock %}

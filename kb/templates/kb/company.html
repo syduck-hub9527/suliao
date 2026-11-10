@@ -3,7 +3,7 @@
 {% block title %}{{ company }} · 牌号库{% endblock %}
 
 {% block content %}
-  <div class="small muted"><a href="{% url 'kb:grades' %}">牌号库</a> · 厂家</div>
+  <div class="small muted"><a href="{% url 'kb:companies' %}">厂商一览</a> · {{ region }}</div>
   <h1>{{ company }}</h1>
   <p class="muted" style="margin-top:0">
     {% if company.name_zh and company.name_zh != company.name %}{{ company.name_zh }} · {% endif %}
@@ -25,25 +25,32 @@
     </div>
   {% endif %}
 
+  {% if brands %}
+    <div class="card" style="margin-bottom:16px">
+      <h2 style="margin-top:0">品牌</h2>
+      {% for b in brands %}<span class="badge gray">{{ b }}</span> {% endfor %}
+    </div>
+  {% endif %}
+
   <div class="card">
     <h2 style="margin-top:0">收录的牌号（{{ grades|length }}）</h2>
-    {% if grades %}
+    {% for mat, gs in by_material %}
+      <h3 style="font-size:16px;margin:14px 0 8px"><a href="{% url 'kb:entry' mat.pk %}">{{ mat.abbr|default:mat.name_zh }}</a> <span class="small muted">{{ mat.name_zh }}</span></h3>
       <div class="table-wrap">
         <table class="data">
-          <tr><th>牌号</th><th>材料</th><th>类型</th><th>一句话</th></tr>
-          {% for g in grades %}
+          <tr><th>牌号</th><th>类型</th><th>一句话</th></tr>
+          {% for g in gs %}
             <tr>
-              <td><a href="{% url 'kb:grade' g.pk %}"><b>{{ g.code }}</b></a></td>
-              <td class="small"><a href="{% url 'kb:entry' g.base_entry.pk %}">{{ g.base_entry }}</a></td>
+              <td style="white-space:nowrap"><a href="{% url 'kb:grade' g.pk %}"><b>{{ g.code }}</b></a></td>
               <td class="small">{{ g.grade_class|default:g.get_product_type_display }}</td>
               <td class="small muted">{{ g.summary }}</td>
             </tr>
           {% endfor %}
         </table>
       </div>
-    {% else %}
+    {% empty %}
       <p class="muted">暂未收录这家公司的牌号。</p>
-    {% endif %}
+    {% endfor %}
   </div>
   <p class="small muted" style="margin-top:10px">发现错误？<a href="{{ admin_url }}">在后台修改</a>。</p>
 {% endblock %}

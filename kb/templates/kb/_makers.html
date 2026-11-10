@@ -1,0 +1,27 @@
+{# 按厂商分组的牌号表。用法：{% include "kb/_makers.html" with makers=makers show_subtype=show_subtype %} #}
+<div class="table-wrap">
+  <table class="data makers">
+    <tr><th>厂商</th><th>品牌</th><th>牌号</th></tr>
+    {% for row in makers %}
+      <tr>
+        <td class="mk">
+          {% if row.company %}
+            <a href="{% url 'kb:company' row.company.pk %}"><b>{{ row.company }}</b></a>
+            {% if row.company.name_en %}<div class="small muted">{{ row.company.name_en }}</div>{% endif %}
+            {% if row.region %}<span class="badge gray">{{ row.region }}</span>{% endif %}
+          {% else %}
+            <b>多家企业生产</b><div class="small muted">行业通用牌号，不挂单一厂家</div>
+          {% endif %}
+        </td>
+        <td class="small">{{ row.brands|join:"、"|default:"—" }}</td>
+        <td>
+          <div class="gchips">
+            {% for g in row.grades %}
+              <a class="gchip" href="{% url 'kb:grade' g.pk %}" title="{{ g.summary }}"><b>{{ g.code }}</b>{% if show_subtype %}<span>{{ g.base_entry.abbr|default:g.base_entry.name_zh }}</span>{% endif %}{% if g.grade_class %}<span>{{ g.grade_class }}</span>{% endif %}</a>
+            {% endfor %}
+          </div>
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+</div>
