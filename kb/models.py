@@ -785,7 +785,16 @@ class PriceSeries(TimeStamped):
 
     例：“大商所 聚丙烯 主力合约 结算价”“某贸易商 某牌号 华东 含税送到价”。
     条件不同的价格放在不同序列里，避免混在一起比。
+
+    有两种序列：
+    - 自动更新的（auto_source 不为空）：由 update_prices 命令每天抓取，品种清单在 kb/price_catalog.py；
+    - 手动记录的：在后台自己录入，例如付费资讯上看到的价格、供应商给的报价。
     """
+
+    class AutoSource(models.TextChoices):
+        MANUAL = "", "手动记录"
+        SINA_FUTURES = "sina_futures", "新浪财经 · 期货主力连续日线"
+        PPI_SPOT = "100ppi", "生意社 · 现期表"
 
     class PriceType(models.TextChoices):
         FUTURES = "futures", "期货结算价"
@@ -827,14 +836,30 @@ class PriceSeries(TimeStamped):
     is_active = models.BooleanField("仍在跟踪", default=True)
     note = models.TextField("备注", blank=True)
 
+    # —— 自动更新用 ——
+    code = models.CharField("内部代码", max_length=40, blank=True,
+                            help_text="自动更新的序列用，例：fut:PP、spot:PP。手动序列留空")
+    auto_source = models.CharField("自动更新来源", max_length=20, choices=AutoSource.choices, blank=True)
+    symbol = models.CharField("数据源里的代码", max_length=20, blank=True, help_text="例：PP0（新浪）、PP（生意社）")
+    group = models.CharField("行情页分组", max_length=20, blank=True,
+                             help_text="同一个商品的期货和现货写同一个分组，行情页会放在一起")
+    group_title = models.CharField("分组标题", max_length=50, blank=True)
+    order = models.PositiveIntegerField("排序", default=0)
+    explain = models.TextField("这是什么价格", blank=True, help_text="给新手看的说明：这个价格代表什么、不代表什么")
+    last_checked_at = models.DateTimeField("上次尝试更新", null=True, blank=True)
+    last_ok_at = models.DateTimeField("上次更新成功", null=True, blank=True)
+    last_error = models.CharField("上次失败原因", max_length=300, blank=True)
+
     class Meta:
         verbose_name = verbose_name_plural = "价格序列"
-        ordering = ["name"]
+        ordering = ["order", "name"]
         constraints = [
+            # 手动序列必须挂在材料或牌号上；自动序列（有内部代码）可以不挂，例如原油
             models.CheckConstraint(
-                condition=(Q(entry__isnull=False) | Q(grade__isnull=False)),
+                condition=(Q(entry__isnull=False) | Q(grade__isnull=False) | ~Q(code="")),
                 name="price_series_has_target",
             ),
+            models.UniqueConstraint(fields=["code"], condition=~Q(code=""), name="uniq_price_series_code"),
         ]
 
     def __str__(self):
@@ -842,13 +867,20 @@ class PriceSeries(TimeStamped):
 
 
 class PricePoint(models.Model):
-    """价格点：某一天的价格。历史数据只增不改。"""
+    """价格点：某一天的价格。
+
+    “价格日期”是这个价格实际对应的那一天（交易日），不是抓取的日子——页面靠它判断是不是今天的价格。
+    手动记录的历史数据只增不改；自动更新的序列会重抓最近几天，修正数据源后来更正的数字。
+    """
 
     series = models.ForeignKey(PriceSeries, verbose_name="价格序列", on_delete=models.CASCADE, related_name="points")
     date = models.DateField("价格日期")
     price = models.DecimalField("价格", max_digits=14, decimal_places=4)
-    price_low = models.DecimalField("区间低", max_digits=14, decimal_places=4, null=True, blank=True)
-    price_high = models.DecimalField("区间高", max_digits=14, decimal_places=4, null=True, blank=True)
+    price_low = models.DecimalField("区间低/当日最低", max_digits=14, decimal_places=4, null=True, blank=True)
+    price_high = models.DecimalField("区间高/当日最高", max_digits=14, decimal_places=4, null=True, blank=True)
+    close_price = models.DecimalField("收盘价", max_digits=14, decimal_places=4, null=True, blank=True,
+                                      help_text="期货用：价格一栏记结算价，这里记收盘价")
+    contract = models.CharField("合约", max_length=20, blank=True, help_text="期货用，例：PP2701")
     min_qty = models.CharField("起订量", max_length=50, blank=True)
     valid_until = models.DateField("有效期至", null=True, blank=True)
     document = models.ForeignKey(Document, verbose_name="凭证", on_delete=models.SET_NULL,

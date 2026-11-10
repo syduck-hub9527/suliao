@@ -175,11 +175,16 @@ class PropertyValueAdmin(admin.ModelAdmin):
 
 @admin.register(m.PriceSeries)
 class PriceSeriesAdmin(admin.ModelAdmin):
-    list_display = ["name", "price_type", "market", "currency", "unit", "tax", "is_active"]
-    list_filter = ["price_type", "currency", "tax", "is_active"]
+    list_display = ["name", "price_type", "market", "unit", "auto_source", "last_ok_at", "last_error", "is_active"]
+    list_filter = ["price_type", "auto_source", "is_active"]
+    readonly_fields = ["last_checked_at", "last_ok_at", "last_error"]
     search_fields = ["name", "spec_note", "market"]
     autocomplete_fields = ["entry", "grade", "source"]
     inlines = [PricePointInline]
+
+    def get_inlines(self, request, obj):
+        # 自动更新的序列点很多，而且由程序维护，后台不逐条列出来
+        return [] if obj and obj.auto_source else [PricePointInline]
 
 
 @admin.register(m.LearningPath)

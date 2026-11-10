@@ -84,6 +84,7 @@
         <a href="{% url 'kb:learn' %}" class="{% if name == 'learn' %}on{% endif %}">学习路线</a>
         <a href="{% url 'kb:browse' %}" class="{% if name == 'browse' or name == 'browse_kind' %}on{% endif %}">分类浏览</a>
         <a href="{% url 'kb:grades' %}" class="{% if name == 'grades' or name == 'grade' or name == 'company' %}on{% endif %}">牌号库</a>
+        <a href="{% url 'kb:prices' %}" class="{% if name == 'prices' or name == 'price_detail' %}on{% endif %}">行情</a>
         {% endwith %}
       </nav>
       <form class="topsearch" method="get" action="{% url 'kb:search' %}">

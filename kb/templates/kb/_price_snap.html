@@ -1,0 +1,24 @@
+{# 一个价格的“快照”：数字 + 日期 + 涨跌 + 为什么不是今天。用法：{% include "kb/_price_snap.html" with snap=snap %} #}
+<div class="snap">
+  <div class="snap-head"><i class="dot" style="background: {{ snap.color }}"></i>{{ snap.short }}</div>
+  {% if snap.has_data %}
+    <div class="snap-price"><b>{{ snap.price }}</b><span class="muted small"> {{ snap.unit }}</span></div>
+    <div class="snap-date">
+      {% if snap.is_today %}<span class="badge green">{{ snap.date_label }}</span>
+      {% else %}<span class="badge amber">不是今天 · {{ snap.date_label }}</span>{% endif %}
+    </div>
+    {% if snap.direction %}
+      <div class="small snap-diff">
+        {% if snap.direction == 'up' %}<span class="arrow up" aria-hidden="true">▲</span>涨
+        {% elif snap.direction == 'down' %}<span class="arrow down" aria-hidden="true">▼</span>跌
+        {% else %}持平{% endif %}
+        {% if snap.direction != 'flat' %}{{ snap.diff_text }}（{{ snap.pct_text }}）{% endif %}
+        <span class="muted">{{ snap.prev_label }}</span>
+      </div>
+    {% endif %}
+    {% if snap.why %}<div class="small why">{{ snap.why }}</div>{% endif %}
+  {% else %}
+    <div class="snap-price muted">暂无数据</div>
+    <div class="small why">{{ snap.why }}</div>
+  {% endif %}
+</div>

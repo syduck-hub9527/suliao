@@ -3,3 +3,5 @@ gunicorn>=23.0,<27
 whitenoise>=6.9,<7
 Markdown>=3.6,<4
 PyYAML>=6.0,<7
+# 抓取期货和生意社价格用。数据网站经常改版，AKShare 更新很勤，所以不锁上限：重新构建镜像就会用上新版
+akshare>=1.17

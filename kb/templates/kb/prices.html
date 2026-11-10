@@ -1,0 +1,92 @@
+{% extends "kb/base.html" %}
+{% block title %}价格行情 · 塑料学习资料库{% endblock %}
+
+{% block style %}
+{% include "kb/_price_style.html" %}
+  .status { margin: 14px 0 18px; }
+  .pgroup { margin-bottom: 14px; }
+  .pgroup h2 { margin: 0 0 2px; font-size: 19px; }
+  .pgroup .about { margin: 0 0 12px; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 28px; }
+  .pair.single { grid-template-columns: 1fr; }
+  @media (max-width: 640px) { .pair { grid-template-columns: 1fr; } }
+  .pfoot { display: flex; flex-wrap: wrap; gap: 6px 18px; justify-content: space-between; align-items: center;
+           margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line); }
+  .spark { display: block; margin-top: 8px; }
+  .howto p { margin: 6px 0; }
+  .howto ul { margin: 6px 0; padding-left: 22px; }
+{% endblock %}
+
+{% block content %}
+  <h1>价格行情</h1>
+  <div class="muted">今天是 {{ today_label }}。每个价格都标着它是哪一天的；只有标“今天”的才是今天的价格。</div>
+
+  <div class="card status small">
+    {% if status.with_data %}
+      共跟踪 {{ status.total }} 个价格，其中 <b>{{ status.today }}</b> 个是今天的。
+    {% else %}
+      <b>还没有抓到任何价格。</b>部署后第一次自动更新需要一两分钟；如果一直没有，看下面每一项的失败原因。
+    {% endif %}
+    {% if status.last_checked %}最近一次自动更新：{{ status.last_checked|date:"n月j日 H:i" }}。{% else %}自动更新还没有运行过。{% endif %}
+    <span class="muted">默认每天 11:35、15:35、16:35、18:05、20:35 自动更新（北京时间）。</span>
+    {% if status.failed %}
+      <div class="why">有 {{ status.failed|length }} 个价格最近一次没取到，原因写在各自下面。</div>
+    {% endif %}
+  </div>
+
+  {% for g in groups %}
+    <div class="card pgroup" id="g-{{ g.code }}">
+      <h2>{{ g.title }}</h2>
+      <p class="about small muted">{{ g.about }}</p>
+      <div class="pair {% if g.snaps|length == 1 %}single{% endif %}">
+        {% for snap in g.snaps %}
+          <div>
+            {% include "kb/_price_snap.html" with snap=snap %}
+            {% if snap.spark %}
+              <svg class="spark" width="160" height="36" viewBox="0 0 160 36" role="img" aria-label="{{ snap.short }}近 30 个交易日走势">
+                <polyline points="{{ snap.spark }}" fill="none" stroke="{{ snap.color }}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+              </svg>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+      <div class="pfoot small">
+        <span>
+          {% if g.basis %}
+            {% if g.basis.zero %}{{ g.basis.sentence }}{% else %}{{ g.basis.sentence }} <b>{{ g.basis.text }}</b> 元{% endif %}
+            <span class="muted">（同一天的两个价格相减，叫“基差”）</span>
+          {% endif %}
+        </span>
+        <span>
+          {% if g.entry %}<a href="{% url 'kb:entry' g.entry.pk %}">{{ g.entry.abbr|default:g.entry.name_zh }} 是什么</a> · {% endif %}
+          <a href="{% url 'kb:price_detail' g.code %}">走势和每天明细 →</a>
+        </span>
+      </div>
+    </div>
+  {% empty %}
+    <div class="card">还没有价格品种。在服务器上执行 <code>docker compose exec web python manage.py update_prices</code> 可以手动更新一次。</div>
+  {% endfor %}
+
+  {% if manual_series %}
+    <h2>手动记录的价格</h2>
+    <div class="card">
+      <ul class="plain">
+        {% for s in manual_series %}<li class="row small"><span>{{ s.name }}</span><span class="muted">{{ s.get_price_type_display }}</span></li>{% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+  <h2>怎么看这些价格</h2>
+  <div class="card howto small">
+    <p><b>两种价格，两个来源：</b></p>
+    <ul>
+      <li><b>期货结算价</b>：期货交易所里主力合约当天的结算价，每个交易日下午收盘后才有。数据来自新浪财经的期货行情。</li>
+      <li><b>生意社现货</b>：生意社（100ppi.com）每天发布的现货参考价，代表现货市场的大致水平。</li>
+    </ul>
+    <p><b>这些价格能回答什么：</b>今天行情是涨是跌、大概在什么水平、最近一段时间的走势。</p>
+    <p><b>不能回答什么：</b>某个具体牌号今天卖多少钱。牌号、地区、数量、是否含税含运费都会影响实际价格，给客户报价要以公司或供应商当天的报价为准。</p>
+    <p><span class="arrow up">▲</span>红色表示涨，<span class="arrow down">▼</span>绿色表示跌。这是国内行情的习惯，和欧美（绿涨红跌）正好相反。</p>
+    {% if glossary %}<p>想弄懂这些词，点开看讲解：{% for e in glossary %}<a href="{% url 'kb:entry' e.pk %}">{{ e.name_zh }}</a>{% if not forloop.last %}、{% endif %}{% endfor %}。</p>{% endif %}
+    <p class="muted">周末和节假日交易所休市，没有新价格，页面会显示最近一个交易日的价格并标明日期。想查具体牌号的报价，可以在牌号页点“去普拉司查报价”。</p>
+  </div>
+{% endblock %}

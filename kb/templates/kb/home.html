@@ -12,6 +12,15 @@
   @media (max-width: 720px) { .two { grid-template-columns: 1fr; } }
   .next { display: block; margin-top: 12px; padding: 12px 14px; border-radius: 10px; background: var(--accent-soft); color: var(--text); }
   .next:hover { text-decoration: none; outline: 1px solid var(--accent); }
+  .pgrid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
+  .ptile { display: block; color: var(--text); padding: 14px 16px; }
+  .ptile:hover { border-color: var(--accent); text-decoration: none; }
+  .prow { display: flex; justify-content: space-between; gap: 8px; margin-top: 6px; font-variant-numeric: tabular-nums; }
+  .pdate { text-align: right; }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
+  .arrow { font-size: 11px; }
+  .arrow.up { color: #d92d20; }
+  .arrow.down { color: #15803d; }
 {% endblock %}
 
 {% block content %}
@@ -64,6 +73,24 @@
       {% endif %}
     </div>
   </div>
+
+  <h2>今天的行情 <a class="small" style="font-weight:400" href="{% url 'kb:prices' %}">全部 →</a></h2>
+  {% if price_groups %}
+    <div class="pgrid">
+      {% for g in price_groups %}
+        <a class="card ptile" href="{% url 'kb:price_detail' g.code %}">
+          <b>{{ g.title }}</b>
+          {% for snap in g.snaps %}{% if snap.has_data %}
+            <div class="prow small"><span><i class="dot" style="background: {{ snap.color }}"></i>{{ snap.short }}</span>
+              <span><b>{{ snap.price }}</b>{% if snap.direction == 'up' %} <span class="arrow up">▲</span>{% elif snap.direction == 'down' %} <span class="arrow down">▼</span>{% endif %}</span></div>
+            <div class="pdate">{% if snap.is_today %}<span class="badge green">{{ snap.date_label }}</span>{% else %}<span class="badge amber">不是今天 · {{ snap.date_label }}</span>{% endif %}</div>
+          {% endif %}{% endfor %}
+        </a>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="card small muted">还没有抓到价格。{% if has_price_series %}<a href="{% url 'kb:prices' %}">去行情页看原因</a>{% else %}部署后第一次自动更新需要一两分钟，稍后刷新。{% endif %}</div>
+  {% endif %}
 
   <h2>按类别浏览</h2>
   <div class="grid">

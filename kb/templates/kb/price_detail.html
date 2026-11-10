@@ -1,0 +1,156 @@
+{% extends "kb/base.html" %}
+{% block title %}{{ g.title }} 价格 · 塑料学习资料库{% endblock %}
+
+{% block style %}
+{% include "kb/_price_style.html" %}
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 28px; }
+  .pair.single { grid-template-columns: 1fr; }
+  @media (max-width: 640px) { .pair { grid-template-columns: 1fr; } }
+  .sec { margin-top: 16px; }
+  .sec h2 { margin: 0 0 10px; font-size: 19px; }
+  .chart-scroll { overflow-x: auto; }
+  .chart-box { position: relative; min-width: 600px; }
+  .chart-box svg { display: block; width: 100%; height: auto; }
+  .chart-box text { font-size: 12px; fill: #6b7280; font-variant-numeric: tabular-nums; }
+  .chart-box text.end { font-size: 13px; fill: #1f2430; font-weight: 600; }
+  .chart-box text.endname { font-size: 11px; fill: #4b5563; font-weight: 400; }
+  .legend { display: flex; gap: 18px; font-size: 13px; color: var(--soft); margin-bottom: 4px; }
+  .legend i { display: inline-block; width: 14px; height: 3px; border-radius: 2px; margin-right: 6px; vertical-align: middle; }
+  .tip { position: absolute; top: 6px; pointer-events: none; background: #fff; border: 1px solid var(--line);
+         border-radius: 8px; padding: 6px 10px; font-size: 13px; line-height: 1.6; box-shadow: 0 2px 8px rgba(0,0,0,.08);
+         white-space: nowrap; display: none; font-variant-numeric: tabular-nums; }
+  .tip i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  tr.today td { background: var(--green-soft); }
+  .explain p { margin: 6px 0; }
+{% endblock %}
+
+{% block content %}
+  <div class="small"><a href="{% url 'kb:prices' %}">价格行情</a> · {{ g.title }}</div>
+  <h1>{{ g.title }}</h1>
+  <div class="muted">{{ g.about }}</div>
+
+  <div class="card sec">
+    <div class="pair {% if g.snaps|length == 1 %}single{% endif %}">
+      {% for snap in g.snaps %}<div>{% include "kb/_price_snap.html" with snap=snap %}</div>{% endfor %}
+    </div>
+    {% if g.basis %}
+      <div class="small" style="margin-top:12px; padding-top:10px; border-top:1px solid var(--line)">
+        {% if g.basis.zero %}{{ g.basis.sentence }}{% else %}{{ g.basis.sentence }} <b>{{ g.basis.text }}</b> 元{% endif %}
+        <span class="muted">（同一天的现货价减期货价，叫“基差”）</span>
+      </div>
+    {% endif %}
+  </div>
+
+  {% if chart %}
+    <div class="card sec">
+      <h2>走势（最近 {{ chart.count }} 个交易日，{{ chart.first|date:"n月j日" }}～{{ chart.last|date:"n月j日" }}）</h2>
+      {% if chart.lines|length > 1 %}
+        <div class="legend">{% for line in chart.lines %}<span><i style="background: {{ line.color }}"></i>{{ line.name }}</span>{% endfor %}</div>
+      {% endif %}
+      <div class="chart-scroll"><div class="chart-box" id="chart-box">
+        <svg viewBox="0 0 {{ chart.width }} {{ chart.height }}" role="img" aria-label="{{ g.title }}价格走势图，具体数字见下面的明细表">
+          {% for t in chart.ticks %}
+            <line x1="{{ chart.plot.left }}" x2="{{ chart.plot.right }}" y1="{{ t.y }}" y2="{{ t.y }}" stroke="#eceef2" stroke-width="1"/>
+            <text x="{{ chart.plot.tick_x }}" y="{{ t.y }}" text-anchor="end" dominant-baseline="middle">{{ t.label }}</text>
+          {% endfor %}
+          {% for xl in chart.x_labels %}
+            <text x="{{ xl.x }}" y="{{ chart.plot.date_y }}" text-anchor="{{ xl.anchor }}">{{ xl.label }}</text>
+          {% endfor %}
+          <line id="cross" x1="0" x2="0" y1="{{ chart.plot.top }}" y2="{{ chart.plot.bottom }}" stroke="#9aa1ad" stroke-width="1" visibility="hidden"/>
+          {% for line in chart.lines %}
+            {% if line.path %}<polyline points="{{ line.path }}" fill="none" stroke="{{ line.color }}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>{% endif %}
+            {% for d in line.dots %}<circle cx="{{ d.x }}" cy="{{ d.y }}" r="4" fill="{{ line.color }}" stroke="#fff" stroke-width="2"/>{% endfor %}
+            <circle cx="{{ line.end.x }}" cy="{{ line.end.y }}" r="4" fill="{{ line.color }}" stroke="#fff" stroke-width="2"/>
+            <text class="end" x="{{ line.end.label_x }}" y="{{ line.end.label_y }}" dominant-baseline="middle">{{ line.end.label }}</text>
+            <text class="endname" x="{{ line.end.label_x }}" y="{{ line.end.name_y }}" dominant-baseline="middle">{{ line.name }}</text>
+          {% endfor %}
+          {% for line in chart.hover_lines %}<circle class="hv" data-kind="{{ line.kind }}" r="5" fill="{{ line.color }}" stroke="#fff" stroke-width="2" visibility="hidden"/>{% endfor %}
+        </svg>
+        <div class="tip" id="tip"></div>
+      </div></div>
+      <div class="small muted">单位：{{ g.snaps.0.unit }}。把鼠标（或手指）放在图上可以看每天的数字。{% if has_spot %}生意社现货价是从开始自动更新那天起一天天积累的，所以橙线一开始会比较短。{% endif %}</div>
+      {{ chart.hover|json_script:"chart-hover" }}
+      {{ chart.hover_lines|json_script:"chart-lines" }}
+    </div>
+  {% endif %}
+
+  <div class="card sec">
+    <h2>每天明细</h2>
+    {% if table %}
+      <div class="table-wrap">
+        <table class="data">
+          <thead><tr>
+            <th>日期</th>
+            {% if has_futures %}<th class="num">期货结算价</th><th class="num">收盘价</th><th class="num">当天最低～最高</th><th>主力合约</th>{% endif %}
+            {% if has_spot %}<th class="num">生意社现货</th>{% endif %}
+            {% if has_futures and has_spot %}<th class="num">基差（现货−期货）</th>{% endif %}
+          </tr></thead>
+          <tbody>
+            {% for r in table %}
+              <tr class="{% if r.is_today %}today{% endif %}">
+                <td style="white-space:nowrap">{{ r.date|date:"n月j日" }} <span class="muted small">周{{ r.weekday }}</span>{% if r.is_today %} <span class="badge green">今天</span>{% endif %}</td>
+                {% if has_futures %}<td class="num"><b>{{ r.futures|default:"—" }}</b>{% if r.note %}<div class="muted small">{{ r.note }}</div>{% endif %}</td>
+                <td class="num">{{ r.close|default:"—" }}</td><td class="num">{{ r.range|default:"—" }}</td><td>{{ r.contract|default:"—" }}</td>{% endif %}
+                {% if has_spot %}<td class="num"><b>{{ r.spot|default:"—" }}</b></td>{% endif %}
+                {% if has_futures and has_spot %}<td class="num">{{ r.basis|default:"—" }}</td>{% endif %}
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="small muted" style="margin-top:8px">只列最近 60 天。“—”表示那天没有这项数据。主力合约代码来自生意社的表，生意社没取到的日子会空着。</div>
+    {% else %}
+      <p class="muted">还没有数据。</p>
+    {% endif %}
+  </div>
+
+  <div class="card sec explain">
+    <h2>这些价格是什么、从哪来</h2>
+    {% for snap in g.snaps %}
+      <p><i class="dot" style="background: {{ snap.color }}"></i><b>{{ snap.short }}</b>
+        <span class="small muted">· {{ snap.series.market }} · {{ snap.unit }} ·
+        {% if snap.series.tax == 'included' %}含税{% elif snap.series.tax == 'excluded' %}不含税{% else %}是否含税以数据源说明为准{% endif %}</span></p>
+      <div class="small">{{ snap.explain_html|safe }}</div>
+      <p class="small muted">来源：{% if snap.series.source.url %}<a href="{{ snap.series.source.url }}" target="_blank" rel="noopener">{{ snap.series.source.title }}</a>{% else %}{{ snap.series.source.title }}{% endif %}
+        · {% if snap.series.last_ok_at %}上次更新成功：{{ snap.series.last_ok_at|date:"n月j日 H:i" }}{% else %}还没有成功更新过{% endif %}
+        {% if snap.error %}<span class="why"> · 最近一次没取到：{{ snap.error }}</span>{% endif %}</p>
+    {% endfor %}
+    <div class="small">{% if glossary %}<p>想弄懂这些词，点开看讲解：{% for e in glossary %}<a href="{% url 'kb:entry' e.pk %}">{{ e.name_zh }}</a>{% if not forloop.last %}、{% endif %}{% endfor %}。</p>{% endif %}</div>
+    <p class="small muted">价格由程序自动抓取，仅供学习和了解行情。给客户报价、签合同，请以公司或供应商当天的正式报价为准。</p>
+  </div>
+
+  {% if chart %}
+  <script>
+  (function () {
+    var box = document.getElementById('chart-box'), svg = box.querySelector('svg'), tip = document.getElementById('tip');
+    var cross = document.getElementById('cross');
+    var pts = JSON.parse(document.getElementById('chart-hover').textContent);
+    var lines = JSON.parse(document.getElementById('chart-lines').textContent);
+    var dots = {}; svg.querySelectorAll('circle.hv').forEach(function (c) { dots[c.dataset.kind] = c; });
+    var W = {{ chart.width }};
+    function show(clientX) {
+      var rect = svg.getBoundingClientRect(), x = (clientX - rect.left) / rect.width * W, best = 0, d = 1e9;
+      for (var i = 0; i < pts.length; i++) { var dd = Math.abs(pts[i].x - x); if (dd < d) { d = dd; best = i; } }
+      var p = pts[best], html = '<b>' + p.date + '</b>';
+      cross.setAttribute('x1', p.x); cross.setAttribute('x2', p.x); cross.setAttribute('visibility', 'visible');
+      lines.forEach(function (ln) {
+        var y = ln.ys[best], dot = dots[ln.kind];
+        if (y === undefined) { dot.setAttribute('visibility', 'hidden'); return; }
+        dot.setAttribute('cx', p.x); dot.setAttribute('cy', y); dot.setAttribute('visibility', 'visible');
+        html += '<br><i style="background:' + ln.color + '"></i>' + ln.name + ' <b>' + p.v[ln.kind] + '</b>';
+      });
+      tip.innerHTML = html; tip.style.display = 'block';
+      var px = p.x / W * rect.width, tw = tip.offsetWidth;
+      tip.style.left = Math.max(0, Math.min(rect.width - tw, px > rect.width / 2 ? px - tw - 12 : px + 12)) + 'px';
+    }
+    function hide() { tip.style.display = 'none'; cross.setAttribute('visibility', 'hidden');
+      Object.keys(dots).forEach(function (k) { dots[k].setAttribute('visibility', 'hidden'); }); }
+    svg.addEventListener('mousemove', function (e) { show(e.clientX); });
+    svg.addEventListener('mouseleave', hide);
+    svg.addEventListener('touchstart', function (e) { show(e.touches[0].clientX); }, { passive: true });
+    svg.addEventListener('touchmove', function (e) { show(e.touches[0].clientX); }, { passive: true });
+  })();
+  </script>
+  {% endif %}
+{% endblock %}

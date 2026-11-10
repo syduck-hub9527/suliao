@@ -7,7 +7,10 @@ from django.urls import reverse
 from django.utils import timezone
 from django.views.decorators.http import require_POST
 
+from urllib.parse import quote
+
 from . import models as m
+from . import price_views
 from .content import LEARNING_PATH_NAME
 from .render import TermLinker
 from .search import search
@@ -95,6 +98,8 @@ def home(request):
         "next_up": next_up, "kind_tiles": kind_tiles, "recent": recent,
         "entry_count": m.Entry.objects.count(),
         "grade_count": m.Grade.objects.count(),
+        "price_groups": [g for g in price_views.price_groups(timezone.localtime()) if g["has_data"]][:4],
+        "has_price_series": m.PriceSeries.objects.exclude(auto_source="").exists(),
     })
 
 
@@ -169,6 +174,8 @@ def entry_detail(request, pk):
         "grades": (m.Grade.objects.filter(Q(base_entry=entry) | Q(base_entry__parent=entry))
                    .select_related("manufacturer", "base_entry").order_by("base_entry__name_zh", "code_norm")),
         "admin_url": reverse("admin:kb_entry_change", args=[entry.pk]),
+        "price_groups": (price_views.related_price_groups(entry, timezone.localtime())
+                         if entry.kind == m.EntryKind.MATERIAL else []),
     })
 
 
@@ -277,6 +284,9 @@ def grade_detail(request, pk):
     own = {m.normalize(x) for x in [grade.code, grade.full_name] if x}
     aliases = [a for a in grade.aliases.all() if a.norm not in own]
 
+    # 去普拉司查报价用的关键词：牌号里空格前的那一段（“101L NC010” 只搜 “101L”）
+    plas_keyword = grade.code.split()[0] if grade.code.split() else grade.code
+
     family = grade.base_entry.parent or grade.base_entry
     siblings = (m.Grade.objects.filter(Q(base_entry=family) | Q(base_entry__parent=family))
                 .exclude(pk=grade.pk).select_related("manufacturer", "base_entry").order_by("base_entry__name_zh",
@@ -285,6 +295,9 @@ def grade_detail(request, pk):
         "grade": grade, "description": description, "groups": groups, "aliases": aliases,
         "sources": grade.sources.all().order_by("title"), "siblings": siblings, "family": family,
         "admin_url": reverse("admin:kb_grade_change", args=[grade.pk]),
+        "price_groups": price_views.related_price_groups(grade.base_entry, timezone.localtime()),
+        "plas_keyword": plas_keyword,
+        "plas_url": f"https://s.plasway.com/price/chinaprice_search_{quote(plas_keyword, safe='')}.html",
     })
 
 
