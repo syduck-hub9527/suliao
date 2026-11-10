@@ -1,0 +1,682 @@
+# 特种工程塑料（PEEK、PPS、PEI、PSU/PPSU/PES、LCP、PI）常用厂商和牌号。查阅日期 2026-11-10。
+# 这一批只收“厂家 + 牌号 + 用途定位”，没有收性能数字；需要数字时到来源链接里查最新 TDS。
+
+x-sources:
+  victrex_ds: &victrex_ds {id: s1, title: VICTREX 技术数据表目录, url: "https://www.victrex.com/datasheets", publisher: Victrex, kind: maker_web, accessed: 2026-11-10}
+  victrex_pf: &victrex_pf {id: s2, title: "VICTREX 产品组合简介（2023）", url: "https://www.victrex.com/-/media/downloads/literature/en/victrex_productportfoliosummaryus.pdf", publisher: Victrex, kind: maker_doc, accessed: 2026-11-10}
+  victrex_450g: &victrex_450g {id: s3, title: "VICTREX 450G PEEK 产品页", url: "https://www.victrex.com/en/products/polymers/peek-polymers/450g", publisher: Victrex, kind: maker_web, accessed: 2026-11-10}
+  keta_ul: &keta_ul {id: s1, title: "KetaSpire KT-820（UL Prospector）", url: "https://betaplastics.ulprospector.com/plastics/en/datasheet/96632/kt-820", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+  keta_sc: &keta_sc {id: s2, title: "KetaSpire 产品列表（SpecialChem）", url: "https://www.specialchem.com/plastics/supplier/syensqo/ketaspire", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+  keta_ul_cn: &keta_ul_cn {id: s3, title: "Syensqo 聚醚酮产品列表（UL Prospector 中文）", url: "https://betaplastics.ulprospector.com/plastics/zh-cn/generics/29/manufacturers/883?page=2", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+  vk_sc: &vk_sc {id: s1, title: "VESTAKEEP 产品列表（SpecialChem）", url: "https://www.specialchem.com/plastics/supplier/evonik/vestakeep", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+  vk_tds: &vk_tds {id: s2, title: "VESTAKEEP 2000 G 技术数据表（2024-11）", url: "https://products.evonik.com/assets/17/02/TDS_VESTAKEEP_2000_G_EN_Asset_4001702.pdf", publisher: Evonik, kind: maker_doc, accessed: 2026-11-10}
+  vk_mdc: &vk_mdc {id: s3, title: "VESTAKEEP 牌号列表（Material Data Center）", url: "https://materialdatacenter.com/ms/es/Vestakeep/Evonik+Operations+GmbH/655", publisher: Material Data Center, kind: other, accessed: 2026-11-10}
+  zy_sc: &zy_sc {id: s1, title: "ZYPEEK 产品列表（SpecialChem）", url: "https://www.specialchem.com/plastics/supplier/jilin-joinature-polymer/zypeek", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+  zy_all: &zy_all {id: s2, title: "Jilin Joinature Polymer 全部产品（SpecialChem）", url: "https://www.specialchem.com/plastics/supplier/jilin-joinature-polymer/all-products", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+  zy_blog: &zy_blog {id: s3, title: "ZYPEEK PEEK 原料牌号介绍", url: "https://velog.io/@zhongyanpeek/ZYPEEK-PEEK-Raw-MaterialsPolyetheretherketone-Peek-Material", publisher: "zhongyanpeek（velog）", kind: other, accessed: 2026-11-10}
+
+grades:
+  # ================= PEEK =================
+  - code: 450G
+    full_name: VICTREX PEEK 450G
+    manufacturer: 威格斯
+    brand: VICTREX
+    material: PEEK
+    grade_class: 通用级，标准黏度
+    verify: verified
+    summary: PEEK 里名气最大的牌号之一，标准熔体黏度、中等分子量，用于注塑和挤出。
+    description: |
+      厂家把 450G 定义为“标准熔体黏度”的通用 PEEK。威格斯的牌号数字代表黏度档次：
+      **90 < 150 < 450 < 650**，数字越小越好流动（适合薄壁），数字越大分子量越高、越韧。
+      后缀 G 是粒料，P 是粗粉，PF 是细粉；GL30 是 30% 玻纤，CA30 是 30% 碳纤。
+    sources: [*victrex_ds, *victrex_450g]
+  - code: 150G
+    full_name: VICTREX PEEK 150G
+    manufacturer: 威格斯
+    brand: VICTREX
+    material: PEEK
+    grade_class: 易流动注塑级
+    verify: verified
+    summary: 比 450G 更好流动的 PEEK，适合注塑薄壁和复杂零件。
+    sources: [*victrex_pf, *victrex_450g]
+  - code: 90G
+    full_name: VICTREX PEEK 90G
+    manufacturer: 威格斯
+    brand: VICTREX
+    material: PEEK
+    grade_class: 极易流动注塑级
+    verify: verified
+    summary: 威格斯流动性最好的 PEEK 粒料之一，用于很薄、很复杂的注塑件。
+    sources: [*victrex_pf]
+  - code: 450GL30
+    full_name: VICTREX PEEK 450GL30
+    manufacturer: 威格斯
+    brand: VICTREX
+    material: PEEK
+    grade_class: 30% 玻纤增强
+    verify: verified
+    summary: 标准流动、30% 玻纤增强的 PEEK，刚性和耐蠕变比纯 PEEK 高得多。
+    sources: [*victrex_ds]
+  - code: 450CA30
+    full_name: VICTREX PEEK 450CA30
+    manufacturer: 威格斯
+    brand: VICTREX
+    material: PEEK
+    grade_class: 30% 碳纤增强
+    verify: verified
+    summary: 30% 碳纤增强的 PEEK，强度、刚性最高的一类，常替代金属结构件。
+    sources: [*victrex_ds]
+  - code: 150FC30
+    full_name: VICTREX PEEK 150FC30
+    manufacturer: 威格斯
+    brand: VICTREX
+    material: PEEK
+    grade_class: 耐磨级（碳纤 + PTFE + 石墨）
+    verify: verified
+    summary: 易流动的耐磨 PEEK，加了 30% 碳纤、PTFE 和石墨，用于轴承、滑块、密封环。
+    sources: [*victrex_pf]
+
+  - code: KT-820 NT
+    full_name: KetaSpire KT-820 NT
+    manufacturer: Syensqo
+    brand: KetaSpire
+    material: PEEK
+    grade_class: 低流动（高黏度）纯树脂
+    verify: partial
+    aliases: [KT-820, KT820]
+    summary: Syensqo（原索尔维特种聚合物）的低流动纯 PEEK，本色粒料，用于注塑和挤出。
+    description: |
+      KetaSpire 的数字代表流动性：**KT-820 低流动，KT-850 中等，KT-880 高流动**。
+      后缀 NT 是本色，BK 是黑色，GF30 是 30% 玻纤，CF30 是 30% 碳纤，P 是粗粉。
+      2023 年 12 月索尔维把特种聚合物等业务分拆成独立上市公司 Syensqo，KetaSpire 随之归属 Syensqo。国内贸易商仍常叫它“索尔维”。
+    sources: [*keta_ul, *keta_sc]
+  - code: KT-880 NT
+    full_name: KetaSpire KT-880 NT
+    manufacturer: Syensqo
+    brand: KetaSpire
+    material: PEEK
+    grade_class: 高流动纯树脂
+    verify: partial
+    aliases: [KT-880, KT880]
+    summary: 高流动的纯 PEEK 本色粒料，适合薄壁注塑，也用于涂层。
+    sources: [*keta_sc]
+  - code: KT-880 GF30
+    full_name: KetaSpire KT-880 GF30
+    manufacturer: Syensqo
+    brand: KetaSpire
+    material: PEEK
+    grade_class: 高流动，30% 玻纤增强
+    verify: partial
+    summary: 高流动、30% 玻纤增强 PEEK，强度和刚性比纯树脂高。
+    sources: [*keta_ul_cn]
+  - code: KT-880 CF30
+    full_name: KetaSpire KT-880 CF30
+    manufacturer: Syensqo
+    brand: KetaSpire
+    material: PEEK
+    grade_class: 高流动，30% 碳纤增强
+    verify: partial
+    summary: 高流动、30% 碳纤增强 PEEK，黑色，用于航空航天、油气设备结构件。
+    sources: [*keta_ul_cn, *keta_sc]
+
+  - code: 2000G
+    full_name: VESTAKEEP 2000 G
+    manufacturer: 赢创
+    brand: VESTAKEEP
+    material: PEEK
+    grade_class: 中黏度，易流动
+    verify: verified
+    aliases: [2000 G, VESTAKEEP 2000G]
+    summary: 赢创的中黏度纯 PEEK 粒料，加工容易，用于齿轮、医疗器械零件等注塑件。
+    description: |
+      VESTAKEEP 的数字代表黏度：**1000 < 2000 < 3300 < 4000 < 5000**，数字越大黏度越高。
+      后缀 G 是粒料，P 是粉料，GF30 是 30% 玻纤，CF30 是 30% 碳纤。
+    sources: [*vk_tds, *vk_sc]
+  - code: 4000G
+    full_name: VESTAKEEP 4000 G
+    manufacturer: 赢创
+    brand: VESTAKEEP
+    material: PEEK
+    grade_class: 高黏度
+    verify: partial
+    aliases: [4000 G, VESTAKEEP 4000G]
+    summary: 赢创的高黏度纯 PEEK，用于注塑和挤出，也用来挤出板材、棒材。
+    sources: [*vk_sc, *vk_mdc]
+  - code: 4000 GF30
+    full_name: VESTAKEEP 4000 GF30
+    manufacturer: 赢创
+    brand: VESTAKEEP
+    material: PEEK
+    grade_class: 高黏度，30% 玻纤增强
+    verify: partial
+    summary: 高黏度、30% 玻纤增强的 PEEK 改性料。
+    sources: [*vk_mdc]
+
+  - code: 330G
+    full_name: ZYPEEK 330G
+    manufacturer: 中研股份
+    brand: ZYPEEK
+    material: PEEK
+    grade_class: 高流动纯树脂
+    verify: partial
+    summary: 国产 PEEK 代表企业中研股份的高流动纯 PEEK 粒料。
+    description: |
+      中研股份的牌号数字按流动性排：**770（低流动）→ 550（中流动）→ 330（高流动）**。
+      后缀 G 是粒料，P 是粗粉，PF 是细粉，GL30 是 30% 玻纤，CA30 是 30% 碳纤。
+    sources: [*zy_all, *zy_blog]
+  - code: 550G
+    full_name: ZYPEEK 550G
+    manufacturer: 中研股份
+    brand: ZYPEEK
+    material: PEEK
+    grade_class: 中流动纯树脂
+    verify: partial
+    summary: 中流动纯 PEEK，可注塑和挤出，资料列出的用途有螺丝、密封圈、轴承、单丝等。
+    sources: [*zy_sc]
+  - code: 770G
+    full_name: ZYPEEK 770G
+    manufacturer: 中研股份
+    brand: ZYPEEK
+    material: PEEK
+    grade_class: 低流动纯树脂
+    verify: unverified
+    summary: 中研股份低流动（高分子量）的纯 PEEK 粒料。
+    sources: [*zy_blog]
+
+  # ================= PPS =================
+  - code: A504X90
+    full_name: TORELINA A504X90
+    manufacturer: 东丽
+    brand: TORELINA
+    material: PPS
+    grade_class: 40% 玻纤增强，标准级
+    verify: partial
+    summary: 东丽的 40% 玻纤增强 PPS 标准牌号，用于开关、连接器、发电机部件和办公设备零件。
+    description: |
+      资料说明它是**支链型** PPS，40% 玻纤，耐热、阻燃、耐化学品，流动性和尺寸稳定性好。
+      国内做电子电器、汽车零件的 PPS，A504X90 是最常被拿来对比的牌号之一。
+      东丽 PPS 牌号的规律：A5xx 多为支链型，A6xx 多为线型；X90、X95 这类后缀区分不同改进点（X95 是低毛边）。
+    sources:
+      - {id: tsc, title: "TORELINA A504X90（SpecialChem）", url: "https://www.specialchem.com/plastics/product/toray-torelina-a504x90", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+      - &toray_ul {id: tul, title: "东丽 PPS 产品列表（UL Prospector）", url: "https://plastics.ulprospector.com/plastics/de/generics/41/manufacturers/562?page=1", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+  - code: A310MX04
+    full_name: TORELINA A310MX04
+    manufacturer: 东丽
+    brand: TORELINA
+    material: PPS
+    grade_class: 高填充（玻纤 + 矿物），标准级
+    verify: partial
+    summary: 东丽玻纤加矿物高填充的标准 PPS，翘曲比纯玻纤级小，适合要求尺寸稳定的零件。
+    sources: [*toray_ul]
+  - code: A604
+    full_name: TORELINA A604
+    manufacturer: 东丽
+    brand: TORELINA
+    material: PPS
+    grade_class: 40% 玻纤增强，线型
+    verify: partial
+    summary: 东丽线型 PPS 加 40% 玻纤的阻燃牌号，注塑用；线型比支链型更韧。
+    sources:
+      - &toray_sc {id: tsc2, title: "TORELINA 产品列表（SpecialChem）", url: "https://www.specialchem.com/plastics/supplier/toray/torelina", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+
+  - code: R-4
+    full_name: Ryton R-4
+    manufacturer: Syensqo
+    brand: Ryton
+    material: PPS
+    grade_class: 40% 玻纤增强，通用级
+    verify: partial
+    aliases: [R4, Ryton R4, R-4-02]
+    summary: Ryton PPS 的经典 40% 玻纤牌号，机械、电气性能均衡，高温下耐化学品。
+    description: |
+      Ryton 是最早商业化的 PPS 品牌（原属菲利普斯石油，后归索尔维，现属 Syensqo）。
+      牌号规律：**R-4 系列是 40% 玻纤**，R-7 系列是玻纤加矿物填充；后面的三位数区分改进点，
+      比如 R-4-200 强度更好、R-4-220 耐热水、R-4-230 低毛边、R-4-240 更韧。
+      后缀 NA 是本色，BL 是黑色。
+    sources:
+      - {id: r4, title: "Ryton R-4（UL Prospector）", url: "https://betaplastics.ulprospector.com/plastics/zh-cn/datasheet/6163/ryton-r-4", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+      - &ryton_cn {id: rcn, title: "Syensqo PPS 产品列表（UL Prospector 中文）", url: "https://betaplastics.ulprospector.com/plastics/zh-cn/generics/41/manufacturers/883", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+  - code: R-4-200
+    full_name: Ryton R-4-200NA / R-4-200BL
+    manufacturer: Syensqo
+    brand: Ryton
+    material: PPS
+    grade_class: 40% 玻纤增强，高强度
+    verify: partial
+    aliases: [R-4-200NA, R-4-200BL, R4-200]
+    summary: 40% 玻纤 PPS，机械强度比 R-4 更高，用普通注塑设备就能稳定生产，常用于汽车零件。
+    sources: [*ryton_cn]
+  - code: R-4-220
+    full_name: Ryton R-4-220NA / R-4-220BL
+    manufacturer: Syensqo
+    brand: Ryton
+    material: PPS
+    grade_class: 40% 玻纤增强，耐热水
+    verify: partial
+    aliases: [R-4-220NA, R-4-220BL]
+    summary: 40% 玻纤 PPS，长期或反复接触高温水后强度保持更好，用于水泵、冷却液系统零件。
+    sources: [*ryton_cn]
+  - code: R-7-120
+    full_name: Ryton R-7-120NA / R-7-120BL
+    manufacturer: Syensqo
+    brand: Ryton
+    material: PPS
+    grade_class: 玻纤 + 矿物填充
+    verify: partial
+    aliases: [R-7-120NA, R-7-120BL]
+    summary: 玻纤加矿物填充的 PPS，强度好、成型维护少，比纯玻纤级更不易翘曲。
+    sources:
+      - {id: r7, title: "Syensqo PPS 亚太产品列表（UL Prospector）", url: "https://betaplastics.ulprospector.com/plastics/en/generics/41/manufacturers/883?page=2", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+
+  - code: 1140A6
+    full_name: DURAFIDE 1140A6
+    manufacturer: 宝理塑料
+    brand: DURAFIDE
+    material: PPS
+    grade_class: 40% 玻纤增强，高强度
+    verify: partial
+    summary: 宝理的 40% 玻纤 PPS 高强度牌号，国内电子电器和汽车零件里很常见。
+    description: |
+      宝理（Polyplastics）在亚洲用 **DURAFIDE** 品牌卖 PPS；塞拉尼斯在欧美卖的同类产品叫 Fortron。
+      牌号规律（看资料可归纳）：**1130 = 30% 玻纤，1140 = 40% 玻纤**；6165 = 玻纤 + 矿物共 65%；
+      2130 是碳纤增强。后面的 A1、A4、A6 区分韧性、标准、高强度等特点。
+    sources:
+      - &dura_mdc {id: dmdc, title: "DURAFIDE 牌号列表（Material Data Center）", url: "https://materialdatacenter.com/ms/ja/Durafide/Polyplastics/6719", publisher: Material Data Center, kind: other, accessed: 2026-11-10}
+      - &dura_ul {id: dul, title: "DURAFIDE 产品列表（UL Prospector）", url: "https://betaplastics.ulprospector.com/plastics/ja/generics/41/materials/5865", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+  - code: 1140A1
+    full_name: DURAFIDE 1140A1
+    manufacturer: 宝理塑料
+    brand: DURAFIDE
+    material: PPS
+    grade_class: 40% 玻纤增强，高韧性
+    verify: partial
+    summary: 40% 玻纤、韧性更好的 PPS，用于厨房电器、烤箱等耐热耐油零件。
+    sources:
+      - *dura_ul
+      - {id: dsc, title: "DURAFIDE 产品列表（SpecialChem）", url: "https://www.specialchem.com/plastics/supplier/polyplastics-daicel/durafide", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+  - code: 1130A1
+    full_name: DURAFIDE 1130A1
+    manufacturer: 宝理塑料
+    brand: DURAFIDE
+    material: PPS
+    grade_class: 30% 玻纤增强，高韧性
+    verify: partial
+    summary: 30% 玻纤 PPS，韧性好、白度高便于配色，伸长率和熔接线强度较好。
+    sources:
+      - {id: dsc2, title: "DURAFIDE 产品列表（SpecialChem）", url: "https://www.specialchem.com/plastics/supplier/polyplastics-daicel/durafide", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+  - code: 6165A6
+    full_name: DURAFIDE 6165A6
+    manufacturer: 宝理塑料
+    brand: DURAFIDE
+    material: PPS
+    grade_class: 玻纤 + 矿物 65%
+    verify: partial
+    summary: 玻纤加矿物共 65% 填充的 PPS，尺寸稳定、翘曲小，适合精密结构件。
+    sources: [*dura_mdc]
+
+  - code: 1140L4
+    full_name: Fortron 1140L4
+    manufacturer: 塞拉尼斯
+    brand: Fortron
+    material: PPS
+    grade_class: 40% 玻纤增强
+    verify: partial
+    summary: 塞拉尼斯 40% 玻纤 PPS，厂家称是本系列最强最韧的牌号，阻燃 V-0，用于线圈骨架、泵阀、油轨等。
+    sources:
+      - {id: f1140, title: "Fortron 1140L4（UL Prospector）", url: "https://betaplastics.ulprospector.com/plastics/zh-cn/datasheet/239/fortron-1140l4", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+  - code: 1130L4
+    full_name: Fortron 1130L4
+    manufacturer: 塞拉尼斯
+    brand: Fortron
+    material: PPS
+    grade_class: 30% 玻纤增强，好流动
+    verify: partial
+    summary: 30% 玻纤 PPS，流动性好、二次焊接性好，适合流程长的薄壁件。
+    sources:
+      - {id: f1130, title: "Fortron 1130L4（UL Prospector）", url: "https://plastics.ulprospector.com/plastics/en/datasheet/37299/fortron-1130l4", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+
+  - code: FZ-1140
+    full_name: DIC.PPS FZ-1140
+    manufacturer: DIC
+    brand: DIC.PPS
+    material: PPS
+    grade_class: 40% 玻纤增强，支链型
+    verify: verified
+    summary: DIC 的 40% 玻纤支链型 PPS，性能和加工性均衡，是 DIC 的代表牌号。
+    description: |
+      DIC 官方资料把代表牌号这样分：**FZ-1140 = 40% 玻纤支链型，FZ-2140 = 40% 玻纤线型**，
+      FZ-3600 = 玻纤加矿物（支链型），FZ-6600 = 玻纤加矿物（线型），Z-230、Z-650 是“超韧”系列。
+      第一位 1、3 多是支链型，2、6 多是线型。
+    sources:
+      - &dic_pdf {id: dic, title: DIC.PPS 性能资料, url: "https://sunchemical.com/wp-content/uploads/2025/02/DIC-PPS-Properties.pdf", publisher: "DIC（Sun Chemical 网站）", kind: maker_doc, accessed: 2026-11-10}
+  - code: FZ-2140
+    full_name: DIC.PPS FZ-2140
+    manufacturer: DIC
+    brand: DIC.PPS
+    material: PPS
+    grade_class: 40% 玻纤增强，线型
+    verify: verified
+    summary: DIC 的 40% 玻纤线型 PPS，机械性能和加工性好，线型比支链型更韧。
+    sources: [*dic_pdf]
+  - code: FZ-3600
+    full_name: DIC.PPS FZ-3600
+    manufacturer: DIC
+    brand: DIC.PPS
+    material: PPS
+    grade_class: 玻纤 + 矿物，支链型
+    verify: verified
+    summary: DIC 玻纤加矿物填充的通用 PPS，尺寸稳定、翘曲小。
+    sources: [*dic_pdf]
+  - code: Z-230
+    full_name: DIC.PPS Z-230
+    manufacturer: DIC
+    brand: DIC.PPS
+    material: PPS
+    grade_class: 30% 玻纤，超韧级
+    verify: verified
+    summary: DIC 超韧系列 PPS，30% 玻纤，用在普通 PPS 太脆的场合。
+    sources: [*dic_pdf]
+
+  - code: 1150C
+    full_name: NHU-PPS 1150C
+    manufacturer: 新和成
+    brand: NHU-PPS
+    material: PPS
+    grade_class: 纯树脂（基础料）
+    verify: partial
+    summary: 浙江新和成的 PPS 纯树脂牌号之一，注塑用；新和成是国内主要的 PPS 树脂生产商。
+    description: |
+      厂家资料说 NHU-PPS 分子量分布窄、低聚物少，熔指（MFR）覆盖 50～3000，有线型、交联等多种规格；
+      1110C、1130C、1150C、1170C、1190C 等是不同熔指档次的纯树脂。改性厂买它加玻纤做成改性 PPS。
+      具体每个牌号的熔指请看厂家 TDS。
+    sources:
+      - {id: nhu, title: "NHU-PPS 产品列表（UL Prospector）", url: "https://betaplastics.ulprospector.com/plastics/en/generics/41/materials/8737", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+      - {id: nhu2, title: "NHU-PPS 1150C（UL Prospector）", url: "https://betaplastics.ulprospector.com/plastics/en/datasheet/290547/nhu-pps-1150c", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+
+  # ================= PEI =================
+  - code: "1000"
+    full_name: ULTEM 1000
+    manufacturer: 沙特基础工业
+    brand: ULTEM
+    material: PEI
+    grade_class: 纯树脂，标准流动
+    verify: partial
+    aliases: [ULTEM1000, Ultem 1000]
+    summary: PEI 的代表牌号：透明琥珀色、标准流动、本身阻燃，玻璃化温度 217°C。
+    description: |
+      ULTEM 原属 GE 塑料，2007 年起归 SABIC。牌号规律：**1000 系列是纯树脂**（1000 标准流动，1010 流动更好），
+      **2000 系列是玻纤增强**：2100 = 10%，2200 = 20%，2300 = 30%，2400 = 40% 玻纤。
+      后缀 R 一般表示加了内脱模剂，F 表示食品接触版，P 是粉料。
+    sources:
+      - {id: u1000, title: "ULTEM resin 1000（SpecialChem）", url: "https://www.specialchem.com/polymer-additives/product/sabic-ultem-resin-1000", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+      - &ultem_sc {id: usc, title: "ULTEM 产品列表（SpecialChem）", url: "https://www.specialchem.com/plastics/supplier/sabic/ultem", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+  - code: "1010"
+    full_name: ULTEM 1010
+    manufacturer: 沙特基础工业
+    brand: ULTEM
+    material: PEI
+    grade_class: 纯树脂，易流动
+    verify: partial
+    aliases: [ULTEM1010, Ultem 1010]
+    summary: 流动性比 1000 更好的通用 PEI 纯树脂，可金属化、阻燃。
+    sources: [*ultem_sc]
+  - code: "2300"
+    full_name: ULTEM 2300
+    manufacturer: 沙特基础工业
+    brand: ULTEM
+    material: PEI
+    grade_class: 30% 玻纤增强，标准流动
+    verify: partial
+    aliases: [ULTEM2300, Ultem 2300]
+    summary: 30% 玻纤增强 PEI，本身阻燃（UL94 V-0、5VA），高温下尺寸稳定、刚性和抗蠕变好。
+    sources:
+      - {id: u2300, title: "ULTEM 2300（Knowde 产品列表）", url: "https://www.knowde.com/b/markets-industrial/power-water-utilities/renewable-energy/f/f_chemical-family-polyimides/products", publisher: Knowde, kind: other, accessed: 2026-11-10}
+  - code: "2400"
+    full_name: ULTEM 2400
+    manufacturer: 沙特基础工业
+    brand: ULTEM
+    material: PEI
+    grade_class: 40% 玻纤增强，标准流动
+    verify: partial
+    aliases: [ULTEM2400, Ultem 2400]
+    summary: 40% 玻纤增强 PEI，刚性更高。
+    sources:
+      - {id: u2400, title: "ULTEM 2400（Knowde 产品列表）", url: "https://knowde.com/b/markets-consumer-goods/lawn-garden/f/f_plastics-elastomers-end-uses-toys/products", publisher: Knowde, kind: other, accessed: 2026-11-10}
+
+  # ================= PSU / PPSU / PES =================
+  - code: P-1700
+    full_name: Udel P-1700
+    manufacturer: Syensqo
+    brand: Udel
+    material: PSU
+    grade_class: 通用级纯树脂
+    verify: partial
+    aliases: [P1700, Udel P1700, P-1700 NT11]
+    summary: 最常见的 PSU 牌号：坚韧、刚性好，可长期在 149°C 使用，耐反复蒸汽消毒，有食品接触认证。
+    description: |
+      厂家说明：耐无机酸、碱和盐溶液，耐洗涤剂和烃类油，**但会被酮类、氯代烃、芳香烃等极性溶剂侵蚀**。
+      有透明（NT 11、NT 06）、白、黑、灰等颜色；P-1700 LCD 是专门做过滤膜的版本。
+    sources:
+      - {id: udel, title: "Udel P-1700（UL Prospector）", url: "https://betaplastics.ulprospector.com/plastics/en/datasheet/25478/p-1700", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+  - code: R-5000
+    full_name: Radel R-5000
+    manufacturer: Syensqo
+    brand: Radel
+    material: PPSU
+    grade_class: 透明注塑级
+    verify: unverified
+    aliases: [R5000, Radel R5000, R-5000 NT, R-5000 CL301]
+    summary: PPSU 的代表牌号：透明，耐水解、韧性极好，可反复高温消毒，医疗器械和奶瓶常用。
+    description: |
+      Radel 系列分工（厂家资料原意）：**R-5000 透明注塑级，R-5100 不透明通用注塑级，
+      R-5500 透明挤出级，R-5800 高流动（薄壁长流程）**。
+    sources:
+      - &radel {id: radel, title: "Radel R-5800 资料（贸易商转载厂家 TDS）", url: "https://sushengpolymer.com/plasmain/peDb9m_Radel-R-5800", publisher: 苏胜贸易, kind: trader, accessed: 2026-11-10}
+      - {id: radel2, title: "Radel R-5000 资料（贸易商转载厂家 TDS）", url: "https://sushengpolymer.com/plasmain/Gsx5HH_Radel-R-5000", publisher: 苏胜贸易, kind: trader, accessed: 2026-11-10}
+      - &radel_ul {id: radelul, title: "Radel 牌号列表（UL Prospector）", url: "https://plastics.ulprospector.com/es/materials/94/radel", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+  - code: R-5100
+    full_name: Radel R-5100
+    manufacturer: Syensqo
+    brand: Radel
+    material: PPSU
+    grade_class: 不透明通用注塑级
+    verify: unverified
+    aliases: [R5100]
+    summary: 不透明的通用注塑 PPSU，有多种颜色，用于手术器械手柄等。
+    sources: [*radel, *radel_ul]
+  - code: 3000P
+    full_name: Veradel 3000P
+    manufacturer: Syensqo
+    brand: Veradel
+    material: PES
+    grade_class: 粉料（溶液/涂层用）
+    verify: partial
+    summary: Veradel PESU 粉料系列里分子量最高的一个，用于溶解后做膜、涂层或改性树脂。
+    description: |
+      Veradel 3000P、3100P、3200P、3400P、3600P 都是 PESU 粉料，**分子量从 3000P（最高）到 3600P（最低）递减**，
+      分子量越高溶液黏度越大。
+    sources:
+      - {id: vera, title: "Veradel 3200P（UL Prospector 中文）", url: "https://betaplastics.ulprospector.com/plastics/zh-cn/datasheet/84699/3200p", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+
+  - code: E 2010
+    full_name: Ultrason E 2010
+    manufacturer: 巴斯夫
+    brand: Ultrason
+    material: PES
+    grade_class: 中黏度标准注塑级
+    verify: verified
+    aliases: [E2010, Ultrason E2010]
+    summary: 巴斯夫 PESU 的标准注塑牌号，中等黏度，流动性好，耐热、尺寸稳定。
+    description: |
+      巴斯夫 Ultrason 用字母区分品种：**E = PESU，S = PSU，P = PPSU**。
+      数字代表黏度：**1010 低黏度易流动，2010 中黏度（标准），3010 高黏度（更韧、更耐化学品），6010/6020 高黏度做膜**。
+      后缀 G4 = 20% 玻纤，G6 = 30% 玻纤，C6 = 30% 碳纤。
+    sources:
+      - &ultrason_cn {id: usn, title: "Ultrason E, S, P 产品手册（中文）", url: "https://download.basf.com/p1/8a8081be95670db6019569f9309b0894/zh/ULTRASON%25C2%25AE_E%252C_S%252C_P_%2528PESU%252C_PSU%252C_PPSU%2529_-_%25E9%25AB%2598%25E6%2580%25A7%25E8%2583%25BD%25E7%2583%25AD%25E5%25A1%2591%25E6%2580%25A7%25E5%25A1%2591%25E6%2596%2599", publisher: BASF, kind: maker_doc, accessed: 2026-11-10}
+  - code: E 3010
+    full_name: Ultrason E 3010
+    manufacturer: 巴斯夫
+    brand: Ultrason
+    material: PES
+    grade_class: 高黏度注塑和挤出级
+    verify: verified
+    aliases: [E3010]
+    summary: 高黏度 PESU，比 E 2010 更韧、更耐化学品（抗应力开裂），可注塑和挤出。
+    sources: [*ultrason_cn]
+  - code: E 2010 G6
+    full_name: Ultrason E 2010 G6
+    manufacturer: 巴斯夫
+    brand: Ultrason
+    material: PES
+    grade_class: 30% 玻纤增强
+    verify: verified
+    aliases: [E2010G6]
+    summary: 30% 玻纤增强 PESU，刚性和强度更高，常用于电子电器零件。
+    sources: [*ultrason_cn]
+  - code: S 2010
+    full_name: Ultrason S 2010
+    manufacturer: 巴斯夫
+    brand: Ultrason
+    material: PSU
+    grade_class: 中黏度标准级
+    verify: verified
+    aliases: [S2010]
+    summary: 巴斯夫 PSU 的标准牌号，中黏度，可注塑、薄膜挤出和吹塑。
+    sources: [*ultrason_cn]
+  - code: S 3010
+    full_name: Ultrason S 3010
+    manufacturer: 巴斯夫
+    brand: Ultrason
+    material: PSU
+    grade_class: 高黏度级
+    verify: verified
+    aliases: [S3010]
+    summary: 高黏度 PSU，透明，耐油脂、蒸汽和洗涤剂，常用于家电和餐饮器具。
+    sources: [*ultrason_cn]
+  - code: P 3010
+    full_name: Ultrason P 3010
+    manufacturer: 巴斯夫
+    brand: Ultrason
+    material: PPSU
+    grade_class: 高黏度注塑和挤出级
+    verify: verified
+    aliases: [P3010]
+    summary: 高黏度 PPSU，韧性和抗应力开裂性好，耐过热蒸汽，也用于吹塑奶瓶。
+    sources:
+      - *ultrason_cn
+      - {id: basfp, title: "BASF 新闻：Ultrason P 用于奶瓶（2021）", url: "https://www.basf.com/in/en/media/news-releases/global/2021/03/p-21-156", publisher: BASF, kind: maker_web, accessed: 2026-11-10}
+
+  # ================= LCP =================
+  - code: A130
+    full_name: VECTRA A130
+    manufacturer: 塞拉尼斯
+    brand: VECTRA
+    material: LCP
+    grade_class: 30% 玻纤增强，通用级
+    verify: partial
+    aliases: [Vectra A130, A130 VF3001]
+    summary: LCP 最经典的牌号之一：30% 玻纤，本身阻燃，综合性能均衡，用于气相回流焊的电子元件。
+    description: |
+      VECTRA 牌号规律：**字母代表基础树脂系列**（A 系列最通用；C、E 系列耐热更高、更适合 SMT 回流焊），
+      **第一位数字代表填料**：1 = 玻纤，2 = 碳纤，4 = 含 PTFE，5 = 矿物，6 = 石墨；**后两位是填充量**，30 就是 30%。
+      所以 A130 = A 系列 + 30% 玻纤，A230 = 30% 碳纤，A530 = 30% 矿物。
+    sources:
+      - &vectra_ul {id: vul, title: "Celanese LCP 产品列表（UL Prospector 中文）", url: "https://betaplastics.ulprospector.com/plastics/zh-cn/generics/17/manufacturers/66", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+      - &vectra_mdc {id: vmdc, title: "VECTRA 牌号列表（Material Data Center）", url: "https://materialdatacenter.com/ms/en/Vectra/Celanese/2442", publisher: Material Data Center, kind: other, accessed: 2026-11-10}
+  - code: A115
+    full_name: VECTRA A115
+    manufacturer: 塞拉尼斯
+    brand: VECTRA
+    material: LCP
+    grade_class: 15% 玻纤增强
+    verify: partial
+    summary: 15% 玻纤 LCP，比 A130 更好流动、稍韧，但某些零件可能翘曲稍大。
+    sources: [*vectra_ul]
+  - code: C130
+    full_name: VECTRA C130
+    manufacturer: 塞拉尼斯
+    brand: VECTRA
+    material: LCP
+    grade_class: 30% 玻纤增强，更耐热
+    verify: partial
+    summary: 和 A130 一样是 30% 玻纤，但耐热更高、流动更好，部分红外回流焊应用可用。
+    sources: [*vectra_ul]
+
+  - code: E130i
+    full_name: LAPEROS E130i
+    manufacturer: 宝理塑料
+    brand: LAPEROS
+    material: LCP
+    grade_class: 30% 玻纤，SMT 标准级
+    verify: partial
+    summary: 宝理 LCP 的 SMT（表面贴装）标准牌号，30% 玻纤，大量用于手机、电脑连接器。
+    description: |
+      宝理 LAPEROS LCP 在日本和中国台湾生产，年产能约 2 万吨，按富士经济 2025 年的数据占全球约 34% 份额。
+      牌号大致分：**A 系列通用**（A130 = 30% 玻纤高强高韧），**E 系列面向 SMT**，**S 系列高耐热**（S135 = 35% 玻纤）。
+    sources:
+      - &laperos_ul {id: lul, title: "LAPEROS 产品列表（UL Prospector）", url: "https://betaplastics.ulprospector.com/plastics/fr/generics/17/materials/6036", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+      - {id: lnews, title: "Polyplastics 扩充 LAPEROS LCP 产品线（2026-01）", url: "https://www.specialchem.com/plastics/news/polyplastics-launches-lcp-grades-for-miniaturization-in-electronics", publisher: SpecialChem, kind: media, accessed: 2026-11-10}
+  - code: S135
+    full_name: LAPEROS S135
+    manufacturer: 宝理塑料
+    brand: LAPEROS
+    material: LCP
+    grade_class: 35% 玻纤，高耐热
+    verify: partial
+    summary: 35% 玻纤的高耐热 LCP，高温下刚性保持好。
+    sources:
+      - *laperos_ul
+      - {id: ls135, title: "LAPEROS S135（SpecialChem）", url: "https://www.specialchem.com/plastics/product/polyplastics-daicel-laperos-s135", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+
+  - code: E6008
+    full_name: SUMIKASUPER LCP E6008
+    manufacturer: 住友化学
+    brand: SUMIKASUPER
+    material: LCP
+    grade_class: 40% 玻纤，通用高耐热级
+    verify: partial
+    summary: 住友化学 E6000 通用系列的 40% 玻纤 LCP，用于连接器、继电器、线圈骨架和打印机、汽车零件。
+    description: |
+      SUMIKASUPER LCP 按耐热分系列：**E6000 通用（耐热高、好成型）**，**E4000、E5000 超高耐热**
+      （E5000 在 200°C 以上仍保持刚性和强度，可走高温回流焊）。后两位多为填充量，08 = 40%。
+    sources:
+      - {id: s6008, title: "SUMIKASUPER E6008（UL Prospector 中文）", url: "https://plastics.ulprospector.com/plastics/zh-cn/datasheet/34200/sumikasuper-e6008", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+  - code: E5008L
+    full_name: SUMIKASUPER LCP E5008L
+    manufacturer: 住友化学
+    brand: SUMIKASUPER
+    material: LCP
+    grade_class: 40% 玻纤，超高耐热
+    verify: partial
+    summary: 40% 玻纤的超高耐热 LCP，收缩和线膨胀小，用于灯座、继电器壳、线圈骨架，可无铅焊接。
+    sources:
+      - {id: s5008, title: "SUMIKASUPER LCP E5008L（SpecialChem）", url: "https://www.specialchem.com/plastics/product/sumitomo-chemical-sumikasuper-lcp-e5008l", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+      - {id: s5008u, title: "SUMIKASUPER E5008L（UL Prospector）", url: "https://plastics.ulprospector.com/plastics/en/datasheet/34197/sumikasuper-e5008l", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+
+  # ================= PI =================
+  - code: PL450C
+    full_name: AURUM PL450C
+    manufacturer: 三井化学
+    brand: AURUM
+    material: PI
+    grade_class: 热塑性 PI 纯树脂
+    verify: verified
+    summary: 三井化学的热塑性聚酰亚胺纯树脂，可以注塑，洁净度高、析出物少，用于半导体设备零件、薄膜、管材和电线涂层。
+    description: |
+      普通 PI 多是热固性的（要压制、烧结后再机加工），AURUM 是少数能直接注塑的 PI，
+      厂家说其玻璃化温度 245°C，比 PEEK 高约 100°C。
+      其他牌号：JGN3030（30% 玻纤）、JCN3030（30% 碳纤）、J-3124（含 PTFE 的耐磨级）。
+    sources:
+      - {id: aur, title: AURUM 产品页（三井化学欧洲）, url: "https://eu.mitsuichemicals.com/service/product/aurum.htm", publisher: Mitsui Chemicals, kind: maker_web, accessed: 2026-11-10}
+      - {id: aurjp, title: AURUM 专题页（三井化学）, url: "https://jp.mitsuichemicals.com/en/special/aurum/", publisher: Mitsui Chemicals, kind: maker_web, accessed: 2026-11-10}
+      - {id: aursc, title: "AURUM 产品列表（SpecialChem）", url: "https://www.specialchem.com/plastics/supplier/mitsui-chemicals/aurum", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+  - code: JCN3030
+    full_name: AURUM JCN3030
+    manufacturer: 三井化学
+    brand: AURUM
+    material: PI
+    grade_class: 30% 碳纤增强
+    verify: partial
+    summary: 30% 碳纤增强的热塑性 PI，强度、刚性和尺寸稳定性很高，用于飞机、汽车和工业设备结构件。
+    sources:
+      - {id: aursc2, title: "AURUM 产品列表（SpecialChem）", url: "https://www.specialchem.com/plastics/supplier/mitsui-chemicals/aurum", publisher: SpecialChem, kind: other, accessed: 2026-11-10}

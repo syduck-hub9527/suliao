@@ -36,6 +36,31 @@ companies:
     types: [生产商]
     intro: 国内主要的瓶级 PET 切片（瓶片）生产商之一，品牌 CR-BRIGHT。
 
+  - name: 中研股份
+    name_zh: 吉林省中研高分子材料股份有限公司
+    name_en: Jilin Joinature Polymer
+    aliases: [中研, 吉林中研, Joinature, ZYPEEK]
+    country: 中国
+    types: [生产商]
+    intro: 国产 PEEK 树脂生产企业，品牌 ZYPEEK。
+
+  - name: 新和成
+    name_zh: 浙江新和成股份有限公司
+    name_en: Zhejiang NHU Co., Ltd.
+    aliases: [NHU, 浙江新和成]
+    country: 中国
+    types: [生产商]
+    intro: 国内 PPS 树脂生产商，品牌 NHU-PPS（新和成主业还有维生素等精细化工）。
+
+  - name: 中昊晨光
+    name_zh: 中昊晨光化工研究院有限公司
+    name_en: ChenGuang Research Institute of Chemical Industry
+    aliases: [晨光, 晨光院, 中昊晨光化工研究院, ChenGuang]
+    country: 中国
+    city: 四川自贡
+    types: [生产商]
+    intro: 国内老牌氟化工企业，生产 PTFE 悬浮树脂（CGM 开头）、分散树脂（CGF 开头）和氟橡胶等，属中国化工（现中国中化）体系。
+
   # ---------- 中国台湾 ----------
   - name: 台化
     name_zh: 台湾化学纤维股份有限公司
@@ -71,7 +96,56 @@ companies:
     aliases: [Polyplastics, 宝理]
     country: 日本
     types: [生产商]
-    intro: 日本工程塑料企业，POM 品牌 DURACON（俗称“宝理 POM”）。
+    intro: 日本工程塑料企业，POM 品牌 DURACON（俗称“宝理 POM”），PPS 品牌 DURAFIDE，LCP 品牌 LAPEROS，PBT 品牌 DURANEX。
+
+  - name: 东丽
+    name_zh: 东丽株式会社
+    name_en: Toray Industries, Inc.
+    aliases: [Toray, 东丽工业]
+    country: 日本
+    types: [生产商]
+    intro: 日本大型纤维和化工企业。PPS 品牌 TORELINA，尼龙品牌 AMILAN，PBT 品牌 TORAYCON。
+
+  - name: DIC
+    name_zh: DIC 株式会社
+    name_en: DIC Corporation
+    aliases: [迪爱生, 大日本油墨, DIC Corporation]
+    country: 日本
+    types: [生产商]
+    intro: 日本化工企业（原名大日本油墨化学），全球主要的 PPS 生产商之一，品牌 DIC.PPS。油墨企业 Sun Chemical 是它的子公司。
+
+  - name: 住友化学
+    name_zh: 住友化学株式会社
+    name_en: Sumitomo Chemical Co., Ltd.
+    aliases: [Sumitomo Chemical, 住友]
+    country: 日本
+    types: [生产商]
+    intro: 日本大型化工企业。LCP 品牌 SUMIKASUPER LCP。
+
+  - name: 三井化学
+    name_zh: 三井化学株式会社
+    name_en: Mitsui Chemicals, Inc.
+    aliases: [Mitsui Chemicals, 三井]
+    country: 日本
+    types: [生产商]
+    intro: 日本大型化工企业。热塑性聚酰亚胺品牌 AURUM。
+
+  - name: 大金
+    name_zh: 大金工业株式会社
+    name_en: Daikin Industries, Ltd.
+    aliases: [Daikin, 大金氟化工, 大金工业]
+    country: 日本
+    city: 大阪
+    types: [生产商]
+    intro: 以空调闻名，同时是全球主要的氟化工企业。PTFE 品牌 POLYFLON，PFA、FEP、ETFE 等熔融加工氟树脂品牌 NEOFLON。
+
+  - name: 吴羽
+    name_zh: 株式会社吴羽
+    name_en: Kureha Corporation
+    aliases: [Kureha, 吴羽化学]
+    country: 日本
+    types: [生产商]
+    intro: 日本化工企业，1970 年在日本率先工业化生产 PVDF，品牌 KF Polymer，大量用作锂电池电极粘结剂。
 
   - name: LG 化学
     name_zh: LG 化学
@@ -107,7 +181,7 @@ companies:
     city: 路德维希港
     types: [生产商]
     website: https://www.basf.com
-    intro: 全球最大的化工企业之一。尼龙品牌 Ultramid（B 开头是 PA6，A 开头是 PA66），TPU 品牌 Elastollan。
+    intro: 全球最大的化工企业之一。尼龙品牌 Ultramid（B 开头是 PA6，A 开头是 PA66），TPU 品牌 Elastollan，聚砜类（PSU/PESU/PPSU）品牌 Ultrason。
 
   - name: 科思创
     name_zh: 科思创股份公司
@@ -119,20 +193,64 @@ companies:
     website: https://www.covestro.com
     intro: 原拜耳材料科技，PC 品牌 Makrolon（俗称“拜耳 PC”）。
 
+  - name: 赢创
+    name_zh: 赢创工业集团
+    name_en: Evonik Industries AG
+    aliases: [Evonik, 德固赛, Degussa]
+    country: 德国
+    city: 埃森
+    types: [生产商]
+    intro: 德国特种化工企业。PEEK 品牌 VESTAKEEP，PA12 品牌 VESTAMID。
+
+  - name: 威格斯
+    name_zh: 威格斯公司
+    name_en: Victrex plc
+    aliases: [Victrex, 威格斯 PEEK]
+    country: 英国
+    types: [生产商]
+    intro: 全球主要的 PEEK 生产商，品牌 VICTREX（也叫“威格斯 PEEK”）。
+
+  - name: Syensqo
+    name_zh: Syensqo（原索尔维特种聚合物）
+    name_en: Syensqo
+    aliases: [索尔维, 索尔维特种聚合物, Solvay, Solvay Specialty Polymers]
+    country: 比利时
+    city: 布鲁塞尔
+    types: [生产商]
+    intro: 2023 年 12 月从索尔维集团分拆出来的特种化学公司，接手了原索尔维的特种聚合物业务。品牌有 PPS 的 Ryton、PEEK 的 KetaSpire、PSU 的 Udel、PPSU 的 Radel、PESU 的 Veradel 等。国内很多人仍叫它“索尔维”。
+
   - name: 沙特基础工业
     name_zh: 沙特基础工业公司
     name_en: SABIC
     aliases: [SABIC, 沙伯基础, 沙比克]
     country: 沙特阿拉伯
     types: [生产商]
-    intro: 中东最大的石化企业之一。PC 品牌 LEXAN 原属 GE 塑料，2007 年随 GE 塑料业务并入 SABIC。
+    intro: 中东最大的石化企业之一。PC 品牌 LEXAN、PEI 品牌 ULTEM 都原属 GE 塑料，2007 年随 GE 塑料业务并入 SABIC。
 
   - name: 利安德巴赛尔
     name_zh: 利安德巴赛尔工业公司
     name_en: LyondellBasell
     aliases: [LyondellBasell, 巴赛尔, Basell, LYB]
+    country: 美国
+    city: 休斯顿
     types: [生产商]
     intro: 全球主要的聚烯烃生产商之一，聚乙烯品牌 Lupolen 等。
+
+  - name: 科慕
+    name_zh: 科慕公司
+    name_en: The Chemours Company
+    aliases: [Chemours, 杜邦氟化工]
+    country: 美国
+    types: [生产商]
+    intro: 2015 年从杜邦分拆出来的化工公司，接手了杜邦的氟化工业务，PTFE、FEP、PFA 品牌 Teflon（特氟龙），ETFE 品牌 Tefzel。
+
+  - name: 阿科玛
+    name_zh: 阿科玛集团
+    name_en: Arkema
+    aliases: [Arkema, 阿科玛]
+    country: 法国
+    types: [生产商]
+    intro: 法国特种化工企业。PVDF 品牌 Kynar，PA11/PA12 品牌 Rilsan、Rilsamid，PEBA 品牌 Pebax。
 
   - name: 塞拉尼斯
     name_zh: 塞拉尼斯公司
@@ -140,4 +258,4 @@ companies:
     aliases: [Celanese]
     country: 美国
     types: [生产商]
-    intro: 美国化工企业。2022 年收购杜邦的工程塑料业务后，Zytel（尼龙）等原杜邦品牌归塞拉尼斯所有。
+    intro: 美国化工企业。2022 年收购杜邦的工程塑料业务后，Zytel（尼龙）等原杜邦品牌归塞拉尼斯所有。自有品牌还有 PPS 的 Fortron、LCP 的 VECTRA、POM 的 Hostaform/Celcon。

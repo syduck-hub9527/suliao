@@ -1,0 +1,241 @@
+# 氟塑料（PTFE、PVDF、FEP、PFA）常用厂商和牌号。查阅日期 2026-11-10。
+# PTFE 不能像普通塑料那样熔融注塑，牌号先按“形态”分：悬浮树脂（模压料）、分散树脂（细粉，糊状挤出）、分散液（乳液，浸渍涂层）。
+
+grades:
+  # ================= PTFE =================
+  - code: 7A X
+    full_name: Teflon PTFE 7A X
+    manufacturer: 科慕
+    brand: Teflon
+    material: PTFE
+    grade_class: 悬浮树脂（模压料），细粒径
+    verify: partial
+    aliases: [7AX, Teflon 7A, 杜邦 7A]
+    summary: 科慕（原杜邦氟化工）的 PTFE 模压粉，白色细粒径，压力不高也能压出少气孔的坯料。
+    description: |
+      科慕是 2015 年从杜邦分拆出来的公司，“特氟龙 Teflon”品牌随之归科慕，所以老一辈常说“杜邦 7A”。
+      科慕 PTFE 大致分：**7A、7C、807N 是模压/柱塞挤出用的悬浮树脂**，**60、62、6C、613A、640XT 等是糊状挤出用的分散树脂（细粉）**。
+      牌号后的 X 只是库存管理用的标记，带不带 X 是同一个产品。
+    sources:
+      - &chem_site {id: chs, title: "科慕网站产品检索结果（Teflon PTFE 7A X 等）", url: "https://chemours.com/fr/site-search-results?pg=227", publisher: Chemours, kind: maker_web, accessed: 2026-11-10}
+      - &teflon_mdc {id: tmdc, title: "Teflon 牌号列表（Material Data Center）", url: "https://materialdatacenter.com/ms/en/Teflon/The+Chemours+Company/824", publisher: Material Data Center, kind: other, accessed: 2026-11-10}
+  - code: 62 X
+    full_name: Teflon PTFE 62 X
+    manufacturer: 科慕
+    brand: Teflon
+    material: PTFE
+    grade_class: 分散树脂（细粉），糊状挤出
+    verify: partial
+    aliases: [62X, Teflon 62]
+    summary: 科慕的高端 PTFE 细粉，糊状挤出用，压缩比 100:1～600:1，主要做高要求的管材、细管和电线包覆。
+    sources:
+      - {id: t62, title: "Teflon PTFE 62 X（UL Prospector）", url: "https://betaplastics.ulprospector.com/plastics/es/datasheet/13200/teflon-ptfe-62-x", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+      - *teflon_mdc
+
+  - code: M-12
+    full_name: POLYFLON PTFE M-12
+    manufacturer: 大金
+    brand: POLYFLON
+    material: PTFE
+    grade_class: 悬浮树脂（模压粉），常规级
+    verify: verified
+    aliases: [M12, 大金 M-12]
+    summary: 大金常规 PTFE 模压粉，平均粒径约 50 μm，适合压制成型（不适合自动压制）。
+    description: |
+      大金 PTFE 品牌叫 **POLYFLON**，按形态分系列：**M 系列是模压粉（悬浮法），F 系列是细粉（分散法，糊状挤出），D 系列是分散液**。
+      M-12、M-18 是常规级；M-111、M-112、M-139 是改性的新一代，抗蠕变和可焊性更好。
+      熔融可加工的氟树脂（PFA、FEP、ETFE 等）则用另一个品牌 **NEOFLON**。
+    sources:
+      - &daikin_m {id: dkm, title: POLYFLON PTFE-M 产品手册, url: "https://www.daikinchem.de/sites/default/files/pdf/PTFE-M/Product%20Brochure%20POLYFLON%20PTFE-M.pdf", publisher: Daikin, kind: maker_doc, accessed: 2026-11-10}
+  - code: M-111
+    full_name: POLYFLON PTFE M-111
+    manufacturer: 大金
+    brand: POLYFLON
+    material: PTFE
+    grade_class: 改性模压粉
+    verify: verified
+    aliases: [M111]
+    summary: 大金新一代改性 PTFE 模压粉，比常规 M-12 抗蠕变、可焊性更好。
+    sources: [*daikin_m]
+  - code: F-104
+    full_name: POLYFLON PTFE F-104
+    manufacturer: 大金
+    brand: POLYFLON
+    material: PTFE
+    grade_class: 细粉（分散树脂），均聚
+    verify: partial
+    aliases: [F104]
+    summary: 大金的通用 PTFE 细粉，均聚物，用于糊状挤出，符合 FDA 21 CFR 177.1550。
+    sources:
+      - {id: f104, title: "POLYFLON 产品列表（SpecialChem）", url: "https://www.specialchem.com/plastics/supplier/daikin/polyflon", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+      - {id: dktds, title: 大金技术数据表目录, url: "https://www.daikinchemicals.com/downloads/technical-data-sheets.html", publisher: Daikin, kind: maker_web, accessed: 2026-11-10}
+
+  - code: CGM031-1
+    full_name: 晨光 CGM 031-1
+    manufacturer: 中昊晨光
+    material: PTFE
+    grade_class: 悬浮树脂（模压料），中等粒径
+    verify: partial
+    aliases: [CGM 031-1, CGM031]
+    summary: 国产 PTFE 模压料，中等粒径，压制后烧结，用来做板、棒、管和垫片。
+    sources:
+      - {id: cg1, title: "CGM 031-1（SpecialChem）", url: "https://www.specialchem.com/plastics/product/chenguang-research-institute-of-chemical-industry-cgm-031-1", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+  - code: CGF218H
+    full_name: 晨光 CGF218H
+    manufacturer: 中昊晨光
+    material: PTFE
+    grade_class: 分散树脂（细粉），糊状挤出
+    verify: verified
+    aliases: [CGF 218H, CGF218]
+    summary: 国产 PTFE 分散树脂（细粉），和溶剂油拌成糊状后挤出，做生料带、管、电线包覆等。
+    description: |
+      中昊晨光的 PTFE 分散树脂牌号有 CGF218、CGF238、CGF2021、CGF2022、CGF219、CGF216 等系列（厂家资料原文）。
+      模压用的悬浮树脂则是 CGM 开头。
+    sources:
+      - {id: cgpdf, title: 中昊晨光 PTFE 分散树脂产品规格, url: "https://www.chemchina.com/Portals/0/UploadFiles/Images/ProductZhInt/202008/11d6bdad-40ea-493a-b2b1-e7dd9f7687eb.pdf", publisher: 中国化工, kind: maker_doc, accessed: 2026-11-10}
+      - {id: cgsc, title: "中昊晨光产品列表（SpecialChem）", url: "https://www.specialchem.com/plastics/supplier/chenguang-research-institute-of-chemical-industry", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+
+  # ================= PVDF =================
+  - code: "720"
+    full_name: Kynar 720
+    manufacturer: 阿科玛
+    brand: Kynar
+    material: PVDF
+    grade_class: 均聚物，标准注塑粒料
+    verify: partial
+    aliases: [Kynar720, Kynar 720]
+    summary: 阿科玛 PVDF 的标准注塑粒料，耐化学品、不怕紫外线、阻隔性好、纯度高，有饮用水（NSF 61）认证。
+    description: |
+      Kynar 是阿科玛的 PVDF 品牌（另有共聚物 Kynar Flex）。**720 是粒料，721 是同一树脂的粉料**；
+      740 黏度更高、也是高纯均聚物，常用于化工塔填料、管道、板材。
+    sources:
+      - {id: k720, title: "Kynar 720（UL Prospector 中文）", url: "https://plastics.ulprospector.com/plastics/zh-cn/datasheet/5791/kynar-720", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+      - &arkema_tp {id: arktp, title: 阿科玛：塔填料用 Kynar 常用牌号, url: "https://hpp.arkema.com/en/markets-and-applications/chemical-industry-and-general-industry/chemical-process-industry-overview/tower-packing", publisher: Arkema, kind: maker_web, accessed: 2026-11-10}
+  - code: "740"
+    full_name: Kynar 740
+    manufacturer: 阿科玛
+    brand: Kynar
+    material: PVDF
+    grade_class: 均聚物，高纯
+    verify: verified
+    aliases: [Kynar740]
+    summary: 高纯 PVDF 均聚物，加了光、热稳定，耐化学品、耐紫外，化工设备里很常用。
+    sources:
+      - *arkema_tp
+      - {id: k740, title: Kynar 740 产品页, url: "https://hpp.arkema.com/en/products/product/f/flup_hpp_Kynar/p/kynar-740", publisher: Arkema, kind: maker_web, accessed: 2026-11-10}
+
+  - code: "1008"
+    full_name: Solef 1008
+    manufacturer: Syensqo
+    brand: Solef
+    material: PVDF
+    grade_class: 低黏度均聚物，注塑
+    verify: partial
+    aliases: [Solef1008]
+    summary: Solef 低黏度 PVDF 均聚物，主要用于注塑。
+    description: |
+      Solef 牌号规律：**最后两位代表黏度档次，08 低黏度（注塑），10 中黏度（挤出），12 高黏度（挤出/模压）**。
+      1008 和 6008 是两个不同聚合工艺的低黏度注塑级；5130、5140 是锂电池粘结剂用的超高黏度级。
+    sources:
+      - &solef_ul {id: sul, title: "PVDF 产品列表（UL Prospector）", url: "https://plastics.ulprospector.com/plastics/es/generics/14/classifications/23?page=5", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+  - code: "6010"
+    full_name: Solef 6010
+    manufacturer: Syensqo
+    brand: Solef
+    material: PVDF
+    grade_class: 中黏度均聚物，挤出
+    verify: partial
+    aliases: [Solef6010]
+    summary: Solef 中黏度 PVDF 均聚物，一般用于挤出管、板。
+    sources: [*solef_ul]
+
+  - code: T#1100
+    full_name: KF Polymer #1100
+    manufacturer: 吴羽
+    brand: KF Polymer
+    material: PVDF
+    grade_class: 均聚物，中黏度
+    verify: verified
+    aliases: [KF1100, KF 1100, "#1100", T1100]
+    summary: 吴羽的中黏度 PVDF 均聚物，挤出和模压用，耐化学品。
+    description: |
+      吴羽 1970 年在日本率先工业化生产 PVDF。KF Polymer 的数字越大分子量（黏度）越高：#850、#1000、#1100、#1300…；
+      **牌号前加 T 是粒料，加 W 是粉料**，L 开头是液体（溶液）。
+      **W#1100、W#7200 等是锂电池电极粘结剂**——吴羽说从 1991 年第一块商用锂电池起就在用。
+    sources:
+      - &kureha {id: kur, title: KF Polymer 牌号与物性, url: "https://www.kureha.co.jp/en/business/material/kfpolymer/line-up_properties.html", publisher: Kureha, kind: maker_web, accessed: 2026-11-10}
+      - {id: kur2, title: KF Polymer 简介, url: "https://www.kureha.co.jp/en/business/material/kfpolymer.html", publisher: Kureha, kind: maker_web, accessed: 2026-11-10}
+  - code: W#7200
+    full_name: KF Polymer W#7200
+    manufacturer: 吴羽
+    brand: KF Polymer
+    material: PVDF
+    grade_class: 锂电池粘结剂（粉料），高分子量
+    verify: verified
+    aliases: [W7200, KF W7200]
+    summary: 吴羽的锂电池电极粘结剂用 PVDF 粉料，高分子量均聚物。
+    sources:
+      - {id: kbd, title: KF Polymer 电极粘结剂资料, url: "https://www.kureha.co.jp/en/business/material/pdf/KFpolymer_BD_en.pdf", publisher: Kureha, kind: maker_doc, accessed: 2026-11-10}
+
+  # ================= FEP =================
+  - code: FEP 100
+    full_name: Teflon FEP 100
+    manufacturer: 科慕
+    brand: Teflon
+    material: FEP
+    grade_class: 通用级，无添加
+    verify: partial
+    aliases: [FEP100, Teflon FEP100]
+    summary: 科慕的通用 FEP，可熔融加工，不含添加剂，符合 ASTM D2116 Type I。
+    description: 同系列的 FEP 106 符合 ASTM D2116 Type II（熔指更低、更韧），FEP 9302、9494 等是电线电缆专用牌号。
+    sources: [*chem_site, *teflon_mdc]
+  - code: NP-101
+    full_name: NEOFLON FEP NP-101
+    manufacturer: 大金
+    brand: NEOFLON
+    material: FEP
+    grade_class: 通用挤出级
+    verify: partial
+    aliases: [NP101]
+    summary: 大金的 FEP 牌号，用于挤出和薄膜挤出，电线电缆、管材、薄膜、衬里都用。
+    sources:
+      - &daikin_fp {id: dkfp, title: 大金氟树脂产品总览, url: "https://www.daikinchemicals.com/solutions/products/fluoropolymers.html", publisher: Daikin, kind: maker_web, accessed: 2026-11-10}
+      - {id: neoul, title: "NEOFLON 牌号列表（UL Prospector）", url: "https://plastics.ulprospector.com/materials/2169/neoflon", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+
+  # ================= PFA =================
+  - code: PFA 340
+    full_name: Teflon PFA 340
+    manufacturer: 科慕
+    brand: Teflon
+    material: PFA
+    grade_class: 通用级粒料
+    verify: partial
+    aliases: [PFA340, "340"]
+    summary: 科慕的通用 PFA 粒料，熔指较高（典型 14），用来挤出管材、电线绝缘，也能注塑和模压。
+    description: 科慕 PFA 分通用级（340、345、350）和高纯级（带 HP，如 440HP、450HP，用于半导体）。
+    sources:
+      - {id: p340, title: "Teflon PFA 340（UL Prospector）", url: "https://betaplastics.ulprospector.com/plastics/es/datasheet/5041/teflon-pfa-340", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+  - code: AP-201
+    full_name: NEOFLON PFA AP-201
+    manufacturer: 大金
+    brand: NEOFLON
+    material: PFA
+    grade_class: 高流动工业级
+    verify: verified
+    aliases: [AP201]
+    summary: 大金高流动 PFA，适合注塑形状复杂的零件和挤出薄壁电线。
+    description: |
+      大金 PFA 分**工业级**和**半导体级（带 SH，高纯）**两类。AP-201 高流动，AP-210 好流动（注塑和挤出），
+      AP-230 挤出用；AP-211SH、AP-231SH 是半导体工厂化学品管路、零件用的高纯牌号。
+    sources:
+      - &daikin_pfa {id: dkpfa, title: "NEOFLON PFA 牌号介绍（大金德国）", url: "https://www.daikinchem.de/?p=1528", publisher: Daikin, kind: maker_web, accessed: 2026-11-10}
+  - code: AP-211SH
+    full_name: NEOFLON PFA AP-211SH
+    manufacturer: 大金
+    brand: NEOFLON
+    material: PFA
+    grade_class: 半导体级（高纯）注塑
+    verify: verified
+    aliases: [AP211SH]
+    summary: 全氟化的高纯 PFA，流动性和抗应力开裂好，用来注塑半导体设备零件。
+    sources: [*daikin_pfa]
