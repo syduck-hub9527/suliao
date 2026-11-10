@@ -10,7 +10,6 @@ from django.views.decorators.http import require_POST
 from urllib.parse import quote
 
 from . import models as m
-from . import price_views
 from .content import LEARNING_PATH_NAME
 from .render import TermLinker
 from .search import search
@@ -98,7 +97,6 @@ def home(request):
         "next_up": next_up, "kind_tiles": kind_tiles, "recent": recent,
         "entry_count": m.Entry.objects.count(),
         "grade_count": m.Grade.objects.count(),
-        "price_rows": [r for r in price_views.price_rows(timezone.localtime()) if r["has_price"]],
     })
 
 
@@ -173,8 +171,6 @@ def entry_detail(request, pk):
         "grades": (m.Grade.objects.filter(Q(base_entry=entry) | Q(base_entry__parent=entry))
                    .select_related("manufacturer", "base_entry").order_by("base_entry__name_zh", "code_norm")),
         "admin_url": reverse("admin:kb_entry_change", args=[entry.pk]),
-        "price_rows": (price_views.related_price_rows(entry, timezone.localtime())
-                       if entry.kind == m.EntryKind.MATERIAL else []),
     })
 
 
@@ -294,7 +290,6 @@ def grade_detail(request, pk):
         "grade": grade, "description": description, "groups": groups, "aliases": aliases,
         "sources": grade.sources.all().order_by("title"), "siblings": siblings, "family": family,
         "admin_url": reverse("admin:kb_grade_change", args=[grade.pk]),
-        "price_rows": price_views.related_price_rows(grade.base_entry, timezone.localtime()),
         "plas_keyword": plas_keyword,
         "plas_url": f"https://s.plasway.com/price/chinaprice_search_{quote(plas_keyword, safe='')}.html",
     })

@@ -22,8 +22,6 @@
   .sec .table-wrap table.data { min-width: 620px; }
   .side .card { margin-bottom: 14px; padding: 14px 16px; }
   .side h3 { font-size: 15px; margin: 0 0 8px; }
-  .prow { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-variant-numeric: tabular-nums; }
-  .pdate { text-align: right; margin-bottom: 6px; }
   .chips { display: flex; flex-wrap: wrap; gap: 6px; }
   .chip { font-size: 14px; background: #f1f3f6; border-radius: 6px; padding: 1px 8px; color: var(--text); }
   .kv { display: grid; grid-template-columns: 72px 1fr; gap: 4px 8px; font-size: 14px; }
@@ -137,8 +135,6 @@
         <div class="muted" style="margin-top:6px">外部网站，按牌号列出各地供应商的挂牌报价。报价不等于成交价，注意看清厂家、交货地，以及是不是副牌。</div>
       </div>
     </div>
-
-    {% include "kb/_price_side.html" with rows=price_rows %}
 
     {% if siblings %}
       <div class="card">

@@ -17,11 +17,7 @@ services:
       - "127.0.0.1:${WEB_PORT:-8000}:8000"
     restart: unless-stopped
 
-  # 价格定时更新：每天到点抓取期货结算价和生意社现货参考价，写进同一个数据库
-  prices:
-    image: suliao-web
-    env_file: .env
-    volumes:
+volumes:
       - suliao-data:/data
     command: ["python", "manage.py", "run_price_scheduler"]
     depends_on:

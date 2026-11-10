@@ -1,6 +1,6 @@
 from django.urls import path
 
-from . import price_views, views
+from . import views
 
 app_name = "kb"
 
@@ -15,5 +15,4 @@ urlpatterns = [
     path("grades/", views.grades_list, name="grades"),
     path("g/<int:pk>/", views.grade_detail, name="grade"),
     path("c/<int:pk>/", views.company_detail, name="company"),
-    path("prices/", price_views.prices, name="prices"),
 ]

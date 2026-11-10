@@ -12,10 +12,6 @@
   @media (max-width: 720px) { .two { grid-template-columns: 1fr; } }
   .next { display: block; margin-top: 12px; padding: 12px 14px; border-radius: 10px; background: var(--accent-soft); color: var(--text); }
   .next:hover { text-decoration: none; outline: 1px solid var(--accent); }
-  .pgrid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
-  .ptile { display: block; color: var(--text); padding: 12px 16px; }
-  .ptile:hover { border-color: var(--accent); text-decoration: none; }
-  .pnum { display: block; font-size: 24px; line-height: 1.4; font-variant-numeric: tabular-nums; }
 {% endblock %}
 
 {% block content %}
@@ -68,19 +64,6 @@
       {% endif %}
     </div>
   </div>
-
-  {% if price_rows %}
-    <h2>今日价格 <a class="small" style="font-weight:400" href="{% url 'kb:prices' %}">查看 →</a></h2>
-    <div class="pgrid">
-      {% for r in price_rows %}
-        <a class="card ptile" href="{% url 'kb:prices' %}">
-          <span class="small muted">{{ r.title }}</span>
-          <b class="pnum">{{ r.price }}</b>
-          {% if r.is_today %}<span class="badge green">今天</span>{% else %}<span class="badge amber">不是今天 · {{ r.date_label }}</span>{% endif %}
-        </a>
-      {% endfor %}
-    </div>
-  {% endif %}
 
   <h2>按类别浏览</h2>
   <div class="grid">

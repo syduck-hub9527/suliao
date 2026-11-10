@@ -6,11 +6,10 @@
   B 行业实体：CompanyType 公司类型、Company 公司、Brand 品牌、Plant 工厂、Grade 牌号、GradePlant 牌号-工厂
   C 性能数据：Standard 测试标准、PropertyDefinition 性能指标、PropertyValue 性能值
   D 资料来源：Source 来源、Document 技术文件
-  E 价格行情：PriceSeries 价格序列、PricePoint 价格点
   F 学习记录：LearningPath 学习路线、PathItem 路线条目、EntryProgress 学习进度、Note 笔记、QARecord 问答记录
 
 三条硬规则：
-  1. 牌号、工厂、性能值、价格都要能追溯到 Source（来源）。
+  1. 牌号、工厂、性能值都要能追溯到 Source（来源）。
   2. verify_status（信不信得过）和 origin（谁写的）分开记，AI 写的内容永远标得出来。
   3. 所有叫法（缩写/英文/俗称/商品名/旧名/CAS）都进 Alias 表，搜索先查它。
      词条、公司、品牌、牌号的主名称保存时会自动同步进 Alias 表。
@@ -774,133 +773,6 @@ class PropertyValue(TimeStamped):
     def save(self, *args, **kwargs):
         self.fill_si()
         super().save(*args, **kwargs)
-
-
-# ============================================================
-# E 组：价格行情
-# ============================================================
-
-class PriceSeries(TimeStamped):
-    """价格序列：一条“条件固定”的价格曲线。地区、币种、含税、贸易条件都定好，每天往里记点。
-
-    例：“大商所 聚丙烯 主力合约 结算价”“某贸易商 某牌号 华东 含税送到价”。
-    条件不同的价格放在不同序列里，避免混在一起比。
-
-    有两种序列：
-    - 自动更新的（auto_source 不为空）：由 update_prices 命令每天抓取，品种清单在 kb/price_catalog.py；
-    - 手动记录的：在后台自己录入，例如付费资讯上看到的价格、供应商给的报价。
-    """
-
-    class AutoSource(models.TextChoices):
-        MANUAL = "", "手动记录"
-        SINA_FUTURES = "sina_futures", "新浪财经 · 期货主力连续日线"
-        PPI_SPOT = "100ppi", "生意社 · 现期表"
-
-    class PriceType(models.TextChoices):
-        FUTURES = "futures", "期货结算价"
-        SPOT = "spot", "市场现货价"
-        EX_WORKS = "ex_works", "厂家出厂价"
-        DISTRIBUTOR = "distributor", "代理/经销商报价"
-        TRADER = "trader", "贸易商报价"
-        IMPORT = "import", "进口价"
-        EXPORT = "export", "出口价"
-        OTHER = "other", "其他"
-
-    class Currency(models.TextChoices):
-        CNY = "CNY", "人民币"
-        USD = "USD", "美元"
-        EUR = "EUR", "欧元"
-        JPY = "JPY", "日元"
-        KRW = "KRW", "韩元"
-        OTHER = "OTHER", "其他"
-
-    class Tax(models.TextChoices):
-        INCLUDED = "included", "含税"
-        EXCLUDED = "excluded", "不含税"
-        UNKNOWN = "unknown", "未知"
-
-    name = models.CharField("序列名称", max_length=200)
-    entry = models.ForeignKey(Entry, verbose_name="材料", on_delete=models.PROTECT, null=True, blank=True,
-                              related_name="price_series", limit_choices_to={"kind": EntryKind.MATERIAL})
-    grade = models.ForeignKey(Grade, verbose_name="牌号", on_delete=models.PROTECT, null=True, blank=True,
-                              related_name="price_series")
-    spec_note = models.CharField("规格说明", max_length=200, blank=True, help_text="例：PP 拉丝级")
-    price_type = models.CharField("价格类型", max_length=20, choices=PriceType.choices)
-    market = models.CharField("市场/地区", max_length=100, blank=True, help_text="例：华东、大连商品交易所")
-    currency = models.CharField("币种", max_length=10, choices=Currency.choices, default=Currency.CNY)
-    unit = models.CharField("计价单位", max_length=20, default="吨", help_text="例：吨、千克")
-    tax = models.CharField("含税", max_length=10, choices=Tax.choices, default=Tax.UNKNOWN)
-    incoterm = models.CharField("贸易条件", max_length=20, blank=True, help_text="例：EXW、FOB、CFR、CIF、送到")
-    delivery_place = models.CharField("交货地点", max_length=100, blank=True)
-    source = models.ForeignKey(Source, verbose_name="来源", on_delete=models.PROTECT, related_name="price_series")
-    is_active = models.BooleanField("仍在跟踪", default=True)
-    note = models.TextField("备注", blank=True)
-
-    # —— 自动更新用 ——
-    code = models.CharField("内部代码", max_length=40, blank=True,
-                            help_text="自动更新的序列用，例：fut:PP、spot:PP。手动序列留空")
-    auto_source = models.CharField("自动更新来源", max_length=20, choices=AutoSource.choices, blank=True)
-    symbol = models.CharField("数据源里的代码", max_length=20, blank=True, help_text="例：PP0（新浪）、PP（生意社）")
-    group = models.CharField("行情页分组", max_length=20, blank=True,
-                             help_text="同一个商品的期货和现货写同一个分组，行情页会放在一起")
-    group_title = models.CharField("分组标题", max_length=50, blank=True)
-    order = models.PositiveIntegerField("排序", default=0)
-    explain = models.TextField("这是什么价格", blank=True, help_text="给新手看的说明：这个价格代表什么、不代表什么")
-    last_checked_at = models.DateTimeField("上次尝试更新", null=True, blank=True)
-    last_ok_at = models.DateTimeField("上次更新成功", null=True, blank=True)
-    last_error = models.CharField("上次失败原因", max_length=300, blank=True)
-
-    class Meta:
-        verbose_name = verbose_name_plural = "价格序列"
-        ordering = ["order", "name"]
-        constraints = [
-            # 手动序列必须挂在材料或牌号上；自动序列（有内部代码）可以不挂，例如原油
-            models.CheckConstraint(
-                condition=(Q(entry__isnull=False) | Q(grade__isnull=False) | ~Q(code="")),
-                name="price_series_has_target",
-            ),
-            models.UniqueConstraint(fields=["code"], condition=~Q(code=""), name="uniq_price_series_code"),
-        ]
-
-    def __str__(self):
-        return self.name
-
-
-class PricePoint(models.Model):
-    """价格点：某一天的价格。
-
-    “价格日期”是这个价格实际对应的那一天（交易日），不是抓取的日子——页面靠它判断是不是今天的价格。
-    手动记录的历史数据只增不改；自动更新的序列会重抓最近几天，修正数据源后来更正的数字。
-    """
-
-    series = models.ForeignKey(PriceSeries, verbose_name="价格序列", on_delete=models.CASCADE, related_name="points")
-    date = models.DateField("价格日期")
-    price = models.DecimalField("价格", max_digits=14, decimal_places=4)
-    price_low = models.DecimalField("区间低/当日最低", max_digits=14, decimal_places=4, null=True, blank=True)
-    price_high = models.DecimalField("区间高/当日最高", max_digits=14, decimal_places=4, null=True, blank=True)
-    close_price = models.DecimalField("收盘价", max_digits=14, decimal_places=4, null=True, blank=True,
-                                      help_text="期货用：价格一栏记结算价，这里记收盘价")
-    contract = models.CharField("合约", max_length=20, blank=True, help_text="期货用，例：PP2701")
-    min_qty = models.CharField("起订量", max_length=50, blank=True)
-    valid_until = models.DateField("有效期至", null=True, blank=True)
-    document = models.ForeignKey(Document, verbose_name="凭证", on_delete=models.SET_NULL,
-                                 null=True, blank=True, related_name="+")
-    note = models.CharField("备注", max_length=300, blank=True, help_text="例：为什么涨/跌")
-    recorded_at = models.DateTimeField("记录时间", auto_now_add=True)
-
-    class Meta:
-        verbose_name = verbose_name_plural = "价格点"
-        ordering = ["-date"]
-        constraints = [
-            models.UniqueConstraint(fields=["series", "date"], name="uniq_price_series_date"),
-            models.CheckConstraint(
-                condition=(Q(price_low__isnull=True) | Q(price_high__isnull=True) | Q(price_low__lte=F("price_high"))),
-                name="price_low_le_high",
-            ),
-        ]
-
-    def __str__(self):
-        return f"{self.series} {self.date}: {self.price}"
 
 
 # ============================================================

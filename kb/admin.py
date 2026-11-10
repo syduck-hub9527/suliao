@@ -49,12 +49,6 @@ class GradePlantInline(admin.TabularInline):
     autocomplete_fields = ["plant", "source"]
 
 
-class PricePointInline(admin.TabularInline):
-    model = m.PricePoint
-    extra = 1
-    fields = ["date", "price", "price_low", "price_high", "note"]
-
-
 class PathItemInline(admin.TabularInline):
     model = m.PathItem
     extra = 1
@@ -171,20 +165,6 @@ class PropertyValueAdmin(admin.ModelAdmin):
     list_filter = ["prop__group", "value_type", "verify_status"]
     search_fields = ["grade__code", "entry__name_zh", "prop__name_zh", "value_text"]
     autocomplete_fields = ["grade", "entry", "prop", "standard", "source", "document"]
-
-
-@admin.register(m.PriceSeries)
-class PriceSeriesAdmin(admin.ModelAdmin):
-    list_display = ["name", "price_type", "market", "unit", "auto_source", "last_ok_at", "last_error", "is_active"]
-    list_filter = ["price_type", "auto_source", "is_active"]
-    readonly_fields = ["last_checked_at", "last_ok_at", "last_error"]
-    search_fields = ["name", "spec_note", "market"]
-    autocomplete_fields = ["entry", "grade", "source"]
-    inlines = [PricePointInline]
-
-    def get_inlines(self, request, obj):
-        # 自动更新的序列点很多，而且由程序维护，后台不逐条列出来
-        return [] if obj and obj.auto_source else [PricePointInline]
 
 
 @admin.register(m.LearningPath)
