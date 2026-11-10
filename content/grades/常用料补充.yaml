@@ -1,0 +1,523 @@
+# 常用料补充：PP、PE、PVC、PS、ABS、PET、PBT、PA6/PA66、POM、PC、TPU 的更多常见牌号（进口为主，也有国产）。
+# 查阅日期 2026-11-10。官方资料 → verified；分销商/数据库 → partial；只有贸易商资料 → unverified。
+
+x-sources:
+  - &basf_a3eg6 {id: a3eg6, title: "Ultramid A3EG6 Product Information", url: "https://download.basf.com/p1/8a8082587fd4b608017fd6587a9757d9/de/ULTRAMID%253Csup%253E%25C2%25AE%253Csup%253E_A3EG6", publisher: BASF, kind: maker_doc, accessed: 2026-11-10}
+  - &dupont_delrin {id: delrin_sale, title: "DuPont to Complete Sale of ~80% Ownership in Delrin Business to TJC（2023-11-01）", url: "https://www.dupont.com/news/dupont-to-complete-sale-of-80-percent-ownership-in-delrin-business-to-tjc.html", publisher: DuPont, kind: maker_web, accessed: 2026-11-10}
+  - &ul_celcon_m90 {id: celcon_m90, title: "Celcon M90（UL Prospector）", url: "https://betaplastics.ulprospector.com/plastics/zh-cn/datasheet/182/celcon-m90", publisher: UL Prospector（数据库）, kind: other, accessed: 2026-11-10}
+  - &pvc_types {id: pvctypes, title: "PVC resin SG1–SG8 K 值和用途（泰国贸易商页面）", url: "https://b2usa.com/hotsite/daruneenonting/pvc-resin-sg1-sg2-sg3-sg4-sg5-sg6-sg7-sg", publisher: Daruneenonting（贸易商）, kind: trader, accessed: 2026-11-10}
+  - &gb5761 {id: gb5761, title: "GB/T 5761-2018 悬浮法通用型聚氯乙烯树脂（标准信息页）", url: "https://www.chinesestandard.net/PDF/PDF.amp.aspx/GBT5761-2018", publisher: ChineseStandard.net（标准销售网站）, kind: other, accessed: 2026-11-10}
+
+grades:
+  # ================= PP 均聚 =================
+  - code: HP500N
+    full_name: Moplen HP500N
+    manufacturer: 利安德巴赛尔
+    brand: Moplen
+    material: PP-H
+    grade_class: 通用注塑级
+    verify: partial
+    aliases: [Moplen HP500N, HP500N B]
+    summary: 利安德巴赛尔的均聚 PP 通用注塑料，流动性好、刚性好，可用于食品接触。MFR 12。
+    description: |
+      Moplen 是利安德巴赛尔的聚丙烯品牌。HP 开头的是均聚 PP（Homopolymer），EP 开头的是抗冲共聚 PP，RP 开头的是无规共聚 PP——
+      这一点从本库收录的 HP500N、EP548R 和 UL Prospector 里的 RP241R（无规共聚）都能看出来。
+
+      下面的数据来自利安德巴赛尔的 TDS（标题是“Moplen HP500N B”），但文件挂在一家贸易商网站上，所以只算“部分核实”。
+    sources:
+      - {id: tds, title: "Moplen HP500N B Technical Data Sheet（利安德巴赛尔 TDS，贸易商网站转载）", url: "https://www.chemdo.com/uploads/Moplen-HP500N-B_EN.pdf", publisher: LyondellBasell（Chemdo 网站转载）, kind: trader, accessed: 2026-11-10}
+      - {id: rp241r, title: "Moplen RP241R（UL Prospector）", url: "https://betaplastics.ulprospector.com/plastics/zh-cn/datasheet/54370/moplen-rp241r", publisher: UL Prospector（数据库）, kind: other, accessed: 2026-11-10}
+    properties:
+      - {prop: MFR, value: "12", unit: g/10min, conditions: "230°C/2.16kg", source: tds}
+      - {prop: 弯曲模量, value: "1475", unit: MPa, source: tds}
+      - {prop: 拉伸屈服强度, value: "35", unit: MPa, source: tds}
+      - {prop: 简支梁缺口冲击强度, value: "3", unit: kJ/m², source: tds}
+      - {prop: 维卡软化温度, value: "153", unit: °C, conditions: "A/50", source: tds}
+      - {prop: 热变形温度, value: "95", unit: °C, conditions: "0.45 MPa", source: tds}
+
+  # ================= PP 抗冲共聚 =================
+  - code: EP548R
+    full_name: Moplen EP548R
+    manufacturer: 利安德巴赛尔
+    brand: Moplen
+    material: PP-B
+    grade_class: 注塑级，含抗静电剂
+    verify: partial
+    aliases: [Moplen EP548R]
+    summary: 成核的多相共聚 PP（抗冲共聚），加了抗静电剂，用于玩具、家具、薄壁件，可食品接触。MFR 21。
+    sources:
+      - {id: up, title: "Moplen EP548R 产品页", url: "https://ultrapolymers.com/fr-FR/produits/100698-moplen-ep548r", publisher: Ultrapolymers（分销商）, kind: other, accessed: 2026-11-10}
+    properties:
+      - {prop: MFR, value: "21", unit: g/10min, conditions: "230°C/2.16kg", source: up}
+      - {prop: 密度, value: "0.900", unit: g/cm³, source: up}
+
+  # ================= PP 无规共聚（PPR 管材） =================
+  - code: RA130E
+    full_name: Borealis RA130E
+    manufacturer: 北欧化工
+    material: PP-R
+    grade_class: 管材级（冷热水管）
+    verify: verified
+    aliases: [Borealis RA130E, 北欧化工 RA130E]
+    summary: 北欧化工的低熔指 PP-R，用于挤出冷热水管和注塑管件。MFR 0.25。
+    description: |
+      家里装修用的 **PPR 冷热水管**就是用这类料做的。管材料的熔指都非常低（这里只有 0.25），
+      因为分子量高，管子才耐长期内压、耐热水。和注塑料动不动十几、几十的熔指差别很大。
+    sources:
+      - {id: web, title: "RA130E 产品页", url: "https://www.borealisgroup.com/products/product-catalogue/ra130e-1", publisher: Borealis, kind: maker_web, accessed: 2026-11-10}
+      - {id: pds, title: "RA130E Product Data Sheet", url: "https://www.borealisgroup.com/storage/Datasheets/ra130e/RA130E-PDS-REG_WORLD-EN-V4-PDS-WORLD-24418-PDS_RA130E_4_11032026.pdf", publisher: Borealis, kind: maker_doc, accessed: 2026-11-10}
+    properties:
+      - {prop: MFR, value: "0.25", unit: g/10min, conditions: "2.16kg（官网页面没写温度）", source: web}
+
+  - code: RA140E
+    full_name: Borstar RA140E
+    manufacturer: 博禄
+    brand: Borstar
+    material: PP-R
+    grade_class: 管材级（采暖、冷热水管）
+    verify: partial
+    aliases: [Borouge RA140E, 博禄 RA140E]
+    summary: 博禄的 PP-R 管材料，高分子量、低熔指，加了 BNT 成核，用于采暖、给水管。
+    description: |
+      博禄（Borouge）是阿布扎比国家石油公司（ADNOC）和北欧化工从 1998 年起的合资公司，工厂在阿联酋鲁维斯，
+      所以牌号写法和北欧化工很像（RA130E、RA140E 都是 RA 开头的无规共聚 PP）。
+      2025 年 ADNOC 和北欧化工的母公司 OMV 宣布把博禄和北欧化工合并成 **Borouge Group International**，
+      北欧化工官网现在也显示“Borealis is now Borouge International”。以后看到这几个名字，指的是同一个体系。
+    sources:
+      - {id: jv, title: "ADNOC and Borealis sign MoU（2019，提到双方自 1998 年合资经营博禄）", url: "https://borealisgroup.com/storage/News/2019/2019-03-23/2019-03-23-ADNOC-and-Borealis-sign-MoU_EN_final.pdf", publisher: Borealis, kind: maker_doc, accessed: 2026-11-10}
+      - {id: bgi, title: "Abu Dhabi's Adnoc and OMV agree terms to create $60bn chemicals champion（2025-03-04）", url: "https://thenationalnews.com/business/energy/2025/03/04/abu-dhabis-adnoc-and-omv-agree-terms-to-create-60bn-chemicals-champion", publisher: The National, kind: media, accessed: 2026-11-10}
+      - {id: bweb, title: "Borealis 官网新闻页（页头：Borealis is now Borouge International）", url: "https://www.borealisgroup.com/news/borouge-awards-three-major-epc-contracts-for-borouge-3-expansion-project-valued-at-us-2-6-billion", publisher: Borealis, kind: maker_web, accessed: 2026-11-10}
+      - {id: sc, title: "Borouge RA140E（SpecialChem）", url: "https://www.specialchem.com/plastics/product/borouge-ra140e", publisher: SpecialChem（数据库）, kind: other, accessed: 2026-11-10}
+      - {id: tds, title: "RA140E TDS（贸易商网站转载）", url: "https://www.chemdo.com/uploads/TDS-RA140E1.pdf", publisher: Chemdo（贸易商）, kind: trader, accessed: 2026-11-10}
+
+  # ================= PE =================
+  - code: 218W
+    full_name: SABIC LLDPE 218W
+    manufacturer: 沙特基础工业
+    material: LLDPE
+    grade_class: 吹膜级
+    verify: partial
+    aliases: [SABIC 218W, LLDPE 218W, 沙比克 218W]
+    summary: SABIC 的丁烯共聚 LLDPE 通用包装膜料，加了爽滑剂和开口剂。
+    description: |
+      SABIC 的 218 系列是一组 LLDPE 薄膜料，后面的字母代表不同的添加剂组合（在 SABIC 官网搜“218”能看到整个系列）。
+      218W 含爽滑剂约 1500 ppm、开口剂约 3500 ppm——**爽滑剂**让薄膜表面滑、好开袋，**开口剂**防止两层膜粘在一起。
+      做自动包装、需要膜表面滑的客户会关心这两个添加剂；做复合、印刷的客户反而可能要不含爽滑剂的版本。
+    sources:
+      - {id: sc, title: "SABIC LLDPE 218W（SpecialChem）", url: "https://www.specialchem.com/plastics/product/sabic-sabic-lldpe-218w", publisher: SpecialChem（数据库）, kind: other, accessed: 2026-11-10}
+      - {id: web, title: "SABIC 产品搜索：218", url: "https://sabic.com/en/search/products-search?q=218", publisher: SABIC, kind: maker_web, accessed: 2026-11-10}
+
+  - code: "1018"
+    full_name: Exceed 1018
+    manufacturer: 埃克森美孚
+    brand: Exceed
+    material: LLDPE
+    grade_class: 吹膜级（茂金属）
+    verify: partial
+    aliases: [Exceed 1018, 埃克森 1018, mLLDPE 1018]
+    summary: 埃克森美孚的茂金属线性低密度聚乙烯（mLLDPE），乙烯-己烯共聚，密度 0.918。
+    description: |
+      “茂金属”是指聚合时用的催化剂。茂金属 PE 的分子更均匀，做出来的薄膜**更韧、更抗穿刺、热封更好**，
+      常和普通 LLDPE、LDPE 共混吹膜，用在重包装膜、拉伸膜等。
+
+      1018 是一个系列，后面再加字母表示不同的添加剂版本，报价时要问清楚具体是哪个。
+      这份资料是网友上传到 Scribd 的厂家资料，只算“部分核实”。
+    sources:
+      - {id: scribd, title: "Exceed 1018 Series（Scribd 上传的厂家资料）", url: "https://www.scribd.com/document/564078075/Exceed-1018-Series", publisher: Scribd（用户上传）, kind: other, accessed: 2026-11-10}
+    properties:
+      - {prop: 密度, value: "0.918", unit: g/cm³, source: scribd}
+
+  - code: DMDA-8007
+    full_name: LUBAN DMDA-8007
+    manufacturer: OQ
+    brand: LUBAN
+    material: HDPE
+    grade_class: 注塑级（周转箱、瓶盖）
+    verify: verified
+    aliases: [LUBAN DMDA-8007, DMDA8007]
+    summary: 阿曼 OQ 的 HDPE 注塑料，分子量分布窄，刚性高、翘曲小，用于周转箱、托盘、饮料瓶盖。
+    description: |
+      陶氏也有同名的 DMDA-8007 NT 7（UL Prospector 有登记），国内独山子石化有名字很像的 DMDA-8008H。
+      **名字像不代表能直接互换**：不同厂家的同名或近名牌号，指标会有差别，给客户替换时要拿两边的 TDS 对比。
+
+      下面的数据来自 OQ 官网的中文 TDS，都是典型值，厂家注明“不可理解为质量控制指标”。
+    sources:
+      - {id: tds, title: "LUBAN DMDA-8007 中文技术数据表", url: "https://oq.com/-/media/oq/files/tds-zh/tds_dmda-8007_cn.pdf", publisher: OQ, kind: maker_doc, accessed: 2026-11-10}
+      - {id: dow, title: "陶氏高密度聚乙烯 DMDA-8007 NT 7（UL Prospector）", url: "https://betaplastics.ulprospector.com/plastics/zh-cn/datasheet/71339/dow-hdpe-dmda-8007-nt-7", publisher: UL Prospector（数据库）, kind: other, accessed: 2026-11-10}
+    properties:
+      - {prop: MFR, value: "8", unit: g/10min, conditions: "190°C/2.16kg", standard: ASTM D1238, source: tds}
+      - {prop: 密度, value: "0.965", unit: g/cm³, standard: ASTM D792, source: tds}
+      - {prop: 弯曲模量, value: "1410", unit: MPa, conditions: "2% 正割", standard: ASTM D790B, source: tds}
+      - {prop: 拉伸屈服强度, value: "31", unit: MPa, standard: ASTM D638, source: tds}
+      - {prop: 邵氏硬度, value: "61", unit: Shore D, standard: ASTM D2240, source: tds}
+      - {prop: 热变形温度, value: "84", unit: °C, conditions: "0.45 MPa，未退火", standard: ASTM D648, source: tds}
+      - {prop: 维卡软化温度, value: "131", unit: °C, standard: ASTM D1525, source: tds}
+
+  - code: DMDA-8008H
+    manufacturer: 独山子石化
+    material: HDPE
+    grade_class: 注塑级
+    verify: unverified
+    aliases: [DMDA8008H, 8008H, DMDA-8008]
+    summary: 独山子石化的 HDPE 注塑料，刚性高、强度高，贸易商资料说多用于饮料瓶（盖）、塑料盒。
+    description: 目前只找到贸易商网页的介绍，没有找到中国石油的官方资料，所以只能当参考；具体指标以独山子的质检单为准。
+    sources:
+      - {id: pr, title: "Polyethylene DMDA-8008H 产品页", url: "https://www.plasticsresin.com/product/polyethylene-dmda-8008h", publisher: plasticsresin.com（贸易商）, kind: trader, accessed: 2026-11-10}
+
+  # ================= PVC =================
+  - code: TK-1000
+    full_name: 信越 PVC TK-1000
+    manufacturer: 信越化学
+    material: PVC
+    grade_class: 通用型（悬浮法）
+    verify: partial
+    aliases: [TK1000, 信越 TK-1000, Shin-Etsu TK-1000]
+    summary: 信越化学的通用 PVC 树脂，K 值 67、平均聚合度约 1030，用于管材、型材、压延膜、电线电缆。
+    description: |
+      TK-1000 的 K 值是 67，和国产 **SG-5**（K 值 66～68）处在同一档，可以拿来对照理解：
+      进口 PVC 不按 SG 分型，但看 K 值或聚合度就能和国产型号对上。
+    sources:
+      - {id: scribd, title: "PVC TK-1000 资料（Scribd 用户上传）", url: "https://www.scribd.com/document/324720640/Pvc", publisher: Scribd（用户上传）, kind: other, accessed: 2026-11-10}
+      - {id: sc, title: "Shin-Etsu TK-1000（SpecialChem）", url: "https://www.specialchem.com/plastics/product/shin-etsu-tk-1000", publisher: SpecialChem（数据库）, kind: other, accessed: 2026-11-10}
+    properties:
+      - {prop: K 值, value: "67", source: scribd}
+      - {prop: 平均聚合度, value: "1030", source: scribd}
+
+  - code: SG-3
+    full_name: 悬浮法通用型聚氯乙烯树脂 SG3 型
+    producers: 国内多数 PVC 生产企业都有（按 GB/T 5761 分型）
+    material: PVC
+    product_type: resin
+    grade_class: 通用型（悬浮法）
+    verify: unverified
+    aliases: [SG3, SG 3, 3型, 三型, PVC SG3]
+    summary: 分子量比 SG-5 高的 PVC 型号，主要做软制品：电线电缆料、农膜、日用软制品。
+    description: |
+      和 SG-5 一样，SG-3 是国标 GB/T 5761 里的**型号**，不是哪家的专有牌号（现行版本是 2018 版）。
+      数字越小分子量越高：SG-3 分子量高，加增塑剂后做**软制品**韧性更好，所以电线电缆、薄膜多用它。
+      K 值来自贸易商页面，只作参考，正式数值请查国标原文。
+    sources:
+      - *pvc_types
+      - *gb5761
+    properties:
+      - {prop: K 值, value: "71～72", source: pvctypes}
+
+  - code: SG-8
+    full_name: 悬浮法通用型聚氯乙烯树脂 SG8 型
+    producers: 国内多家 PVC 生产企业（按 GB/T 5761 分型）
+    material: PVC
+    product_type: resin
+    grade_class: 通用型（悬浮法）
+    verify: unverified
+    aliases: [SG8, SG 8, 8型, 八型, PVC SG8]
+    summary: 分子量最低的通用 PVC 型号，流动性好，用于透明片、硬质注塑件（管件等）。
+    description: |
+      SG-8 分子量低、熔体好流动，适合**注塑**（管件、接头）和透明硬片。
+      同样是国标 GB/T 5761 的型号。K 值来自贸易商页面，只作参考。
+    sources:
+      - *pvc_types
+      - *gb5761
+      - {id: chemnet, title: "PVC resin SG8 规格（供应商页面）", url: "https://chemnet.com/ChinaSuppliers/37643/pvc-resin--2119503.html", publisher: ChemNet（供应商页面）, kind: trader, accessed: 2026-11-10}
+    properties:
+      - {prop: K 值, value: "55～59", source: pvctypes}
+
+  # ================= PS =================
+  - code: 158K
+    full_name: Styrolution PS 158K
+    manufacturer: 英力士苯领
+    brand: Styrolution PS
+    material: GPPS
+    grade_class: 耐热通用级
+    verify: partial
+    aliases: [PS 158K, Styrolution 158K, 158K GPPS]
+    summary: 英力士苯领的耐热 GPPS，冷却定型快，用于发泡片材和薄膜，也常和 HIPS 或 Styrolux 共混。
+    description: |
+      GPPS（透明 PS）本身很脆，所以常和 HIPS 共混来做一次性餐具、杯子，和 Styrolux（苯乙烯-丁二烯透明共聚物）共混做透明又耐冲击的制品。
+      158K 的卖点是耐热和“快速冷却”，资料推荐用于发泡片材。英力士苯领还有 158N/L 等相近牌号（SpecialChem 有列）。
+      下面的数据来自英力士苯领亚洲的 TDS（2016 年版，挂在第三方网站上），所以只算“部分核实”。
+    sources:
+      - {id: tds, title: "Styrolution PS 158K TDS（INEOS Styrolution 亚洲，2016）", url: "https://plasticker.de/docs/recybase/3644_1783596902.pdf", publisher: INEOS Styrolution（plasticker.de 转载）, kind: maker_doc, accessed: 2026-11-10}
+      - {id: ul, title: "Styrolution PS 158K（UL Prospector）", url: "https://betaplastics.ulprospector.com/plastics/en/datasheet/207430/styrolution-ps-158k", publisher: UL Prospector（数据库）, kind: other, accessed: 2026-11-10}
+      - {id: sc, title: "INEOS Styrolution Styrolution PS 产品列表（SpecialChem）", url: "https://www.specialchem.com/plastics/supplier/ineos-styrolution-ineos-group/styrolution", publisher: SpecialChem（数据库）, kind: other, accessed: 2026-11-10}
+    properties:
+      - {prop: 弯曲强度, value: "103", unit: MPa, conditions: "23°C", standard: ISO 178, source: tds}
+
+  - code: 486N
+    full_name: Styrolution PS 486N
+    manufacturer: 英力士苯领
+    brand: Styrolution PS
+    material: HIPS
+    grade_class: 热成型级
+    verify: partial
+    aliases: [PS 486N, Styrolution 486N, 486 N]
+    summary: 英力士苯领的高抗冲 PS，适合和大比例 GPPS 共混，做吸塑包装、杯子、餐具。UL 94 HB。
+    sources:
+      - {id: up, title: "Styrolution PS 486 N 产品页", url: "https://ultrapolymers.com/pl-PT/produkty/100929-styrolution-ps-486-n", publisher: Ultrapolymers（分销商）, kind: other, accessed: 2026-11-10}
+    properties:
+      - {prop: 阻燃等级（UL 94）, value: HB, source: up}
+
+  # ================= ABS =================
+  - code: "0215A"
+    manufacturer: 吉林石化
+    material: ABS
+    grade_class: 通用级
+    verify: unverified
+    aliases: [ABS 0215A, 吉化 0215A, 0215]
+    summary: 吉林石化（中国石油）的 ABS 牌号，在 ABS 行情报价里经常和 750A、GE-150 一起出现。
+    description: |
+      吉林石化是国内主要的 ABS 生产企业。据 SunSirs 2024 年的报道，吉林石化新建的 20 万吨/年本体法和 40 万吨/年乳液法 ABS 装置
+      计划 2025 年上半年交付，届时 ABS 总产能将达到 180 万吨/年（报道称国内第一）。
+      目前只在行情网站的报价表里看到这个牌号，没有找到官方物性资料，所以标为“未核实”。
+    sources:
+      - {id: price, title: "SunSirs: Rubber, ABS Price in China (February 7)", url: "https://www.sunsirs.com/uk/detail_news-1429.html", publisher: SunSirs（生意社）, kind: market, accessed: 2026-11-10}
+      - {id: cap, title: "SunSirs: Jilin Petrochemical 400,000 t/a lotion ABS plant capped（2024-08-08）", url: "https://www.sunsirs.com/commodity-news/petail-19414.html", publisher: SunSirs（生意社）, kind: media, accessed: 2026-11-10}
+
+  - code: "8391"
+    full_name: MAGNUM 8391
+    manufacturer: Trinseo
+    brand: MAGNUM
+    material: ABS
+    grade_class: 本体法 ABS，高流动
+    verify: partial
+    aliases: [MAGNUM 8391, Magnum8391]
+    summary: Trinseo 的本体法 ABS，高光泽、高流动、中等抗冲。
+    description: |
+      **ABS 有两种主要生产方法**：乳液法（国内多数 ABS）和本体法。Trinseo 的 MAGNUM 是本体法 ABS，
+      厂家说它底色更白（自己配色省颜料）、凝胶少、批次稳定、VOC 低，汽车内饰用得多。
+      Trinseo 2017 年起在江苏张家港生产 MAGNUM ABS。
+    sources:
+      - {id: ul, title: "MAGNUM 8391（UL Prospector）", url: "https://betaplastics.ulprospector.com/plastics/zh-cn/datasheet/54649/magnum-8391", publisher: UL Prospector（数据库）, kind: other, accessed: 2026-11-10}
+      - {id: pr, title: "Start-up of New Production Line Begins at Trinseo's Zhangjiagang, China Plant（2017-11-15）", url: "https://investor.trinseo.com/home/news/news-details/2017/Start-up-of-New-Production-Line-Begins-at-Trinseos-Zhangjiagang-China-Plant-11-15-2017/default.aspx", publisher: Trinseo, kind: maker_web, accessed: 2026-11-10}
+      - {id: brand, title: "MAGNUM ABS 品牌介绍", url: "https://channelpa.com/en-US/brands/12184-magnum", publisher: Channel Prime Alliance（分销商）, kind: other, accessed: 2026-11-10}
+
+  # ================= PET =================
+  - code: BG80
+    manufacturer: 中国石化
+    material: PET
+    grade_class: 瓶级
+    verify: unverified
+    aliases: [BG-80, 中石化 BG80, PET BG80]
+    summary: 中国石化的瓶级 PET 切片，名字里的 80 对应特性黏度约 0.80，用于饮料瓶、食品包装。
+    description: |
+      瓶级 PET 最重要的指标是**特性黏度（IV）**：IV 越高分子量越高、瓶子越结实。
+      目前只找到国外贸易商的介绍，没有找到中国石化的官方资料。
+    sources:
+      - {id: mt, title: "Sinopec BG80 High IV PET Chips supplier", url: "https://mtroyal.com.tr/en/?p=19879", publisher: MT Royal（土耳其贸易商）, kind: trader, accessed: 2026-11-10}
+    properties:
+      - {prop: 特性黏度, value: "0.80～0.84", unit: dL/g, source: mt}
+
+  # ================= PBT =================
+  - code: B4500
+    full_name: Ultradur B 4500
+    manufacturer: 巴斯夫
+    brand: Ultradur
+    material: PBT
+    grade_class: 中黏度，无填充
+    verify: verified
+    aliases: [Ultradur B4500, B 4500]
+    summary: 巴斯夫的中黏度纯 PBT，用于改性造粒、注塑、平膜、薄壁型材和管材。
+    description: |
+      Ultradur 是巴斯夫的 PBT 品牌。B4500 是不加玻纤的纯树脂，资料写明可用于改性造粒（compounding）。
+      加了 30% 玻纤的是 B4300 G6；**G6 = 玻纤 30%**，而 B 4300 **K6** 是 30% **玻璃微珠**（PBT-GB30，翘曲小）——
+      一个字母之差，材料完全不同。
+    sources:
+      - {id: pds, title: "Ultradur B 4500 Product Information", url: "https://download.basf.com/p1/8a8081c57fd4b609017fd66449853d71/en/ULTRADUR%25C2%25AE_B4500", publisher: BASF, kind: maker_doc, accessed: 2026-11-10}
+      - {id: k6, title: "Ultradur B 4300 K6 Product Information（PBT-GB30）", url: "https://download.basf.com/p1/8a8082587fd4b608017fd63e3caf6bc6/en/ULTRADUR%25C2%25AE_B4300_K6", publisher: BASF, kind: maker_doc, accessed: 2026-11-10}
+    properties:
+      - {prop: 密度, value: "1300", unit: kg/m³, standard: ISO 1183, source: pds}
+
+  - code: B4300 G6
+    full_name: Ultradur B 4300 G6
+    manufacturer: 巴斯夫
+    brand: Ultradur
+    material: PBT
+    grade_class: 玻纤 30% 增强
+    verify: partial
+    aliases: [Ultradur B4300G6, B4300G6, PBT B4300 G6]
+    summary: 巴斯夫的 PBT-GF30，流动性好，用于要求刚性、韧性和尺寸稳定的注塑件。UL 94 HB。
+    sources:
+      - {id: up, title: "Ultradur B4300 G6 产品页", url: "https://ultrapolymers.com/en-NO/products/101032-ultradur-b4300-g6", publisher: Ultrapolymers（分销商）, kind: other, accessed: 2026-11-10}
+    properties:
+      - {prop: 密度, value: "1.53", unit: g/cm³, standard: ISO 1183, source: up}
+      - {prop: 阻燃等级（UL 94）, value: HB, conditions: "1.5 mm", source: up}
+
+  - code: B4300 G6 HR
+    full_name: Ultradur B 4300 G6 HR
+    manufacturer: 巴斯夫
+    brand: Ultradur
+    material: PBT
+    grade_class: 玻纤 30% 增强，耐水解
+    verify: verified
+    aliases: [Ultradur B4300 G6 HR, B4300G6HR]
+    summary: 巴斯夫的耐水解 PBT-GF30，用于发动机舱里的连接器、电子单元外壳。
+    description: 后缀 **HR** 表示耐水解（Hydrolysis Resistant）。PBT 怕湿热环境下水解变脆，汽车发动机舱里的连接器就要用这类牌号。
+    sources:
+      - {id: pds, title: "Ultradur B 4300 G6 HR Product Information", url: "https://download.basf.com/p1/8a8082587fd4b608017fd63d9cd26b1f/en/ULTRADUR%253Csup%253E%25C2%25AE%253Csup%253E_B4300_G6_HR", publisher: BASF, kind: maker_doc, accessed: 2026-11-10}
+      - {id: pds_de, title: "Ultradur B 4300 G6 HR Verarbeitungshinweise", url: "https://download.basf.com/p1/8a8082587fd4b608017fd651a5df0be7/de/ULTRADUR%25C2%25AE_B4300_G6_HR", publisher: BASF, kind: maker_doc, accessed: 2026-11-10}
+    properties:
+      - {prop: 密度, value: "1510", unit: kg/m³, standard: ISO 1183, source: pds}
+      - {prop: 黏数, value: "108", unit: cm³/g, standard: ISO 307, source: pds}
+      - {prop: MVR, value: "5.5", unit: cm³/10min, conditions: "250°C/2.16kg", standard: ISO 1133, source: pds_de}
+
+  # ================= PA66 =================
+  - code: A3EG6
+    full_name: Ultramid A3EG6
+    manufacturer: 巴斯夫
+    brand: Ultramid
+    material: PA66
+    grade_class: 玻纤 30% 增强
+    verify: verified
+    aliases: [Ultramid A3EG6, A3EG6 GF30]
+    summary: 巴斯夫的 PA66-GF30（30% 玻纤增强 PA66），注塑结构件常用料。
+    description: |
+      **看懂巴斯夫 Ultramid 的名字**（以下从巴斯夫各牌号的资料对照得出）：
+      - 第一个字母：**A = PA66，B = PA6**（如 A3WG6 是 PA66-GF30，B3WG6 是 PA6-GF30）；
+      - **G6 = 玻纤 30%**；
+      - 中间的字母表示不同的稳定剂或改性（A3EG6、A3WG6 都是 PA66-GF30，资料写 A3WG6 是耐热老化型）。
+      给客户报价时，A3EG6 和 A3WG6 不能随便互相替代，要看客户的耐热要求。
+    sources:
+      - *basf_a3eg6
+      - {id: b3wg6, title: "Ultramid B3WG6 RC BK23379（PA6-GF30）", url: "https://download.basf.com/p1/8a80823b8dab6121018dcaa07ae55bc9/en/Ultramid%253Csup%253E%25C2%25AE%253Csup%253E_B3WG6_RC_BLACK_23379", publisher: BASF, kind: maker_doc, accessed: 2026-11-10}
+    properties:
+      - {prop: 密度, value: "1360", unit: kg/m³, standard: ISO 1183, source: a3eg6}
+      - {prop: 黏数, value: "145", unit: ml/g, standard: ISO 307, source: a3eg6}
+
+  - code: A3WG6
+    full_name: Ultramid A3WG6
+    manufacturer: 巴斯夫
+    brand: Ultramid
+    material: PA66
+    grade_class: 玻纤 30% 增强，耐热老化
+    verify: verified
+    aliases: [Ultramid A3WG6, A3WG6 GF30]
+    summary: 巴斯夫的耐热老化型 PA66-GF30，用于高刚性、尺寸稳定的机械零件和外壳。
+    sources:
+      - {id: pds, title: "Ultramid A3WG6 Informações do Produto（巴斯夫葡萄牙语资料）", url: "https://promo.basf.com/campaign/tasa/fichas-tecnicas/Ficha%20T%c3%a9cnica%20-%20Ultramid%c2%ae%20A3WG6%20RC.pdf", publisher: BASF, kind: maker_doc, accessed: 2026-11-10}
+      - {id: up, title: "Ultramid A3WG6 产品页", url: "https://ultrapolymers.com/en-za/products/101091-ultramid-a3wg6", publisher: Ultrapolymers（分销商）, kind: other, accessed: 2026-11-10}
+    properties:
+      - {prop: 密度, value: "1360", unit: kg/m³, standard: ISO 1183, source: pds}
+      - {prop: 黏数, value: "145", unit: cm³/g, standard: ISO 307, source: pds}
+      - {prop: 吸水率, value: "1.5～1.9", unit: "%", conditions: "23°C/50% RH 平衡", source: pds}
+
+  # ================= POM =================
+  - code: C 9021
+    full_name: Hostaform C 9021
+    manufacturer: 塞拉尼斯
+    brand: Hostaform
+    material: POM
+    grade_class: 通用注塑级（共聚）
+    verify: partial
+    aliases: [Hostaform C9021, C9021, C 9021 10/9005]
+    summary: 塞拉尼斯的通用注塑 POM 共聚物；C 9021 10/9005 是名义 MFR 9 的版本。
+    description: |
+      塞拉尼斯有两个 POM 共聚物品牌：**Hostaform** 和 **Celcon**。
+      UL Prospector 上 Celcon M90 的说明里直接写着“请同时参考 Hostaform C 9021”，说明两者是对应的通用级产品。
+    sources:
+      - {id: ul, title: "Hostaform C 9021 10/9005（UL Prospector）", url: "https://plastics.ulprospector.com/plastics/en/datasheet/145445/hostaform-c-9021-10-9005", publisher: UL Prospector（数据库）, kind: other, accessed: 2026-11-10}
+      - *ul_celcon_m90
+
+  - code: M90
+    full_name: Celcon M90
+    manufacturer: 塞拉尼斯
+    brand: Celcon
+    material: POM
+    grade_class: 通用级（共聚，中等黏度）
+    verify: partial
+    aliases: [Celcon M90, M90 Celcon]
+    summary: 塞拉尼斯 Celcon 的中等黏度通用 POM 共聚物，用于一般注塑以及薄壁管、薄膜挤出。
+    description: |
+      宝理 DURACON M90-44、塞拉尼斯 Celcon M90、云天化 M90 都叫“M90”，都是通用级 POM 共聚物，
+      但**不是同一个产品**，替换前要对比各自的 TDS。
+    sources:
+      - *ul_celcon_m90
+
+  - code: M90
+    full_name: 云天化 M90（YUNTIANHUA M90）
+    manufacturer: 云天化
+    material: POM
+    grade_class: 通用级（共聚，标准流动）
+    verify: partial
+    aliases: [云天化 M90, YUNTIANHUA M90, YUNCON M90]
+    summary: 云天化的国产 POM 共聚物通用料，标准流动、硬度高、模垢少，用于汽车件、齿轮、轴承、泵阀件。
+    description: |
+      云天化以磷化工为主业，同时是国内主要的共聚甲醛（POM）生产商之一。
+      SpecialChem 上还能看到 YUNCON M90-01，以及标为高流动的 YUNCON M120 等牌号。
+    sources:
+      - {id: sc, title: "Yunnan Yuntianhua 供应商页面（SpecialChem）", url: "https://www.specialchem.com/plastics/supplier/yunnan-yuntianhua", publisher: SpecialChem（数据库）, kind: other, accessed: 2026-11-10}
+      - {id: sc2, title: "YUNCON M90-01（SpecialChem）", url: "https://www.specialchem.com/plastics/product/yunnan-yuntianhua-yuncon-m90-01", publisher: SpecialChem（数据库）, kind: other, accessed: 2026-11-10}
+
+  - code: "100"
+    full_name: Delrin 100
+    manufacturer: Delrin
+    brand: Delrin
+    material: POM
+    grade_class: 高黏度（均聚）
+    verify: partial
+    aliases: [Delrin 100, 杜邦 100]
+    summary: Delrin 的高黏度 POM 均聚物，韧性在 Delrin 系列里最好。
+    description: |
+      POM 分**均聚**和**共聚**两类。Delrin 是最有名的均聚 POM 品牌，刚性、强度一般比共聚 POM 高；
+      共聚 POM（宝理 DURACON、塞拉尼斯、云天化等）热稳定性和耐化学性更好。
+
+      Delrin 原来是杜邦的业务。**2023 年 11 月杜邦把 Delrin 业务 80.1% 的股权卖给了私募基金 TJC 的关联公司**，自己保留 19.9%。
+      所以现在不能简单说“杜邦 Delrin”，但客户习惯上还会这么叫。
+    sources:
+      - {id: gs, title: "Polyacetal (POM) Delrin 牌号说明（GlobalSpec）", url: "https://www.globalspec.com/ds/2912/areaspec/chem_sys_polyacetal", publisher: GlobalSpec（数据库）, kind: other, accessed: 2026-11-10}
+      - *dupont_delrin
+
+  # ================= PC =================
+  - code: L-1250Y
+    full_name: Panlite L-1250Y
+    manufacturer: 帝人
+    brand: Panlite
+    material: PC
+    grade_class: 通用级，中高黏度
+    verify: partial
+    aliases: [Panlite L-1250Y, L1250Y, 帝人 1250Y]
+    summary: 帝人的中高黏度通用 PC，可注塑也可挤出，脱模好。MVR 8。
+    description: |
+      Panlite 是帝人的 PC 品牌。帝人是亚洲第一家生产 PC 的公司（1960 年）。
+      分销商资料写 L-1250Y 和 L-1250Z/100 的 MVR 都是 8；代理商手册给的 L-1250Z100 测试条件是 300°C/1.2kg。
+      L-1250Y 的阻燃等级在 0.40 mm 厚时是 V-2，1.5 mm 是 HB（数据来自分销商页面）。
+    sources:
+      - {id: up, title: "Panlite L-1250Y 产品页", url: "https://ultrapolymers.com/en-PL/products/105591-panlite-l-1250y", publisher: Ultrapolymers（分销商）, kind: other, accessed: 2026-11-10}
+      - {id: up2, title: "Panlite L-1250Y 技术参数", url: "https://ultrapolymers.com/en-SE/products/105591-panlite-l-1250y", publisher: Ultrapolymers（分销商）, kind: other, accessed: 2026-11-10}
+      - {id: kdf, title: "Teijin Panlite brochure 2026", url: "https://a.storyblok.com/f/170886/x/d5ffe2a614/2026-teijin_panlite_broschure-en.pdf", publisher: K.D. Feddersen（分销商）, kind: other, accessed: 2026-11-10}
+    properties:
+      - {prop: MVR, value: "8", unit: cm³/10min, conditions: "资料未注明（PC 通常按 300°C/1.2kg 测）", source: up}
+      - {prop: 密度, value: "1.20", unit: g/cm³, standard: ISO 1183, source: up2}
+      - {prop: 阻燃等级（UL 94）, value: V-2, conditions: "0.40 mm", source: up2}
+      - {prop: 阻燃等级（UL 94）, value: HB, conditions: "1.5 mm", source: up2}
+
+  # ================= TPU =================
+  - code: "9385A"
+    full_name: Desmopan 9385A
+    manufacturer: 科思创
+    brand: Desmopan
+    material: TPU
+    grade_class: 挤出、注塑通用级
+    verify: partial
+    aliases: [Desmopan 9385A, 9385A GMP, 科思创 9385A]
+    summary: 科思创的 TPU，低温柔韧性好，耐微生物、耐水解，用于电缆护套、软管。
+    description: |
+      TPU 的牌号里常常带着**硬度**：9385**A** 里的 85A 就对应邵氏 A 85 左右（A 是邵氏 A 硬度，D 是更硬的邵氏 D）。
+      **聚醚型 TPU** 耐水解、耐微生物，适合户外、潮湿环境；**聚酯型 TPU** 耐磨、耐油、强度高。选 TPU 先问客户用在哪。
+      “GMP”表示按欧盟 2023/2006 良好生产规范生产（厂家说只能有限地用于食品接触）。
+    sources:
+      - {id: sc, title: "Desmopan 9385A GMP（SpecialChem）", url: "https://www.specialchem.com/plastics/product/covestro-desmopan-9385a-gmp", publisher: SpecialChem（数据库）, kind: other, accessed: 2026-11-10}
+
+  - code: "58315"
+    full_name: Estane 58315
+    manufacturer: 路博润
+    brand: Estane
+    material: TPU
+    grade_class: 聚醚型，挤出（吹膜、流延膜、电缆）
+    verify: verified
+    aliases: [Estane 58315, 58315 TPU, 路博润 58315]
+    summary: 路博润的聚醚型 TPU，硬度 85A，耐水解、低温性能好、耐磨，用于薄膜挤出、注塑和电缆护套。
+    sources:
+      - {id: guide, title: "Lubrizol TPU for Specialty Molded Parts – NA Product Selection Guide", url: "https://www.lubrizol.com/-/media/Lubrizol/Engineered-Polymers/Documents/EP-Literature/Lubrizol-TPU-for-Specialty-Molded-Parts-NA-Product-Selection-Guide.pdf", publisher: Lubrizol, kind: maker_doc, accessed: 2026-11-10}
+      - {id: sc, title: "ESTANE 58315 TPU（SpecialChem）", url: "https://www.specialchem.com/plastics/product/bjrn-thorsen-estane-58315-tpu", publisher: SpecialChem（数据库）, kind: other, accessed: 2026-11-10}
+    properties:
+      - {prop: 邵氏硬度, value: "85", unit: Shore A, standard: ISO 868, source: guide}
+      - {prop: MFR, value: "10～24", unit: g/10min, conditions: "190°C/8.7kg", standard: ISO 1133, source: guide}

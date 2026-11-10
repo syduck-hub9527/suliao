@@ -99,6 +99,35 @@ companies:
     types: [生产商]
     intro: 国内老牌氟化工企业，生产 PTFE 悬浮树脂（CGM 开头）、分散树脂（CGF 开头）和氟橡胶等，属中国化工（现中国中化）体系。
 
+  - name: 吉林石化
+    name_zh: 中国石油吉林石化公司
+    name_en: PetroChina Jilin Petrochemical
+    aliases: [吉化, Jilin Petrochemical]
+    parent: 中国石油
+    country: 中国
+    city: 吉林
+    types: [生产商]
+    intro: 中国石油旗下炼化企业，国内主要的 ABS 生产企业之一（牌号如 0215A、750A、GE-150）。
+
+  - name: 独山子石化
+    name_zh: 中国石油独山子石化公司
+    name_en: PetroChina Dushanzi Petrochemical
+    aliases: [独山子, 独石化, Dushanzi]
+    parent: 中国石油
+    country: 中国
+    city: 新疆克拉玛依
+    types: [生产商]
+    intro: 中国石油旗下炼化企业，生产大量聚乙烯、聚丙烯。
+
+  - name: 云天化
+    name_zh: 云南云天化股份有限公司
+    name_en: Yunnan Yuntianhua
+    aliases: [Yuntianhua, YUNTIANHUA, YUNCON]
+    country: 中国
+    city: 云南昆明
+    types: [生产商]
+    intro: 以磷化工、化肥为主业，同时是国内主要的共聚甲醛（POM）生产商之一，品牌 YUNCON。
+
   # ---------- 中国台湾 ----------
   - name: 台化
     name_zh: 台湾化学纤维股份有限公司
@@ -282,6 +311,23 @@ companies:
     types: [生产商]
     intro: 泰国最大的石化企业之一，聚乙烯品牌 InnoPlus。
 
+  - name: 信越化学
+    name_zh: 信越化学工业株式会社
+    name_en: Shin-Etsu Chemical
+    aliases: [信越, Shin-Etsu, ShinEtsu]
+    country: 日本
+    city: 东京
+    types: [生产商]
+    intro: 日本化工企业，PVC 树脂（TK 系列）和有机硅、半导体硅片都是主要业务。
+
+  - name: 帝人
+    name_zh: 帝人株式会社
+    name_en: Teijin
+    aliases: [Teijin, 帝人化成]
+    country: 日本
+    types: [生产商]
+    intro: 日本材料企业，PC 品牌 Panlite，PC/ABS 品牌 Multilon；也做芳纶、碳纤维。
+
   # ---------- 欧美、中东 ----------
   - name: 巴斯夫
     name_zh: 巴斯夫欧洲公司
@@ -417,3 +463,63 @@ companies:
     country: 美国
     types: [生产商]
     intro: 美国化工企业。2022 年收购杜邦的工程塑料业务后，Zytel（尼龙）等原杜邦品牌归塞拉尼斯所有。自有品牌还有 PPS 的 Fortron、LCP 的 VECTRA、POM 的 Hostaform/Celcon。
+
+  - name: 北欧化工
+    name_zh: 北欧化工公司
+    name_en: Borealis
+    aliases: [Borealis, 博里利斯]
+    country: 奥地利
+    city: 维也纳
+    types: [生产商]
+    intro: 欧洲主要的聚烯烃生产商，PE、PP 管材料和电缆料很有名（Borstar 技术）。2025 年起与博禄合并为 Borouge Group International。
+
+  - name: 博禄
+    name_zh: 博禄公司
+    name_en: Borouge
+    aliases: [Borouge]
+    country: 阿联酋
+    city: 阿布扎比
+    types: [生产商]
+    intro: 阿布扎比国家石油公司（ADNOC）与北欧化工 1998 年起的合资公司，生产聚乙烯、聚丙烯，牌号体系和北欧化工相近。
+
+  - name: OQ
+    name_zh: 阿曼 OQ 集团
+    name_en: OQ
+    aliases: [阿曼 OQ]
+    country: 阿曼
+    types: [生产商]
+    intro: 阿曼的能源化工企业，聚乙烯、聚丙烯品牌 LUBAN。
+
+  - name: 埃克森美孚
+    name_zh: 埃克森美孚化工
+    name_en: ExxonMobil Chemical
+    aliases: [ExxonMobil, 埃克森, 美孚]
+    country: 美国
+    types: [生产商]
+    intro: 美国石油化工巨头，聚乙烯品牌 Exceed（茂金属）、Enable 等，也生产 PP、丁基橡胶等。
+
+  - name: Trinseo
+    name_zh: Trinseo
+    name_en: Trinseo
+    aliases: [TRINSEO]
+    country: 美国
+    city: 宾夕法尼亚州
+    types: [生产商]
+    intro: 原陶氏的苯乙烯类业务独立出来的公司，ABS 品牌 MAGNUM（本体法），2017 年起在江苏张家港生产。
+
+  - name: 路博润
+    name_zh: 路博润公司
+    name_en: Lubrizol
+    aliases: [Lubrizol, 路博润特种化工]
+    country: 美国
+    city: 俄亥俄州
+    types: [生产商]
+    intro: 美国特种化学品公司，TPU 品牌 Estane、Pearlbond 等。
+
+  - name: Delrin
+    name_zh: Delrin（原杜邦 POM 均聚物业务）
+    name_en: Delrin
+    aliases: [杜邦 Delrin, DuPont Delrin]
+    country: 美国
+    types: [生产商]
+    intro: 均聚甲醛（POM-H）品牌 Delrin 的经营公司。原属杜邦，2023 年 11 月杜邦把 80.1% 股权卖给私募基金 TJC 的关联公司。
