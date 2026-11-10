@@ -1,0 +1,40 @@
+{% extends "kb/base.html" %}
+{% block title %}助剂百科 · 塑料学习资料库{% endblock %}
+
+{% block style %}
+  .sec { margin-bottom: 16px; }
+  .sec h2 { margin: 0 0 8px; }
+  .additive-row { display: grid; grid-template-columns: minmax(160px, 1fr) minmax(180px, 2fr) 70px; gap: 12px; align-items: start; }
+  .additive-row + .additive-row { border-top: 1px solid var(--line); }
+  .additive-row > div { padding: 9px 0; }
+  @media (max-width: 680px) { .additive-row { grid-template-columns: 1fr 60px; } .additive-row .desc { grid-column: 1 / -1; grid-row: 2; padding-top: 0; } }
+{% endblock %}
+
+{% block content %}
+  <h1>助剂百科</h1>
+  <p class="muted">从作用类别开始学习，再进入具体商品牌号。助剂的适用树脂、配伍和添加量必须以对应产品资料及配方验证为准。</p>
+  <div class="grid" style="margin:16px 0">
+    <div class="tile"><b>{{ count }} 个助剂知识词条</b><span>按类别组织</span></div>
+    <div class="tile"><b>{{ grade_count }} 个商品牌号</b><span>有官方资料来源的代表性产品</span></div>
+    <div class="tile"><b>{{ company_count }} 家生产商</b><span>已收录助剂产品的厂家</span></div>
+  </div>
+  {% for section in sections %}
+    <section class="card sec">
+      <h2>{{ section.name }}</h2>
+      {% for row in section.rows %}
+        <div class="additive-row">
+          <div>
+            <a href="{% url 'kb:entry' row.entry.pk %}"><b>{{ row.entry.name_zh }}</b></a>
+            {% if row.entry.abbr %}<span class="small muted"> · {{ row.entry.abbr }}</span>{% endif %}
+          </div>
+          <div class="desc small muted">{{ row.entry.one_liner }}</div>
+          <div class="small" style="text-align:right">
+            {% if row.grade_count %}<a href="{% url 'kb:entry' row.entry.pk %}#makers">{{ row.grade_count }} 个牌号</a>{% else %}—{% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </section>
+  {% empty %}
+    <p class="muted">助剂内容尚未导入。</p>
+  {% endfor %}
+{% endblock %}

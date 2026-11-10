@@ -7,7 +7,6 @@ from django.urls import reverse
 from django.utils import timezone
 from django.views.decorators.http import require_POST
 
-from urllib.parse import quote
 
 from . import models as m
 from .content import LEARNING_PATH_NAME
@@ -330,8 +329,9 @@ def grade_detail(request, pk):
     own = {m.normalize(x) for x in [grade.code, grade.full_name] if x}
     aliases = [a for a in grade.aliases.all() if a.norm not in own]
 
-    # 去普拉司查报价用的关键词：牌号里空格前的那一段（“101L NC010” 只搜 “101L”）
-    plas_keyword = grade.code.split()[0] if grade.code.split() else grade.code
+    plants = grade.plants.select_related("company").order_by("company__name", "name")
+    plant_links = grade.gradeplant_set.select_related("plant", "source").order_by("plant__company__name", "plant__name")
+    documents = grade.documents.select_related("company").order_by("kind", "title")
 
     family = grade.base_entry.parent or grade.base_entry
     siblings = (m.Grade.objects.filter(Q(base_entry=family) | Q(base_entry__parent=family))
@@ -341,8 +341,7 @@ def grade_detail(request, pk):
         "grade": grade, "description": description, "groups": groups, "aliases": aliases,
         "sources": grade.sources.all().order_by("title"), "siblings": siblings, "family": family,
         "admin_url": reverse("admin:kb_grade_change", args=[grade.pk]),
-        "plas_keyword": plas_keyword,
-        "plas_url": f"https://s.plasway.com/price/chinaprice_search_{quote(plas_keyword, safe='')}.html",
+        "plants": plants, "plant_links": plant_links, "documents": documents,
     })
 
 
@@ -356,6 +355,8 @@ def company_detail(request, pk):
         "company": company, "grades": grades, "by_material": list(by_material.items()), "types": company.types.all(),
         "region": region_of(company.country),
         "brands": company.brands.all(), "subsidiaries": company.subsidiaries.all(),
+        "plants": company.plants.prefetch_related("sources").order_by("city", "name"),
+        "documents": company.documents.prefetch_related("grades").order_by("kind", "title"),
         "admin_url": reverse("admin:kb_company_change", args=[company.pk]),
     })
 
@@ -420,6 +421,49 @@ def materials(request):
         "sections": sections, "count": len(entries), "grade_count": len(grades),
         "company_count": m.Company.objects.filter(grades__isnull=False).distinct().count(),
     })
+
+
+def additives(request):
+    """助剂总览：按助剂类别展示知识词条及已收录商品牌号数量。"""
+    entries = list(
+        m.Entry.objects.filter(kind=m.EntryKind.ADDITIVE)
+        .select_related("category", "parent").order_by("category__order", "category__name", "name_zh")
+    )
+    grades = list(
+        m.Grade.objects.filter(base_entry__kind=m.EntryKind.ADDITIVE)
+        .select_related("manufacturer", "base_entry")
+    )
+    by_entry = {}
+    for grade in grades:
+        by_entry.setdefault(grade.base_entry_id, []).append(grade)
+
+    grouped = OrderedDict()
+    for entry in entries:
+        section = entry.category.name if entry.category_id else "未分类"
+        rows = grouped.setdefault(section, [])
+        rows.append({"entry": entry, "grade_count": len(by_entry.get(entry.pk, []))})
+
+    sections = [{"name": name, "rows": rows} for name, rows in grouped.items()]
+    return render(request, "kb/additives.html", {
+        "sections": sections,
+        "count": len(entries),
+        "grade_count": len(grades),
+        "company_count": m.Company.objects.filter(grades__base_entry__kind=m.EntryKind.ADDITIVE)
+            .distinct().count(),
+    })
+
+
+def documents(request):
+    """技术文件中心：按 TDS、SDS、检测报告等类型分组。"""
+    docs = list(
+        m.Document.objects.select_related("company").prefetch_related("grades")
+        .order_by("kind", "title")
+    )
+    grouped = OrderedDict()
+    for doc in docs:
+        grouped.setdefault(doc.get_kind_display(), []).append(doc)
+    groups = [{"label": label, "documents": items} for label, items in grouped.items()]
+    return render(request, "kb/documents.html", {"groups": groups, "count": len(docs)})
 
 
 def companies(request):

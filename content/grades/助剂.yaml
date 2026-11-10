@@ -1,0 +1,231 @@
+# 代表性塑料助剂商品牌号。只录入可追溯到生产商官方页面或官方 TDS 的信息。
+# 官方资料未提供数值时不补猜测值；典型值、规格值和测试条件按来源原文记录。
+
+grades:
+  - code: 1010
+    full_name: Irganox 1010
+    manufacturer: 巴斯夫
+    brand: Irganox
+    material: 抗氧剂
+    product_type: additive
+    grade_class: 受阻酚类主抗氧剂
+    lifecycle: active
+    verify: verified
+    aliases: [Irganox 1010, 抗氧剂 1010]
+    summary: 巴斯夫受阻酚类主抗氧剂，官方资料列出其适用树脂包括聚烯烃及多种工程聚合物。
+    description: |
+      BASF 官方产品资料将 Irganox 1010 描述为受阻酚类主抗氧剂，用于保护有机材料免受热氧化降解。官方页面列出聚乙烯、聚丙烯、聚丁烯、EVA、聚甲醛、聚酰胺、聚氨酯、聚酯、PVC、苯乙烯类聚合物和多种弹性体等应用方向。
+      具体适用性仍应以对应树脂体系的最新 TDS/SDS 和试验为准。
+    sources:
+      - {id: irganox1010, title: "Irganox 1010 产品资料", url: "https://www.basf.com/us/en/products/dispersions-resins-additives/products/irganox/irganox-1010", publisher: BASF, kind: maker_web, accessed: 2026-11-10}
+
+  - code: 168
+    full_name: Irgafos 168
+    manufacturer: 巴斯夫
+    brand: Irgafos
+    material: 辅助抗氧剂（亚磷酸酯）
+    product_type: additive
+    grade_class: 亚磷酸酯类辅助抗氧剂
+    lifecycle: active
+    verify: verified
+    aliases: [Irgafos 168, 抗氧剂 168]
+    summary: 亚磷酸酯类加工稳定剂，通过分解氢过氧化物帮助保护聚合物。
+    description: |
+      BASF 官方产品资料将 Irgafos 168 描述为固体、具水解稳定性的有机亚磷酸酯加工稳定剂（辅助抗氧剂），用于降低加工过程中的热氧化降解，并可与主抗氧剂配合。
+    sources:
+      - {id: irgafos168, title: "Irgafos 168 产品资料", url: "https://www.basf.com/us/en/products/dispersions-resins-additives/products/irgafos/irgafos-168", publisher: BASF, kind: maker_web, accessed: 2026-11-10}
+
+  - code: 326
+    full_name: Tinuvin 326
+    manufacturer: 巴斯夫
+    brand: Tinuvin
+    material: 紫外线吸收剂
+    product_type: additive
+    grade_class: 羟基苯基苯并三唑类紫外线吸收剂
+    lifecycle: active
+    verify: verified
+    aliases: [Tinuvin 326, UV 326]
+    summary: 羟基苯基苯并三唑类紫外线吸收剂，官方资料强调低挥发性和耐热降解表现。
+    description: |
+      BASF 官方资料将 Tinuvin 326 定义为羟基苯基苯并三唑类紫外线吸收剂，面向塑料、涂料等有机基材的光稳定保护。产品页说明其具有较低挥发性和耐热降解特征。
+    sources:
+      - {id: tinuvin326page, title: "Tinuvin 326 产品资料", url: "https://www.basf.com/us/en/products/dispersions-resins-additives/products/tinuvin/tinuvin-326", publisher: BASF, kind: maker_web, accessed: 2026-11-10}
+      - {id: tinuvin326tds, title: "Tinuvin 326 Technical Data Sheet（October 2022 Rev 1）", url: "https://download.basf.com/p1/8a80824f99704a54019971b23849066b/en/Tinuvin_326", publisher: BASF, kind: maker_doc, accessed: 2026-11-10, document: {kind: tds, language: en, version: "October 2022 Rev 1"}}
+    properties:
+      - {prop: 分子量, value: "316", unit: "g/mol", source: tinuvin326tds}
+      - {prop: 熔融范围, value: "138～141", unit: "°C", source: tinuvin326tds}
+      - {prop: 密度, value: "1.32", unit: "g/ml", conditions: "20°C", source: tinuvin326tds}
+
+  - code: 770 DF
+    full_name: Tinuvin 770 DF
+    manufacturer: 巴斯夫
+    brand: Tinuvin
+    material: 受阻胺光稳定剂（HALS）
+    product_type: additive
+    grade_class: 受阻胺光稳定剂
+    lifecycle: active
+    verify: verified
+    aliases: [Tinuvin 770, Tinuvin 770 DF]
+    summary: 低分子量受阻胺光稳定剂，官方 TDS 给出分子量和熔点范围。
+    description: |
+      BASF 官方 TDS 将 Tinuvin 770 DF 描述为固体碱性 HALS。该资料指出其用于涂料、胶黏剂和密封胶等体系；不同具体应用和地区的法规适用性应以最新版文件核对。
+    sources:
+      - {id: tinuvin770tds, title: "Tinuvin 770 DF Technical Data Sheet（March 2025）", url: "https://download.basf.com/p1/8a80824f99704a54019971b24584068b/en/Tinuvin_770_DF_%2528ED%2529", publisher: BASF, kind: maker_doc, accessed: 2026-11-10, document: {kind: tds, language: en, version: "March 2025"}}
+    properties:
+      - {prop: 分子量, value: "480.7", unit: "g/mol", source: tinuvin770tds}
+      - {prop: 熔融范围, value: "81～85", unit: "°C", conditions: "DSC", source: tinuvin770tds}
+
+  - code: OP 1230
+    full_name: Exolit OP 1230
+    manufacturer: 科莱恩
+    brand: Exolit
+    material: 无卤阻燃剂
+    product_type: additive
+    grade_class: 有机次膦酸盐阻燃剂
+    lifecycle: active
+    verify: verified
+    aliases: [Exolit OP1230, DEPAL]
+    summary: 基于二乙基次膦酸铝的无卤阻燃剂，官方资料列出其适用于聚酰胺等聚合物体系。
+    description: |
+      科莱恩官方资料说明 Exolit OP 1230 是基于有机次膦酸盐的白色细粒粉末，纯净 DEPAL 以该牌号销售。官方资料列出密度、堆积密度、热分解温度和平均粒径等技术数据。
+      阻燃等级属于配方和试样性能，不能仅凭助剂牌号推断最终制品等级。
+    sources:
+      - {id: exolit1230, title: "Exolit OP 1230 产品资料", url: "https://www.clariant.com/zh-CN/Solutions/Products/2014/03/18/16/31/Exolit-OP-1230", publisher: Clariant, kind: maker_web, accessed: 2026-11-10}
+    properties:
+      - {prop: 密度, value: "1.35", unit: "g/cm³", conditions: "20°C", source: exolit1230}
+      - {prop: 堆积密度, value: "400～600", unit: "kg/m³", source: exolit1230}
+      - {prop: 分解温度, value: ">300", unit: "°C", conditions: "TGA", source: exolit1230}
+      - {prop: 平均粒径, value: "20～40", unit: "μm", conditions: "D50", source: exolit1230}
+
+  - code: 1010
+    full_name: SONGNOX 1010
+    manufacturer: Songwon
+    brand: SONGNOX
+    material: 抗氧剂
+    product_type: additive
+    grade_class: 受阻酚类主抗氧剂
+    lifecycle: active
+    verify: verified
+    aliases: [SONGNOX 1010, Songnox 1010]
+    summary: Songwon 官方资料列出的有机聚合物主抗氧剂，化学组成属于四官能团受阻酚类。
+    description: |
+      Songwon 官方产品页面将 SONGNOX 1010 描述为有机聚合物用主抗氧剂，并公开其化学组成、CAS 号和产品形态。具体适用树脂和规格以厂家最新产品文件为准。
+    sources:
+      - {id: songnox1010, title: "SONGNOX 1010 产品资料", url: "https://www.songwon.com/products/songnox-1010", publisher: SONGWON, kind: maker_web, accessed: 2026-11-10}
+
+  - code: AO-40
+    full_name: ADK STAB AO-40
+    manufacturer: ADEKA
+    brand: ADK STAB
+    material: 抗氧剂
+    product_type: additive
+    grade_class: 受阻酚类抗氧剂
+    lifecycle: active
+    verify: verified
+    aliases: [ADK STAB AO40, AO 40]
+    summary: ADEKA 官方资料列出的受阻酚类抗氧剂，适用于含不饱和键的聚合物体系。
+    description: |
+      ADEKA 官方产品资料列出 AO-40 的化学名称、CAS 号、外观、熔点范围和分子量，并说明其在含不饱和键聚合物（如 ABS 和弹性体）中的应用方向。
+    sources:
+      - {id: adkao40, title: "ADEKA Antioxidants 产品资料（ADK STAB AO-40）", url: "https://www.adeka.co.jp/en/chemical/products/plastic/pro111c.html", publisher: ADEKA, kind: maker_web, accessed: 2026-11-10}
+    properties:
+      - {prop: 熔融范围, value: "210～214", unit: "°C", source: adkao40}
+      - {prop: 分子量, value: "383", unit: "g/mol", source: adkao40}
+
+  - code: AO-60
+    full_name: ADK STAB AO-60
+    manufacturer: ADEKA
+    brand: ADK STAB
+    material: 抗氧剂
+    product_type: additive
+    grade_class: 高分子量受阻酚类抗氧剂
+    lifecycle: active
+    verify: verified
+    aliases: [ADK STAB AO60, AO 60, AO-60G]
+    summary: ADEKA 官方资料列出的高分子量受阻酚类抗氧剂，强调低挥发和耐抽出特征。
+    description: |
+      ADEKA 官方产品资料列出 AO-60/AO-60G 的外观、熔点范围、分子量和主要特点。资料说明其分子量较高，具有低挥发性和较好的耐抽出性。
+    sources:
+      - {id: adkao60, title: "ADEKA Antioxidants 产品资料（ADK STAB AO-60）", url: "https://www.adeka.co.jp/en/chemical/products/plastic/pro111c.html", publisher: ADEKA, kind: maker_web, accessed: 2026-11-10}
+    properties:
+      - {prop: 熔融范围, value: "110～130", unit: "°C", source: adkao60}
+      - {prop: 分子量, value: "1178", unit: "g/mol", source: adkao60}
+
+  - code: NX 8000E
+    full_name: Millad NX 8000E
+    manufacturer: Milliken
+    brand: Millad
+    material: 成核剂与澄清剂
+    product_type: additive
+    grade_class: 聚丙烯澄清剂（挤出吹塑级）
+    lifecycle: active
+    verify: verified
+    aliases: [Millad NX8000E, NX 8000E]
+    summary: 面向聚丙烯挤出吹塑应用的澄清剂，官方 TDS 给出纯度、粒径、堆积密度和溶解温度数据。
+    description: |
+      Milliken 官方 TDS 将 Millad NX 8000E 描述为用于聚丙烯挤出吹塑牌号的澄清剂。资料列出典型物性，并给出特定添加量下的光学和加工表现；这些结果不能脱离 PP 树脂、制品和加工条件直接套用。
+    sources:
+      - {id: millad8000e, title: "Millad NX 8000E Technical Data", url: "https://contenthub.milliken.com/api/public/content/3bc3d8b72ff94673b646ad29e7ede325?v=56d1eac0", publisher: Milliken, kind: maker_doc, accessed: 2026-11-10, document: {kind: tds, language: en, version: "Official technical data"}}
+      - {id: millikenblacksburg, title: "Milliken launches production at Blacksburg clarifier plant", url: "https://www.milliken.com/en-my/chemicals/blogs/milliken-opens-world-class-production-facility", publisher: Milliken, kind: maker_web, accessed: 2026-11-10}
+    properties:
+      - {prop: 纯度, value: "≥97.5", unit: "%", source: millad8000e}
+      - {prop: 色度, value: "≤150", unit: "Pt/Co", source: millad8000e}
+      - {prop: 含水量, value: "≤1.00", unit: "%", source: millad8000e}
+      - {prop: 平均粒径, value: "15", unit: "μm", conditions: "Mean particle size", source: millad8000e}
+      - {prop: 堆积密度, value: "0.30～0.34", unit: "g/cm³", conditions: "Packed bulk density", source: millad8000e}
+      - {prop: 溶解温度, value: "210～220", unit: "°C", conditions: "Compounding step", source: millad8000e}
+    plants:
+      - {name: "Blacksburg Clarifier Plant", source: millikenblacksburg, verify: verified, note: "Milliken 官方资料明确说明该工厂生产 Millad NX 8000 系列澄清剂"}
+
+  - code: 562
+    full_name: Plastistrength 562
+    manufacturer: 阿科玛
+    brand: Plastistrength
+    material: 加工助剂
+    product_type: additive
+    grade_class: PVC 丙烯酸类加工助剂
+    lifecycle: active
+    verify: verified
+    aliases: [Plastistrength 562, P562]
+    summary: 用于硬质和半硬质 PVC 的高分子量丙烯酸类加工助剂，帮助改善熔体强度和填料分散。
+    description: |
+      Arkema 官方 TDS 将 Plastistrength 562 描述为高分子量丙烯酸类加工助剂，适用于硬质和半硬质 PVC，帮助改善熔体强度、PVC 融合和填料分散。官方资料同时列出比重、堆积密度和挥发物含量等典型物性。
+    sources:
+      - {id: plastistrength562, title: "Plastistrength 562 Technical Data Sheet", url: "https://plasticadditives.arkema.com/assets/arkema/P562_V2.pdf", publisher: Arkema, kind: maker_doc, accessed: 2026-11-10, document: {kind: tds, language: en, version: "P562 V2"}}
+    properties:
+      - {prop: 比重, value: "1.11", source: plastistrength562}
+      - {prop: 堆积密度, value: "0.55～0.75", unit: "g/cm³", source: plastistrength562}
+      - {prop: 挥发物含量, value: "<1", unit: "%", conditions: "by weight", source: plastistrength562}
+      - {prop: 筛余物, value: "2% retained on 40 mesh", source: plastistrength562}
+
+  - code: 530
+    full_name: Plastistrength 530
+    manufacturer: 阿科玛
+    brand: Plastistrength
+    material: 加工助剂
+    product_type: additive
+    grade_class: PVC 丙烯酸类加工助剂
+    lifecycle: active
+    verify: verified
+    aliases: [Plastistrength 530, P530]
+    summary: 面向 PVC 挤出和发泡制品的丙烯酸类加工助剂，官方产品页提供适用工艺和应用信息。
+    description: |
+      Arkema 官方产品页介绍 Plastistrength 530 可用于改善高产量挤出加工表现，应用包括型材、发泡管、发泡型材、发泡片材、木塑复合材料和柔性乙烯基材料。具体牌号版本请以官网最新 TDS 为准。
+    sources:
+      - {id: plastistrength530, title: "Plastistrength 530 官方产品页", url: "https://plasticadditives.arkema.com/en/product-finder/product/f/F5/p/plastistrength-530/", publisher: Arkema, kind: maker_web, accessed: 2026-11-10}
+
+  - code: 440
+    full_name: Durastrength 440
+    manufacturer: 阿科玛
+    brand: Durastrength
+    material: 增韧剂
+    product_type: additive
+    grade_class: 丙烯酸类冲击改性剂
+    lifecycle: active
+    verify: verified
+    aliases: [Durastrength 440, DS 440]
+    summary: Arkema 官方产品系列资料列出的冲击改性剂，面向 PC 基材料及其共混物的低温冲击改性。
+    description: |
+      Arkema 官方塑料添加剂产品范围资料将 Durastrength 440 列为面向 PC 基树脂的低温冲击改性产品。具体应用、配方和性能应核对当前产品 TDS 并进行试验。
+    sources:
+      - {id: durastrength440, title: "Arkema Plastic Additives Range – Durastrength", url: "https://www.arkema.com/files/live/sites/shared_arkema/files/downloads/literature/Americas-and-Asia-Plastic-Additives-Range.pdf", publisher: Arkema, kind: maker_doc, accessed: 2026-11-10, document: {kind: brochure, language: en, version: "Plastic Additives Range"}}

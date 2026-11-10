@@ -1,0 +1,129 @@
+# 第二阶段实体补充：公司来源、品牌档案和生产工厂。
+# 工厂只录入官方资料能够支持的生产地点；未明确对应具体牌号时，不建立 GradePlant 关系。
+
+companies:
+  - name: 巴斯夫
+    verify: verified
+    last_checked: 2026-11-10
+    sources:
+      - {id: basf-additive-sites, title: "BASF Factbook – Performance Chemicals / Plastic Additives production sites", url: "https://www.basf.com/global/en/investors/calendar-and-publications/factbook/segments/industrial-solutions/performance-chemicals", publisher: BASF, kind: maker_web, accessed: 2026-11-10}
+      - {id: basf-additive-brands, title: "BASF Irganox antioxidant portfolio", url: "https://www.basf.com/us/en/products/dispersions-resins-additives/products/irganox", publisher: BASF, kind: maker_web, accessed: 2026-11-10}
+    brands:
+      - {name: Irganox, intro: "BASF 的抗氧剂产品品牌，产品组合包括受阻酚类主抗氧剂等。", sources: [basf-additive-brands]}
+      - {name: Irgafos, intro: "BASF 的亚磷酸酯类辅助抗氧剂/加工稳定剂品牌。", sources: [basf-additive-brands]}
+      - {name: Tinuvin, intro: "BASF 的光稳定剂和紫外线吸收剂品牌，包含 UVA、HALS 及复配产品。", sources: [basf-additive-brands]}
+    plants:
+      - {name: "Lampertheim Plastic Additives Site", country: Germany, city: Lampertheim, products_note: "BASF Factbook 将 Lampertheim 列为塑料添加剂主要生产地点；公开资料未将具体牌号逐一对应到该厂。", status: running, status_on: 2026-11-10, verify: verified, sources: [basf-additive-sites]}
+      - {name: "Kaisten Plastic Additives Site", country: Switzerland, city: Kaisten, products_note: "BASF Factbook 将 Kaisten 列为塑料添加剂主要生产地点；公开资料未将具体牌号逐一对应到该厂。", status: running, status_on: 2026-11-10, verify: verified, sources: [basf-additive-sites]}
+      - {name: "Manama Plastic Additives Site", country: Bahrain, city: Manama, products_note: "BASF Factbook 将 Manama 列为塑料添加剂主要生产地点；公开资料未将具体牌号逐一对应到该厂。", status: running, status_on: 2026-11-10, verify: verified, sources: [basf-additive-sites]}
+      - {name: "McIntosh Plastic Additives Site", country: United States, city: McIntosh, products_note: "BASF Factbook 将 McIntosh 列为塑料添加剂主要生产地点；公开资料未将具体牌号逐一对应到该厂。", status: running, status_on: 2026-11-10, verify: verified, sources: [basf-additive-sites]}
+      - {name: "Pontecchio Marconi Plastic Additives Site", country: Italy, city: Pontecchio Marconi, products_note: "BASF Factbook 将 Pontecchio Marconi 列为塑料添加剂主要生产地点；Factbook 另提及该地 HALS 产能扩建。具体牌号分配未公开。", status: running, status_on: 2026-11-10, verify: verified, sources: [basf-additive-sites]}
+      - {name: "Puebla Plastic Additives Site", country: Mexico, city: Puebla, products_note: "BASF Factbook 将 Puebla 列为塑料添加剂主要生产地点；公开资料未将具体牌号逐一对应到该厂。", status: running, status_on: 2026-11-10, verify: verified, sources: [basf-additive-sites]}
+      - {name: "Shanghai Plastic Additives Site", country: China, city: Shanghai, products_note: "BASF Factbook 将 Shanghai 列为塑料添加剂主要生产地点；公开资料未将具体牌号逐一对应到该厂。", status: running, status_on: 2026-11-10, verify: verified, sources: [basf-additive-sites]}
+      - {name: "Singapore Plastic Additives Site", country: Singapore, city: Singapore, products_note: "BASF Factbook 将 Singapore 列为塑料添加剂主要生产地点；公开资料未将具体牌号逐一对应到该厂。", status: running, status_on: 2026-11-10, verify: verified, sources: [basf-additive-sites]}
+
+  - name: 科莱恩
+    name_zh: 科莱恩股份公司
+    name_en: Clariant AG
+    country: Switzerland
+    website: https://www.clariant.com
+    types: [生产商, 助剂厂商]
+    intro: "瑞士特种化学品企业，产品组合包括塑料添加剂、阻燃剂和吸附剂等。"
+    verify: verified
+    last_checked: 2026-11-10
+    sources:
+      - {id: clariant-additives, title: "Clariant Exolit OP 1230 official product information", url: "https://www.clariant.com/zh-CN/Solutions/Products/2014/03/18/16/31/Exolit-OP-1230", publisher: Clariant, kind: maker_web, accessed: 2026-11-10}
+    brands:
+      - {name: Exolit, intro: "科莱恩的阻燃剂品牌，包含面向工程塑料等应用的产品系列。", sources: [clariant-additives]}
+
+  - name: Songwon
+    name_zh: 松原产业株式会社
+    name_en: SONGWON Industrial Group
+    country: South Korea
+    website: https://www.songwon.com
+    types: [生产商, 助剂厂商]
+    intro: "韩国化学品企业，公开产品组合包括聚合物稳定剂和抗氧剂。"
+    verify: verified
+    last_checked: 2026-11-10
+    sources:
+      - {id: songwon-additives, title: "SONGWON SONGNOX 1010 official product information", url: "https://www.songwon.com/products/songnox-1010", publisher: SONGWON, kind: maker_web, accessed: 2026-11-10}
+    brands:
+      - {name: SONGNOX, intro: "Songwon 的聚合物抗氧剂产品品牌。", sources: [songwon-additives]}
+
+  - name: ADEKA
+    name_zh: ADEKA 株式会社
+    name_en: ADEKA Corporation
+    country: Japan
+    website: https://www.adeka.co.jp
+    types: [生产商, 助剂厂商]
+    intro: "日本化学品企业，产品包括塑料用抗氧剂和其他功能助剂。"
+    verify: verified
+    last_checked: 2026-11-10
+    sources:
+      - {id: adeka-additives, title: "ADEKA official plastic antioxidants product information", url: "https://www.adeka.co.jp/en/chemical/products/plastic/pro111c.html", publisher: ADEKA, kind: maker_web, accessed: 2026-11-10}
+    brands:
+      - {name: ADK STAB, intro: "ADEKA 的塑料稳定剂和抗氧剂产品品牌。", sources: [adeka-additives]}
+
+  - name: Milliken
+    name_zh: Milliken & Company
+    name_en: Milliken & Company
+    country: United States
+    website: https://www.milliken.com
+    types: [生产商, 助剂厂商]
+    intro: "美国材料科学企业，塑料添加剂产品包括聚丙烯澄清剂和成核剂。"
+    verify: verified
+    last_checked: 2026-11-10
+    sources:
+      - {id: milliken-additives, title: "Milliken Millad NX 8000 official product information", url: "https://www.milliken.com/en-my/chemicals/products/millad-nx-8000-eco", publisher: Milliken, kind: maker_web, accessed: 2026-11-10}
+      - {id: milliken-blacksburg, title: "Milliken launches production at Blacksburg clarifier plant", url: "https://www.milliken.com/en-my/chemicals/blogs/milliken-opens-world-class-production-facility", publisher: Milliken, kind: maker_web, accessed: 2026-11-10}
+    brands:
+      - {name: Millad, intro: "Milliken 的聚丙烯澄清剂品牌，产品资料包括 NX 8000 系列。", sources: [milliken-additives]}
+      - {name: Hyperform, intro: "Milliken 的聚合物成核剂产品品牌。", sources: [milliken-additives]}
+    plants:
+      - {name: "Blacksburg Clarifier Plant", country: United States, city: "Blacksburg, South Carolina", products_note: "Milliken 官方资料明确说明该工厂已开始生产 Millad NX 8000 聚丙烯澄清剂。", status: running, status_on: 2026-11-10, verify: verified, sources: [milliken-blacksburg]}
+
+  - name: 阿科玛
+    verify: verified
+    last_checked: 2026-11-10
+    sources:
+      - {id: arkema-additives, title: "Arkema Plastistrength 562 official technical data sheet", url: "https://plasticadditives.arkema.com/assets/arkema/P562_V2.pdf", publisher: Arkema, kind: maker_doc, accessed: 2026-11-10}
+      - {id: arkema-range, title: "Arkema Plastic Additives Range – Durastrength and Plastistrength", url: "https://www.arkema.com/files/live/sites/shared_arkema/files/downloads/literature/Americas-and-Asia-Plastic-Additives-Range.pdf", publisher: Arkema, kind: maker_doc, accessed: 2026-11-10}
+    brands:
+      - {name: Plastistrength, intro: "Arkema 的丙烯酸类加工助剂产品品牌。", sources: [arkema-additives]}
+      - {name: Durastrength, intro: "Arkema 的冲击改性剂产品品牌。", sources: [arkema-range]}
+
+  - name: Baerlocher
+    name_zh: Baerlocher GmbH
+    name_en: Baerlocher GmbH
+    country: Germany
+    website: https://www.baerlocher.com
+    types: [生产商, 助剂厂商]
+    intro: "聚合物添加剂供应商，官方产品组合包括 PVC 稳定剂、润滑剂和复配 one-pack 体系。"
+    verify: verified
+    last_checked: 2026-11-10
+    sources:
+      - {id: baerlocher-additives, title: "Baerlocher official polymer additives and PVC stabilizers portfolio", url: "https://www.baerlocher.com/products/pvc-stabilizers/", publisher: Baerlocher, kind: maker_web, accessed: 2026-11-10}
+    brands:
+      - {name: BAEROSTAB, intro: "Baerlocher 的 PVC 热稳定剂产品品牌。", sources: [baerlocher-additives]}
+      - {name: BAEROPAN, intro: "Baerlocher 的 PVC 稳定剂/润滑剂复配 one-pack 产品品牌。", sources: [baerlocher-additives]}
+      - {name: BAEROLUB, intro: "Baerlocher 的塑料润滑剂产品品牌。", sources: [baerlocher-additives]}
+
+  - name: 钟渊化学
+    verify: verified
+    last_checked: 2026-11-10
+    sources:
+      - {id: kaneka-phbh, title: "Kaneka Green Planet biodegradable polymer official information", url: "https://www.kaneka.co.jp/en/business/material/nbd_001.html", publisher: KANEKA, kind: maker_web, accessed: 2026-11-10}
+    brands:
+      - {name: Green Planet, intro: "Kaneka 的 PHBH 生物降解聚合物品牌。", sources: [kaneka-phbh]}
+    plants:
+      - {name: "Takasago Factory", country: Japan, city: "Takasago, Hyogo", products_note: "Kaneka 官方资料说明 Takasago 工厂自 2011 年起生产 PHBH（Green Planet）。", status: running, status_on: 2026-11-10, verify: verified, sources: [kaneka-phbh]}
+
+  - name: 万华化学
+    verify: verified
+    last_checked: 2026-11-10
+    sources:
+      - {id: wanhua-sites, title: "Wanhua official company development and MDI site history", url: "https://en.whchem.com/comp/portalResGroupNewsNew/list.do?columnId=&compId=portalResGroupNewsNew_list-15960775906245299&date=", publisher: Wanhua Chemical, kind: maker_web, accessed: 2026-11-10}
+      - {id: wanhua-performance-sites, title: "Wanhua Performance Chemicals production sites", url: "https://en.whchem.com/column/135/", publisher: Wanhua Chemical, kind: maker_web, accessed: 2026-11-10}
+    plants:
+      - {name: "Yantai MDI Production Site", country: China, city: Yantai, products_note: "万华官方资料记载烟台 MDI 生产线及烟台生产基地；此处不推断具体商品牌号。", status: unknown, verify: verified, sources: [wanhua-sites]}
+      - {name: "Ningbo MDI Production Site", country: China, city: Ningbo, products_note: "万华官方历史资料记载宁波 MDI 装置投产；当前运行状态未由本次来源独立确认。", status: unknown, verify: verified, sources: [wanhua-sites]}

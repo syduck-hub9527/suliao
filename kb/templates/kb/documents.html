@@ -1,0 +1,36 @@
+{% extends "kb/base.html" %}
+{% block title %}技术文件中心 · 塑料学习资料库{% endblock %}
+
+{% block content %}
+  <h1>技术文件中心</h1>
+  <p class="muted">收录可追溯的 TDS、SDS、检测报告和合规文件入口。外部链接可能更新或失效；正式选型前请向厂家获取最新版文件。</p>
+  {% for group in groups %}
+    <section class="card" style="margin:16px 0">
+      <h2 style="margin-top:0">{{ group.label }}（{{ group.documents|length }}）</h2>
+      <div class="table-wrap">
+        <table class="data">
+          <tr><th>文件</th><th>发布方</th><th>版本/日期</th><th>关联牌号</th></tr>
+          {% for doc in group.documents %}
+            <tr>
+              <td>
+                {% if doc.url %}<a href="{{ doc.url }}" target="_blank" rel="noopener">{{ doc.title }}</a>
+                {% elif doc.file %}<a href="{{ doc.file.url }}" target="_blank" rel="noopener">{{ doc.title }}</a>
+                {% else %}{{ doc.title }}{% endif %}
+                {% if doc.language %}<div class="small muted">{{ doc.language }}</div>{% endif %}
+              </td>
+              <td class="small">{{ doc.company|default:"—" }}</td>
+              <td class="small">{{ doc.version|default:"—" }}{% if doc.published_on %}<div class="muted">{{ doc.published_on|date:"Y-m-d" }}</div>{% endif %}</td>
+              <td class="small">
+                {% for grade in doc.grades.all %}
+                  <a href="{% url 'kb:grade' grade.pk %}">{{ grade.code }}</a>{% if not forloop.last %}、{% endif %}
+                {% empty %}—{% endfor %}
+              </td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </section>
+  {% empty %}
+    <p class="muted">尚未收录技术文件。可在后台录入 TDS、SDS 或检测报告元数据。</p>
+  {% endfor %}
+{% endblock %}

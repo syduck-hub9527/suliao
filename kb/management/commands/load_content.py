@@ -9,6 +9,7 @@ from django.core.management.base import BaseCommand, CommandError
 
 from kb.content import ContentError, Importer, read_content_dir
 from kb.grades_import import GradeImporter, read_grades_dir
+from kb.phase2_import import Phase2Importer
 
 
 class Command(BaseCommand):
@@ -42,4 +43,9 @@ class Command(BaseCommand):
             if greport.skipped_edited:
                 self.stdout.write("以下牌号在后台改过，保留你的修改、没有覆盖：" + "、".join(greport.skipped_edited))
             for warning in greport.warnings:
+                self.stdout.write(self.style.WARNING("提醒：" + warning))
+
+            preport = Phase2Importer(companies, grades).run()
+            self.stdout.write(self.style.SUCCESS(f"第二阶段资料补充完成：{preport.summary()}"))
+            for warning in preport.warnings:
                 self.stdout.write(self.style.WARNING("提醒：" + warning))

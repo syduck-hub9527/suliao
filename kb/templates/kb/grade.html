@@ -128,13 +128,30 @@
       </div>
     {% endif %}
 
-    <div class="card">
-      <h3>这个牌号卖多少钱</h3>
-      <div class="small">
-        <a href="{{ plas_url }}" target="_blank" rel="noopener">去普拉司查“{{ plas_keyword }}”的报价 ↗</a>
-        <div class="muted" style="margin-top:6px">外部网站，按牌号列出各地供应商的挂牌报价。报价不等于成交价，注意看清厂家、交货地，以及是不是副牌。</div>
+    {% if plant_links %}
+      <div class="card">
+        <h3>已核实的生产工厂</h3>
+        <ul class="plain small">
+          {% for link in plant_links %}
+            <li class="row"><span>{{ link.plant.company }} · {{ link.plant.name }}</span><span class="muted">{{ link.get_verify_status_display }}</span></li>
+          {% endfor %}
+        </ul>
+        <p class="small muted">仅显示有来源支持的牌号-工厂关系；厂家其他工厂不代表生产此牌号。</p>
       </div>
-    </div>
+    {% endif %}
+    {% if documents %}
+      <div class="card">
+        <h3>技术文件</h3>
+        <ul class="plain small">
+          {% for doc in documents %}
+            <li class="row">
+              {% if doc.url %}<a href="{{ doc.url }}" target="_blank" rel="noopener">{{ doc.title }}</a>{% elif doc.file %}<a href="{{ doc.file.url }}">{{ doc.title }}</a>{% else %}{{ doc.title }}{% endif %}
+              <span class="muted">{{ doc.get_kind_display }}{% if doc.version %} · {{ doc.version }}{% endif %}</span>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
 
     {% if siblings %}
       <div class="card">

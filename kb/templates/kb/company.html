@@ -32,6 +32,33 @@
     </div>
   {% endif %}
 
+  {% if plants %}
+    <div class="card" style="margin-bottom:16px">
+      <h2 style="margin-top:0">生产工厂（{{ plants|length }}）</h2>
+      {% for plant in plants %}
+        <div style="padding:8px 0;border-bottom:1px solid var(--line)">
+          <b>{{ plant.name }}</b> <span class="badge gray">{{ plant.get_status_display }}</span>
+          <div class="small muted">{{ plant.country }} {{ plant.city }}{% if plant.address %} · {{ plant.address }}{% endif %}</div>
+          {% if plant.products_note %}<div class="small">{{ plant.products_note }}</div>{% endif %}
+          <div class="small muted">核验：{{ plant.get_verify_status_display }}{% if plant.status_on %} · 状态日期 {{ plant.status_on|date:"Y-m-d" }}{% endif %}</div>
+          {% for source in plant.sources.all %}{% if source.url %}<a class="small" href="{{ source.url }}" target="_blank" rel="noopener">{{ source.title }}</a>{% endif %}{% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if documents %}
+    <div class="card" style="margin-bottom:16px">
+      <h2 style="margin-top:0">技术文件</h2>
+      {% for doc in documents %}
+        <div class="row">
+          <span>{% if doc.url %}<a href="{{ doc.url }}" target="_blank" rel="noopener">{{ doc.title }}</a>{% else %}{{ doc.title }}{% endif %}</span>
+          <span class="small muted">{{ doc.get_kind_display }}</span>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
   <div class="card">
     <h2 style="margin-top:0">收录的牌号（{{ grades|length }}）</h2>
     {% for mat, gs in by_material %}

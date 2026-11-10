@@ -16,5 +16,7 @@ urlpatterns = [
     path("g/<int:pk>/", views.grade_detail, name="grade"),
     path("c/<int:pk>/", views.company_detail, name="company"),
     path("materials/", views.materials, name="materials"),
+    path("additives/", views.additives, name="additives"),
+    path("documents/", views.documents, name="documents"),
     path("companies/", views.companies, name="companies"),
 ]
