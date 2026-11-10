@@ -52,6 +52,25 @@ companies:
     types: [生产商]
     intro: 国内 PPS 树脂生产商，品牌 NHU-PPS（新和成主业还有维生素等精细化工）。
 
+  - name: 扬子巴斯夫
+    name_zh: 扬子石化-巴斯夫有限责任公司
+    name_en: BASF-YPC Company Limited
+    aliases: [扬巴, BASF-YPC, 扬子石化巴斯夫]
+    parent: 中国石化
+    country: 中国
+    city: 江苏南京
+    types: [生产商]
+    intro: 巴斯夫和中国石化的合资企业，在南京生产 EVA、LDPE 等多种化工产品。
+
+  - name: 金发科技
+    name_zh: 金发科技股份有限公司
+    name_en: Kingfa Sci. & Tech. Co., Ltd.
+    aliases: [金发, Kingfa]
+    country: 中国
+    city: 广州
+    types: [生产商, 改性厂]
+    intro: 国内最大的改性塑料企业之一，也生产 PA10T 高温尼龙（品牌 Vicnyl）、生物降解塑料等。
+
   - name: 中昊晨光
     name_zh: 中昊晨光化工研究院有限公司
     name_en: ChenGuang Research Institute of Chemical Industry
@@ -71,6 +90,14 @@ companies:
     types: [生产商]
     website: https://en.fcfc-plastics.com/
     intro: 台塑集团旗下企业，ABS 品牌 TAIRILAC。在台湾和宁波都有工厂。
+
+  - name: 台塑
+    name_zh: 台湾塑胶工业股份有限公司
+    name_en: Formosa Plastics Corporation
+    aliases: [台塑工业, Formosa Plastics, 宁波台塑]
+    country: 中国台湾
+    types: [生产商]
+    intro: 台塑集团旗下企业，PE 和 EVA 品牌 TAISOX，在宁波也有工厂。
 
   - name: 奇美
     name_zh: 奇美实业股份有限公司
@@ -97,6 +124,30 @@ companies:
     country: 日本
     types: [生产商]
     intro: 日本工程塑料企业，POM 品牌 DURACON（俗称“宝理 POM”），PPS 品牌 DURAFIDE，LCP 品牌 LAPEROS，PBT 品牌 DURANEX。
+
+  - name: 旭化成
+    name_zh: 旭化成株式会社
+    name_en: Asahi Kasei Corporation
+    aliases: [Asahi Kasei, 旭化成化学]
+    country: 日本
+    types: [生产商]
+    intro: 日本大型化工企业。改性聚苯醚品牌 XYRON，PA66 品牌 LEONA，POM 品牌 TENAC，SEBS 品牌 Tuftec。
+
+  - name: 可乐丽
+    name_zh: 可乐丽株式会社
+    name_en: Kuraray Co., Ltd.
+    aliases: [Kuraray]
+    country: 日本
+    types: [生产商]
+    intro: 日本化工企业，1972 年全球首先工业化生产 EVOH，品牌 EVAL；也生产 PVA、SEPS（Septon）等。
+
+  - name: 三菱化学
+    name_zh: 三菱化学株式会社
+    name_en: Mitsubishi Chemical Corporation
+    aliases: [Mitsubishi Chemical, 三菱]
+    country: 日本
+    types: [生产商]
+    intro: 日本大型化工企业。PMMA 品牌 ACRYPET，EVOH 品牌 SoarnoL。
 
   - name: 东丽
     name_zh: 东丽株式会社
@@ -155,6 +206,22 @@ companies:
     types: [生产商]
     intro: 韩国大型化工企业，ABS 产量居全球前列。
 
+  - name: 韩华思路信
+    name_zh: 韩华思路信
+    name_en: Hanwha Solutions
+    aliases: [韩华, 韩华化学, Hanwha, Hanwha Chemical]
+    country: 韩国
+    types: [生产商]
+    intro: 韩国韩华集团旗下化工企业（原韩华化学），主要的 EVA、PVC、PE 生产商之一。
+
+  - name: SK化学
+    name_zh: SK 化学
+    name_en: SK Chemicals
+    aliases: [SK Chemicals, SK 化学]
+    country: 韩国
+    types: [生产商]
+    intro: 韩国化工企业，共聚酯（PETG、PCTG）品牌 SKYGREEN。
+
   - name: 韩国工程塑料
     name_zh: 韩国工程塑料株式会社
     name_en: Korea Engineering Plastics (KEP)
@@ -202,6 +269,14 @@ companies:
     types: [生产商]
     intro: 德国特种化工企业。PEEK 品牌 VESTAKEEP，PA12 品牌 VESTAMID。
 
+  - name: 英力士苯领
+    name_zh: 英力士苯领
+    name_en: INEOS Styrolution
+    aliases: [INEOS Styrolution, Styrolution, 苯领, 英力士]
+    country: 德国
+    types: [生产商]
+    intro: 全球最大的苯乙烯类塑料企业之一（原巴斯夫苯乙烯业务）。SAN 品牌 Luran、ASA 品牌 Luran S、MABS 品牌 Terlux、ABS 品牌 Terluran/Novodur、SBC 品牌 Styrolux 和 K-Resin。
+
   - name: 威格斯
     name_zh: 威格斯公司
     name_en: Victrex plc
@@ -243,6 +318,14 @@ companies:
     country: 美国
     types: [生产商]
     intro: 2015 年从杜邦分拆出来的化工公司，接手了杜邦的氟化工业务，PTFE、FEP、PFA 品牌 Teflon（特氟龙），ETFE 品牌 Tefzel。
+
+  - name: 伊士曼
+    name_zh: 伊士曼化工公司
+    name_en: Eastman Chemical Company
+    aliases: [Eastman, 伊斯曼]
+    country: 美国
+    types: [生产商]
+    intro: 美国化工企业，共聚酯品牌 Eastar（PETG）和 Tritan。
 
   - name: 阿科玛
     name_zh: 阿科玛集团

@@ -1,0 +1,328 @@
+# 通用塑料补充（EVA、EVOH、UHMWPE、PMMA、EPS、SAN、ASA、MABS、SBC、PETG/共聚酯）常用厂商和牌号。查阅日期 2026-11-10。
+
+grades:
+  # ================= EVA =================
+  - code: V5110J
+    full_name: 扬子巴斯夫 EVA V5110J
+    manufacturer: 扬子巴斯夫
+    material: EVA
+    grade_class: 国内主流 EVA 牌号
+    verify: unverified
+    aliases: [5110J, 扬巴 V5110J]
+    summary: 扬子巴斯夫的 EVA，行情资讯里常拿来作为华东 EVA 现货价格的代表牌号。
+    description: 这里只能确认它是市场主流交易牌号；VA 含量、熔指和用途请向厂家要最新 TDS 后补充。
+    sources:
+      - &sunsirs {id: ss, title: "SunSirs：4 月 16 日上海 EVA 市场（2025）", url: "https://www.sunsirs.com/uk/detail_news-23865.html", publisher: 生意社 SunSirs, kind: market, accessed: 2026-11-10}
+  - code: 7470M
+    full_name: TAISOX 7470M
+    manufacturer: 台塑
+    brand: TAISOX
+    material: EVA
+    grade_class: 发泡级（鞋材）
+    verify: partial
+    aliases: [台塑 7470M, 宁波台塑 7470M]
+    summary: 台塑的通用 EVA，弹性和柔韧性好，主要用于交联发泡鞋材、中底、垫片，也是国内行情常报的牌号。
+    description: 一篇学术论文实测其 VA 含量 26%、熔指 4.0 g/10min（仅供参考，以厂家 TDS 为准）。
+    sources:
+      - {id: t7470, title: "TAISOX EVA 产品列表（UL Prospector）", url: "https://betaplastics.ulprospector.com/plastics/ja/generics/27/classifications/15?page=18", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+      - {id: t7470p, title: "EVA 样品参数表（学术论文）", url: "https://jlse.springeropen.com/articles/10.1186/s42825-024-00181-7/tables/1", publisher: Journal of Leather Science and Engineering, kind: media, accessed: 2026-11-10}
+      - *sunsirs
+  - code: "1529"
+    full_name: HANWHA EVA 1529
+    manufacturer: 韩华思路信
+    brand: HANWHA EVA
+    material: EVA
+    grade_class: 热熔胶级（高 VA）
+    verify: verified
+    aliases: [韩华 1529, EVA1529]
+    summary: 韩华的热熔胶用 EVA，高压釜式法生产，VA 含量 28%，熔指 400 g/10min。
+    description: |
+      EVA 选料先看两个数：**VA 含量**（越高越软、越透明、粘接性越好）和**熔指**（越高越好流动）。
+      大致用途：VA 6～15% 多用于薄膜、注塑、电缆；15～20% 用于发泡鞋材；20～40% 用于热熔胶、光伏胶膜。
+    sources:
+      - &hw1529 {id: hw, title: HANWHA EVA 1529 技术数据表（2024）, url: "https://hcc.hanwha.co.kr/static/cn/data/product/tds/20241016/1529(eng).pdf", publisher: Hanwha Solutions, kind: maker_doc, accessed: 2026-11-10}
+      - {id: evause, title: 不同 VA 含量 EVA 的主要用途（智研咨询）, url: "https://www.chyxx.com/industry/201907/767046.html", publisher: 智研咨询, kind: media, accessed: 2026-11-10}
+    properties:
+      - {prop: MFR, value: "400", unit: g/10min, standard: ASTM D1238, source: hw}
+      - {prop: 密度, value: "0.944", unit: g/cm³, standard: ASTM D1505, source: hw}
+  - code: "1828"
+    full_name: HANWHA EVA 1828
+    manufacturer: 韩华思路信
+    brand: HANWHA EVA
+    material: EVA
+    grade_class: 电线电缆料基础树脂
+    verify: partial
+    aliases: [韩华 1828]
+    summary: 韩华的 EVA，高压釜式法生产，用作半导电料、阻燃电缆料等各种线缆料的基础树脂，填料容纳性好。
+    sources:
+      - {id: hw1828, title: "HANWHA EVA 产品列表（UL Prospector 中文）", url: "https://betaplastics.ulprospector.com/plastics/zh-cn/generics/27/materials/2776", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+
+  # ================= EVOH =================
+  - code: F171B
+    full_name: EVAL F171B
+    manufacturer: 可乐丽
+    brand: EVAL
+    material: EVOH
+    grade_class: 标准级，乙烯 32 mol%
+    verify: verified
+    aliases: [F171, EVAL F171]
+    summary: EVOH 的标准牌号，乙烯含量 32 mol%，阻隔性和长时间开机稳定性好，用于瓶、片材、薄膜、管材。
+    description: |
+      EVOH 按**乙烯含量**分档：乙烯越少阻隔越好、越难加工；乙烯越多越柔软好加工、阻隔变差。
+      可乐丽 EVAL 的字母就代表乙烯档次：**L 型 27%，F 型 32%，H 型 38%，E 型 44%，G 型 48%**（mol%）。
+      可乐丽 1972 年在全球率先工业化生产 EVOH。
+    sources:
+      - &eval_web {id: eval, title: EVAL 产品页（可乐丽）, url: "https://kuraray.com/products/eval", publisher: Kuraray, kind: maker_web, accessed: 2026-11-10}
+      - &eval_us {id: evalus, title: 可乐丽：EVAL 牌号与阻隔数据, url: "https://kuraray.us.com/wp-content/uploads/2023/03/Silage-Covers-with-EVAL%E2%84%A2-Ethylene-Vinyl-Alcohol_Edgard-Chow.pdf", publisher: Kuraray America, kind: maker_doc, accessed: 2026-11-10}
+    properties:
+      - {prop: 密度, value: "1.19", unit: g/cm³, source: evalus}
+      - {prop: 熔点, value: "183", unit: °C, source: evalus}
+  - code: E171B
+    full_name: EVAL E171B
+    manufacturer: 可乐丽
+    brand: EVAL
+    material: EVOH
+    grade_class: 乙烯 44 mol%，高黏度
+    verify: verified
+    aliases: [E171]
+    summary: 乙烯 44 mol% 的 EVOH，更柔软、更好加工，阻隔比 F 型差一些，适合软包装和薄膜。
+    sources: [*eval_web, *eval_us]
+    properties:
+      - {prop: 密度, value: "1.14", unit: g/cm³, source: evalus}
+      - {prop: 熔点, value: "165", unit: °C, source: evalus}
+  - code: L171B
+    full_name: EVAL L171B
+    manufacturer: 可乐丽
+    brand: EVAL
+    material: EVOH
+    grade_class: 乙烯 27 mol%，超高阻隔
+    verify: verified
+    aliases: [L171]
+    summary: 乙烯 27 mol% 的超高阻隔 EVOH，用于硬质瓶、片材和工业薄膜。
+    sources: [*eval_web, *eval_us]
+
+  # ================= UHMWPE =================
+  - code: GUR 4120
+    full_name: GUR 4120
+    manufacturer: 塞拉尼斯
+    brand: GUR
+    material: UHMWPE
+    grade_class: 粉料，板材/型材级
+    verify: partial
+    aliases: [GUR4120, "4120"]
+    summary: 塞拉尼斯的 UHMWPE 粉料，用于压制板材、柱塞挤出型材、多孔烧结件，也做过滤件和 PP/PE 薄膜添加剂。
+    description: |
+      UHMWPE 分子量极高，熔了也几乎不流动，所以多以**粉料**供货，靠模压、柱塞挤出、烧结成型，普通注塑很难。
+      GUR 4150 分子量更高（厂家按 Margolies 公式算约 870 万 g/mol），耐磨性在标准牌号里最好之一。
+    sources:
+      - {id: g4120, title: "GUR 4120（UL Prospector）", url: "https://betaplastics.ulprospector.com/plastics/en/datasheet/18996/gur-4120", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+      - &gur_sc {id: gsc, title: "GUR 产品列表（SpecialChem）", url: "https://www.specialchem.com/plastics/supplier/celanese/gur", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+  - code: GUR 4150
+    full_name: GUR 4150
+    manufacturer: 塞拉尼斯
+    brand: GUR
+    material: UHMWPE
+    grade_class: 粉料，高分子量
+    verify: partial
+    aliases: [GUR4150, "4150"]
+    summary: 更高分子量的 UHMWPE 粉料，耐磨、抗冲击极好、摩擦系数低，用于板材和型材。
+    sources:
+      - {id: g4150, title: "GUR 4150（SpecialChem）", url: "https://www.specialchem.com/plastics/product/celanese-gur-4150", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+
+  # ================= PMMA =================
+  - code: VH
+    full_name: ACRYPET VH
+    manufacturer: 三菱化学
+    brand: ACRYPET
+    material: PMMA
+    grade_class: 耐热标准级（含紫外吸收剂）
+    verify: partial
+    aliases: [VH001, VH 001, ACRYPET VH001, 三菱 VH001]
+    summary: 三菱化学的耐热 PMMA 标准牌号，含紫外吸收剂，典型用途是汽车尾灯；不含紫外吸收剂的版本叫 VH 000。
+    description: 国内常说的“三菱 VH001”就是它（001 是含紫外吸收剂的版本编号）。
+    sources:
+      - {id: avh, title: "ACRYPET 产品列表（SpecialChem）", url: "https://www.specialchem.com/plastics/supplier/mitsubishi-chemical/acrypet", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+      - {id: amdc, title: "ACRYPET 牌号列表（Material Data Center）", url: "https://www.materialdatacenter.com/ms/en/Acrypet/Mitsubishi+Chemical+Corporation/1627", publisher: Material Data Center, kind: other, accessed: 2026-11-10}
+  - code: MH
+    full_name: SUMIPEX MH
+    manufacturer: 住友化学
+    brand: SUMIPEX
+    material: PMMA
+    grade_class: 通用耐热级
+    verify: partial
+    aliases: [住友 MH, SUMIPEX MH]
+    summary: 住友化学的通用耐热 PMMA 粒料，用于汽车仪表盘、灯具、透镜等注塑件。
+    description: 厂家把 SUMIPEX 通用牌号分为“好流动型”（如 LG2）和“耐热型”（如 MH）两大类。住友在新加坡的 PMMA 工厂规模很大。
+    sources:
+      - {id: smh, title: "SUMIPEX 产品列表（SpecialChem）", url: "https://www.specialchem.com/plastics/supplier/sumitomo-chemical/sumipex", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+      - {id: smhul, title: "PMMA 产品列表（UL Prospector）", url: "https://betaplastics.ulprospector.com/plastics/de/generics/3/classifications/402?page=15", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+  - code: CM-205
+    full_name: ACRYREX CM-205
+    manufacturer: 奇美
+    brand: ACRYREX
+    material: PMMA
+    grade_class: 高黏度，耐热
+    verify: partial
+    aliases: [CM205, 奇美 CM-205]
+    summary: 奇美的高黏度 PMMA，耐热、强度好，可注塑也可挤出板、棒、管，常用于汽车灯罩、太阳镜、表壳。
+    description: 奇美 ACRYREX 按黏度分：CM-205 高黏度、CM-207 中黏度（通用）、CM-211 低黏度（高流动）。
+    sources:
+      - &acry {id: acry, title: "ACRYREX 产品列表（SpecialChem）", url: "https://www.specialchem.com/plastics/supplier/chi-mei/acryrex", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+  - code: CM-211
+    full_name: ACRYREX CM-211
+    manufacturer: 奇美
+    brand: ACRYREX
+    material: PMMA
+    grade_class: 低黏度，高流动
+    verify: partial
+    aliases: [CM211, 奇美 CM-211]
+    summary: 奇美的低黏度高流动 PMMA，透明度和光泽高，用于电子面板、音响面板、家电等难注塑件。
+    sources: [*acry]
+
+  # ================= EPS =================
+  - code: F 215 R
+    full_name: Styropor F 215 R
+    manufacturer: 巴斯夫
+    brand: Styropor
+    material: EPS
+    grade_class: 阻燃级，建筑保温
+    verify: verified
+    aliases: [F215R, F215]
+    summary: 巴斯夫阻燃白色 EPS，珠粒 1.0～2.0 mm，用于外墙外保温、墙体和地面保温板。
+    description: |
+      巴斯夫 1951 年申请 Styropor 专利，是白色 EPS 的鼻祖；1997 年推出加石墨的灰色 EPS **Neopor**，保温性能更好。
+      F 开头多为阻燃建筑保温级，P 开头（如 P 326、P 426）是包装成型用。
+    sources:
+      - &styropor {id: sty, title: Styropor、Neopor、Peripor 产品组合, url: "https://fepwaf20.basf.com/portal/api/entry/1225164/view", publisher: BASF, kind: maker_doc, accessed: 2026-11-10}
+  - code: P 426
+    full_name: Styropor P 426
+    manufacturer: 巴斯夫
+    brand: Styropor
+    material: EPS
+    grade_class: 包装级（薄壁件）
+    verify: verified
+    aliases: [P426]
+    summary: 巴斯夫包装用 EPS，珠粒 0.4～0.7 mm，适合成型薄壁包装件。
+    sources:
+      - {id: sty2, title: EPS 产品组合（德文）, url: "https://fepwaf20-1.basf.com/portal/load/fid1226669/EPS%20Produktportfolio-Flyer.pdf", publisher: BASF, kind: maker_doc, accessed: 2026-11-10}
+
+  # ================= SAN =================
+  - code: 358N
+    full_name: Luran 358N
+    manufacturer: 英力士苯领
+    brand: Luran
+    material: SAN
+    grade_class: 通用易流动级
+    verify: partial
+    aliases: [Luran358N]
+    summary: 英力士苯领的通用易流动 SAN，适合很薄或流程长的注塑件，如化妆品瓶、鱼缸过滤器。
+    sources:
+      - {id: l358, title: "INEOS Styrolution SAN 产品列表（UL Prospector）", url: "https://plastics.ulprospector.com/plastics/en/generics/47/manufacturers/1574", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+      - {id: l358b, title: "Luran 358N（UL Prospector 中文）", url: "https://plastics.ulprospector.com/plastics/zh-cn/datasheet/14143/luran-358n", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+  - code: PN-127
+    full_name: KIBISAN PN-127
+    manufacturer: 奇美
+    brand: KIBISAN
+    material: SAN
+    grade_class: 耐热级
+    verify: partial
+    aliases: [PN127, 奇美 PN-127]
+    summary: 奇美的耐热 SAN（AS），表面硬度、光泽和刚性好，常用于风扇叶等。
+    description: 奇美 KIBISAN 后缀 L100、L150 等区分颜色色调；PN-127H 是耐化学品版本，PN-107 L125 是高透明高流动版本。
+    sources:
+      - {id: pn127, title: "KIBISAN 产品列表（SpecialChem）", url: "https://www.specialchem.com/plastics/supplier/chi-mei/kibisan", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+
+  # ================= ASA =================
+  - code: S 777K
+    full_name: Luran S 777K
+    manufacturer: 英力士苯领
+    brand: Luran S
+    material: ASA
+    grade_class: 注塑通用级
+    verify: partial
+    aliases: [777K, Luran S777K]
+    summary: 英力士苯领的通用注塑 ASA，加工性和流动性好，用于户外耐候件。
+    description: Luran S 是 ASA 品牌（原属巴斯夫，现属英力士苯领）；Luran S KR28xx 是 ASA/PC 合金。
+    sources:
+      - {id: s777, title: "Luran S 牌号列表（Material Data Center）", url: "https://materialdatacenter.com/ms/en/Luran+S/INEOS+Styrolution/4483", publisher: Material Data Center, kind: other, accessed: 2026-11-10}
+      - {id: s777u, title: "Luran S 产品（Ultrapolymers）", url: "https://ultrapolymers.com/en-FI/products?page=40", publisher: Ultrapolymers, kind: other, accessed: 2026-11-10}
+  - code: PW-957
+    full_name: KIBILAC PW-957
+    manufacturer: 奇美
+    brand: KIBILAC
+    material: ASA
+    grade_class: 通用注塑级
+    verify: partial
+    aliases: [PW957, 奇美 PW-957]
+    summary: 奇美的通用 ASA，耐候、高流动、高光泽、颜色稳定，例如户外卫星天线外壳。
+    description: PW-978B 是耐热级（汽车后视镜、格栅），PW-997S 是挤出级（建材片材）。
+    sources:
+      - {id: pw957, title: "KIBILAC 产品列表（SpecialChem）", url: "https://www.specialchem.com/plastics/supplier/chi-mei/kibilac", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+
+  # ================= MABS =================
+  - code: PA-758
+    full_name: POLYLAC PA-758
+    manufacturer: 奇美
+    brand: POLYLAC
+    material: MABS
+    grade_class: 透明通用级
+    verify: partial
+    aliases: [PA758, 奇美 PA-758, 奇美透明ABS]
+    summary: 国内最常见的透明 ABS 牌号之一，颜色稳定、流动性高、透明度好，用于空调面板、洗衣机盖、吸尘器外壳、文具。
+    description: PA-758R 是耐化学品、带淡蓝色调的版本，多用于洗衣机盖、吸尘器外壳。
+    sources:
+      - {id: pa758, title: "POLYLAC 牌号列表（Material Data Center）", url: "https://www.materialdatacenter.com/ms/en/Polylac/Chi+Mei+Corporation/544", publisher: Material Data Center, kind: other, accessed: 2026-11-10}
+      - {id: pa758u, title: "POLYLAC PA-758（UL Prospector 中文）", url: "https://betaplastics.ulprospector.com/plastics/zh-cn/datasheet/53392/polylac-pa-758", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+      - {id: pa758s, title: "POLYLAC 应用于空调的牌号（Omnexus）", url: "https://omnexus.specialchem.com/searchsites/searchproducts/ap-appliances-air-conditioning/tr-polylac", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+
+  # ================= SBC =================
+  - code: KR03
+    full_name: K-Resin KR03
+    manufacturer: 英力士苯领
+    brand: K-Resin
+    material: SBC
+    grade_class: 通用级
+    verify: partial
+    aliases: [KR-03, K胶 KR03]
+    summary: 俗称“K 胶”的代表牌号：透明度极好、刚韧平衡、表面光泽高，可注塑、吹瓶、挤片，用于食品包装、玩具、医疗器械。
+    description: K-Resin 原属雪佛龙菲利普斯，后归英力士苯领。KR03NW 是不含蜡、便于印刷的版本。
+    sources:
+      - {id: kr03, title: "K-Resin KR03（SpecialChem）", url: "https://www.specialchem.com/plastics/product/ineos-styrolution-ineos-group-k-resin-kr03", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+      - {id: kr03u, title: "K-Resin KR03（UL Prospector 中文）", url: "https://betaplastics.ulprospector.com/plastics/zh-cn/datasheet/6441/k-resin-kr03", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+
+  # ================= PETG / 共聚酯 =================
+  - code: "6763"
+    full_name: Eastar 6763
+    manufacturer: 伊士曼
+    brand: Eastar
+    material: PETG
+    grade_class: 通用透明级
+    verify: partial
+    aliases: [伊士曼 6763, PETG 6763, Eastar6763]
+    summary: 最经典的 PETG 牌号之一：透明、坚韧、熔体强度好，挤出、注塑、吹塑都能用。
+    sources:
+      - {id: e6763, title: "Eastman 数据表目录（GlobalSpec）", url: "https://datasheets.globalspec.com/ds/1573/EastmanChemical", publisher: GlobalSpec, kind: other, accessed: 2026-11-10}
+  - code: TX1001
+    full_name: Tritan TX1001
+    manufacturer: 伊士曼
+    brand: Tritan
+    material: PETG
+    grade_class: 共聚酯（非 PETG），耐热不含双酚 A
+    verify: verified
+    aliases: [Tritan TX1001, 伊士曼 Tritan]
+    summary: 伊士曼的非结晶共聚酯，透明、韧性好、耐水解、耐热和耐化学品，常用于水杯、搅拌杯、小家电。
+    description: Tritan 严格说不是 PETG，而是另一类共聚酯；因为常和 PETG 一起比较，放在这里。TX1501HF 是黏度低 40～50% 的高流动版。
+    sources:
+      - {id: tritan, title: 伊士曼食品接触共聚酯牌号, url: "https://www.eastman.com/Markets/Consumer-Housewares/Food-Contact/Pages/Food-Storage.aspx", publisher: Eastman, kind: maker_web, accessed: 2026-11-10}
+  - code: K2012
+    full_name: SKYGREEN K2012
+    manufacturer: SK化学
+    brand: SKYGREEN
+    material: PETG
+    grade_class: 通用透明级
+    verify: partial
+    aliases: [SK K2012, SKYGREEN K2012]
+    summary: SK 化学的 PETG，不含双酚 A，透明、耐化学品、易加工，用于化妆品瓶、片材、包装。
+    sources:
+      - {id: k2012, title: "SKYGREEN 产品列表（SpecialChem）", url: "https://www.specialchem.com/plastics/supplier/sk-chemicals/skygreen", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+      - {id: k2012u, title: "SKYGREEN K2012（UL Prospector）", url: "https://betaplastics.ulprospector.com/plastics/en/datasheet/54842/skygreen-k2012", publisher: UL Prospector, kind: other, accessed: 2026-11-10}

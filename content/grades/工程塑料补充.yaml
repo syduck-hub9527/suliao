@@ -1,0 +1,216 @@
+# 工程塑料补充（MPPO、PC/ABS、PA12、PA11、PPA）常用厂商和牌号。查阅日期 2026-11-10。
+
+grades:
+  # ================= MPPO =================
+  - code: PX9406
+    full_name: NORYL PX9406
+    manufacturer: 沙特基础工业
+    brand: NORYL
+    material: MPPO
+    grade_class: 无填充，无卤阻燃
+    verify: partial
+    aliases: [NORYL PX9406, Noryl9406]
+    summary: SABIC 的 PPE+PS 合金，无溴无氯阻燃，耐热、翘曲小、吸水低，用于电器、手机电脑、建筑零件。
+    description: |
+      NORYL 原是 GE 塑料的改性聚苯醚品牌，2007 年随 GE 塑料归 SABIC。厂家说 NORYL 是 PPO（聚苯醚）和聚苯乙烯的非结晶共混物。
+      后缀里 P、K、V 等字母是在同一基础上改了某项特性（如 PX9406V 偏向光伏接线盒）；
+      NORYL PPX 系列是 PPE+PP 合金，NORYL GTX 是 PPE+PA 合金（汽车翼子板常用），和普通 NORYL 不是一回事。
+    sources:
+      - {id: n9406, title: "NORYL PX9406 (Europe)（SpecialChem）", url: "https://www.specialchem.com/plastics/product/sabic-noryl-resin-px9406-europe", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+      - &noryl_web {id: nweb, title: NORYL Resin 产品页, url: "https://sabic.com/products/specialties/noryl-resins/noryl-resin", publisher: SABIC, kind: maker_web, accessed: 2026-11-10}
+  - code: "731"
+    full_name: NORYL 731
+    manufacturer: 沙特基础工业
+    brand: NORYL
+    material: MPPO
+    grade_class: 无填充通用级（非阻燃）
+    verify: partial
+    aliases: [NORYL731, Noryl 731]
+    summary: 最经典的 NORYL 通用牌号之一，PPE+PS 共混，无填充、不阻燃；731S 是食品接触版。
+    sources:
+      - {id: n731, title: "SABIC PPE 产品列表（UL Prospector）", url: "https://betaplastics.ulprospector.com/plastics/fr/generics/40/manufacturers/44?page=6", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+      - *noryl_web
+  - code: 540Z
+    full_name: XYRON 540Z
+    manufacturer: 旭化成
+    brand: XYRON
+    material: MPPO
+    grade_class: 无卤阻燃
+    verify: partial
+    aliases: [XYRON540Z, Xyron 540Z]
+    summary: 旭化成的无卤阻燃 PPE+PS 合金，耐漏电、耐水解、湿热下尺寸变化小，典型用途是光伏接线盒。
+    description: 旭化成的改性聚苯醚品牌叫 XYRON（赛龙）。它和中国蓝星（中国化工旗下）合资在国内生产 XYRON 和聚苯醚原料。
+    sources:
+      - {id: x540, title: "XYRON 产品列表（SpecialChem）", url: "https://www.specialchem.com/plastics/supplier/asahi-kasei/xyron", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+      - {id: xjv, title: "旭化成与蓝星合资在华生产 XYRON（S&P Global）", url: "https://autotechinsight.spglobal.com/news/5238508/asahi-kasei-bluestar-to-form-jv-for-production-of-modified-polyphenylene-ether-in-china-", publisher: S&P Global, kind: media, accessed: 2026-11-10}
+
+  # ================= PC/ABS =================
+  - code: T65 XF
+    full_name: Bayblend T65 XF
+    manufacturer: 科思创
+    brand: Bayblend
+    material: PC/ABS
+    grade_class: 通用级，高流动
+    verify: verified
+    aliases: [T65XF, 拜耳 T65]
+    summary: 科思创的通用 PC/ABS，高流动，维卡软化温度（B120）120°C。
+    description: |
+      Bayblend 是科思创（原拜耳）的 PC/ABS 品牌（国内也叫“拜本兰”）。**T 后面的数字越大，耐热越高（PC 比例通常也越高）**：
+      T45 约 112°C、T65 约 120°C、T85 约 130°C（都指维卡 B120）。XF 是改进流动版；FR 开头是阻燃系列；GF 是玻纤增强。
+    sources:
+      - {id: t65, title: Bayblend T65 XF 产品页, url: "https://solutions.covestro.com/en/products/bayblend/bayblend-t65-xf_06563805-00003406", publisher: Covestro, kind: maker_web, accessed: 2026-11-10}
+      - &bay_ul {id: bul, title: "PC+ABS 产品列表（UL Prospector）", url: "https://plastics.ulprospector.com/plastics/en/generics/25/classifications/163?page=6", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+  - code: T85 X
+    full_name: Bayblend T85 X
+    manufacturer: 科思创
+    brand: Bayblend
+    material: PC/ABS
+    grade_class: 高耐热，易流动
+    verify: verified
+    aliases: [T85X, 拜耳 T85]
+    summary: 更耐热的 PC/ABS，维卡（B120）131°C，耐化学品、湿热老化好、低气味低 VOC，适合汽车内饰和喷涂件。
+    sources:
+      - {id: t85, title: Bayblend T85 X 产品页, url: "https://solutions.covestro.com/en/products/bayblend/bayblend-t85-x_000000000086306972", publisher: Covestro, kind: maker_web, accessed: 2026-11-10}
+
+  - code: C1200HF
+    full_name: CYCOLOY C1200HF
+    manufacturer: 沙特基础工业
+    brand: CYCOLOY
+    material: PC/ABS
+    grade_class: 通用级，高流动高耐热
+    verify: partial
+    aliases: [C1200 HF, Cycoloy C1200HF]
+    summary: SABIC 的 PC/ABS，流动、冲击、耐热都好，低温也有韧性，汽车件常用；是 C1200 的改进版。
+    description: CYCOLOY 是 SABIC（原 GE 塑料）的 PC/ABS 品牌；C2950 系列是无卤阻燃耐热级。
+    sources:
+      - {id: c1200, title: "CYCOLOY C1200HF 数据表（UL Prospector，Protolabs 转载）", url: "https://protolabs.com/media/socff1cn/cycoloy-c1200hf.pdf", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+  - code: C2950
+    full_name: CYCOLOY C2950
+    manufacturer: 沙特基础工业
+    brand: CYCOLOY
+    material: PC/ABS
+    grade_class: 无卤阻燃，耐热标准级
+    verify: verified
+    aliases: [Cycoloy C2950]
+    summary: 无氯无溴阻燃的耐热 PC/ABS，UL94 V-0 和 5VB，用于家电、照明和电气外壳。
+    sources:
+      - {id: c2950, title: "SABIC 工程塑料产品组合（美洲）", url: "https://sabic.com/en/Images/SABIC-ETP-Product-Portfolio-Americas_tcm1010-36293.pdf", publisher: SABIC, kind: maker_doc, accessed: 2026-11-10}
+
+  - code: PC-540
+    full_name: WONDERLOY PC-540
+    manufacturer: 奇美
+    brand: WONDERLOY
+    material: PC/ABS
+    grade_class: 高耐热，无卤阻燃
+    verify: partial
+    aliases: [PC540, 奇美 PC-540]
+    summary: 奇美的无卤阻燃耐热 PC/ABS，用于机顶盒、投影仪、电脑、游戏机、网络设备外壳。
+    description: WONDERLOY 是奇美的 PC 合金品牌；PC-540A、PC-540H 等是在 PC-540 基础上的改进版。
+    sources:
+      - {id: w540, title: "WONDERLOY 产品列表（SpecialChem）", url: "https://www.specialchem.com/plastics/supplier/chi-mei/wonderloy", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+      - {id: w540u, title: "WONDERLOY PC-540（UL Prospector）", url: "https://betaplastics.ulprospector.com/plastics/en/datasheet/69709/wonderloy-pc-540", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+
+  # ================= PA12 =================
+  - code: L2140
+    full_name: VESTAMID L2140
+    manufacturer: 赢创
+    brand: VESTAMID
+    material: PA12
+    grade_class: 高黏度挤出级（管材）
+    verify: partial
+    aliases: [L2140 NC, VESTAMID L2140]
+    summary: 赢创的 PA12 管材料，加了热、光稳定剂，用来挤出汽车油管等管材（DIN 73378 PA12-HL）。
+    description: |
+      VESTAMID 牌号规律（厂家手册原意）：**L 代表月桂内酰胺，也就是 PA12**；
+      **前两位数字是基础树脂溶液黏度的 10 倍**（L21xx 比 L16xx 黏度高）；**第三位代表改性类型**：
+      0 = 无添加的基础树脂（如 L1600、L1901），2 = 增塑，4 = 加稳定剂等；第四位只是区分。
+    sources:
+      - {id: l2140, title: "VESTAMID L2140 NC（UL Prospector）", url: "https://betaplastics.ulprospector.com/plastics/es/generics/22/materials/1005", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+      - &vest_mdc {id: vmdc2, title: "VESTAMID 牌号列表（Material Data Center）", url: "https://materialdatacenter.com/ms/en/Vestamid/Evonik+Operations+GmbH/656", publisher: Material Data Center, kind: other, accessed: 2026-11-10}
+  - code: AESNO TL
+    full_name: RILSAMID AESNO TL
+    manufacturer: 阿科玛
+    brand: RILSAMID
+    material: PA12
+    grade_class: 刚性管材挤出级
+    verify: verified
+    aliases: [AESNOTL, Rilsamid AESNO]
+    summary: 阿科玛的刚性 PA12 本色料，用于挤出管材。
+    description: |
+      阿科玛 PA12 品牌是 RILSAMID，PA11 是 RILSAN。牌号字母大意：**A = PA12，B = PA11**；
+      P40、P201 等带 P 的是增塑（软管、气刹管）版本。
+    sources:
+      - &ark_az {id: arkaz, title: 阿科玛材料库 R 字头产品, url: "https://hpp.arkema.com/en/materials-database/a-z-index/?letter=r", publisher: Arkema, kind: maker_web, accessed: 2026-11-10}
+
+  # ================= PA11 =================
+  - code: BESNO TL
+    full_name: RILSAN BESNO TL
+    manufacturer: 阿科玛
+    brand: RILSAN
+    material: PA11
+    grade_class: 管材挤出级，生物基
+    verify: verified
+    aliases: [BESNOTL, Rilsan BESNO]
+    summary: 阿科玛的 PA11 本色挤出料，原料来自蓖麻油，用于管材、气动管、气刹管等。
+    description: 厂家 TDS 显示其熔点 186°C、比重 1.02，生物基碳含量实测 99%。PA11 是阿科玛独家的长碳链尼龙。
+    sources:
+      - &besno {id: besno, title: RILSAN BESNO TL 产品页, url: "https://hpp.arkema.com/en/products/product/f/spa_hpp_RilsanPellets/p/rilsan-besno-tl/", publisher: Arkema, kind: maker_web, accessed: 2026-11-10}
+      - {id: besnotds, title: RILSAN BESNO TL 技术数据表, url: "https://hpp.arkema.com/assets/arkema/TDS_RILSAN%C2%AE%20BESNO%20TL_en_WW.pdf", publisher: Arkema, kind: maker_doc, accessed: 2026-11-10}
+    properties:
+      - {prop: 熔点, value: "186", unit: °C, conditions: "DSC，10°C/min", source: besno}
+      - {prop: 密度, value: "1.02", unit: g/cm³, conditions: "23°C", standard: ISO 1183, source: besnotds}
+  - code: BESNO P40 TL
+    full_name: RILSAN BESNO P40 TL
+    manufacturer: 阿科玛
+    brand: RILSAN
+    material: PA11
+    grade_class: 增塑管材级
+    verify: verified
+    aliases: [BESNO P40, P40TL]
+    summary: 增塑 PA11 管材料，厂家称是气刹管和汽车流体管路的市场标杆牌号。
+    sources:
+      - {id: p40, title: RILSAN BESNO P40 TL 产品页, url: "https://hpp.arkema.com/en/products/product/f/spa_hpp_RilsanPellets/p/rilsan-besno-p40-tl/", publisher: Arkema, kind: maker_web, accessed: 2026-11-10}
+
+  # ================= PPA =================
+  - code: A-1133 HS
+    full_name: Amodel A-1133 HS
+    manufacturer: Syensqo
+    brand: Amodel
+    material: PPA
+    grade_class: 33% 玻纤增强，热稳定
+    verify: partial
+    aliases: [A1133HS, A-1133HS, Amodel A1133]
+    summary: PPA 的代表牌号：33% 玻纤，热稳定，热变形温度高、刚性和强度高、吸水低、抗蠕变好。
+    description: |
+      Amodel 是 Syensqo（原索尔维）的 PPA 品牌。从厂家牌号可以归纳出规律：A-1xxx 是基础系列，
+      **第二位数字代表填料（1 = 玻纤，5 = 玻纤加矿物，6 = 碳纤加玻纤），最后两位是填充量**：
+      A-1133 = 33% 玻纤，A-1145 = 45% 玻纤，A-1565 = 65% 玻纤加矿物。HS 是热稳定，BK 324 是黑色、NT 是本色。
+    sources:
+      - {id: a1133, title: "Amodel A-1133 HS（UL Prospector）", url: "https://betaplastics.ulprospector.com/plastics/en/datasheet/699/a-1133-hs", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+      - {id: amul, title: "Amodel 产品列表（UL Prospector 日文）", url: "https://betaplastics.ulprospector.com/plastics/ja/generics/22/materials/58", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+  - code: HTN 51G35HSL
+    full_name: Zytel HTN 51G35HSL
+    manufacturer: 塞拉尼斯
+    brand: Zytel HTN
+    material: PPA
+    grade_class: 35% 玻纤，耐水解
+    verify: partial
+    aliases: [HTN51G35HSL, 51G35HSL, HTN 51G35HSLR]
+    summary: 原杜邦（现塞拉尼斯）的 35% 玻纤 PPA，耐水解，常用于汽车冷却系统零件。
+    description: |
+      Zytel HTN 是“高性能尼龙”系列，原属杜邦，2022 年随杜邦工程塑料业务归塞拉尼斯。
+      牌号里 G35 = 35% 玻纤，HS = 热稳定，L = 润滑，R 结尾的版本表面外观更好。
+    sources:
+      - {id: htn, title: "Zytel HTN 51G35HSL BK083（UL Prospector）", url: "https://betaplastics.ulprospector.com/plastics/en/datasheet/85333/zytel-htn-51g35hsl-bk083", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+  - code: Vicnyl 650
+    full_name: Vicnyl 650（PA10T）
+    manufacturer: 金发科技
+    brand: Vicnyl
+    material: PPA
+    grade_class: PA10T，50% 玻纤
+    verify: partial
+    aliases: [Vicnyl650, 金发 PA10T]
+    summary: 金发科技的 PA10T 高温尼龙，50% 玻纤；PA10T 的癸二胺来自蓖麻，吸水率在商品化半芳香尼龙里最低（厂家说法）。
+    description: 资料来自 2012 年的行业报道（当时热变形温度 280°C、24 小时吸水 0.15%），现行牌号和数据请以金发最新 TDS 为准。
+    sources:
+      - {id: vic, title: "Specialty bio-based nylon makes mark in China（2012）", url: "https://www.plasticstoday.com/plastics-processing/specialty-bio-based-nylon-makes-mark-in-china", publisher: PlasticsToday, kind: media, accessed: 2026-11-10}
