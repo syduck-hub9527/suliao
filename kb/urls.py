@@ -16,5 +16,4 @@ urlpatterns = [
     path("g/<int:pk>/", views.grade_detail, name="grade"),
     path("c/<int:pk>/", views.company_detail, name="company"),
     path("prices/", price_views.prices, name="prices"),
-    path("prices/<str:group>/", price_views.price_detail, name="price_detail"),
 ]

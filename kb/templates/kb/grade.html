@@ -22,10 +22,8 @@
   .sec .table-wrap table.data { min-width: 620px; }
   .side .card { margin-bottom: 14px; padding: 14px 16px; }
   .side h3 { font-size: 15px; margin: 0 0 8px; }
-  .pmini { padding: 6px 0 10px; border-bottom: 1px solid var(--line); margin-bottom: 8px; }
-  .prow { display: flex; justify-content: space-between; gap: 8px; margin-top: 4px; font-variant-numeric: tabular-nums; }
-  .pdate { text-align: right; }
-  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
+  .prow { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-variant-numeric: tabular-nums; }
+  .pdate { text-align: right; margin-bottom: 6px; }
   .chips { display: flex; flex-wrap: wrap; gap: 6px; }
   .chip { font-size: 14px; background: #f1f3f6; border-radius: 6px; padding: 1px 8px; color: var(--text); }
   .kv { display: grid; grid-template-columns: 72px 1fr; gap: 4px 8px; font-size: 14px; }
@@ -140,7 +138,7 @@
       </div>
     </div>
 
-    {% include "kb/_price_side.html" with groups=price_groups %}
+    {% include "kb/_price_side.html" with rows=price_rows %}
 
     {% if siblings %}
       <div class="card">

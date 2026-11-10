@@ -26,10 +26,8 @@
   .prose a.term:hover { color: var(--accent); text-decoration: none; }
   .side .card { margin-bottom: 14px; padding: 14px 16px; }
   .side h3 { font-size: 15px; margin: 0 0 8px; }
-  .pmini { padding: 6px 0 10px; border-bottom: 1px solid var(--line); margin-bottom: 8px; }
-  .prow { display: flex; justify-content: space-between; gap: 8px; margin-top: 4px; font-variant-numeric: tabular-nums; }
-  .pdate { text-align: right; }
-  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
+  .prow { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-variant-numeric: tabular-nums; }
+  .pdate { text-align: right; margin-bottom: 6px; }
   .status-form { display: flex; flex-wrap: wrap; gap: 6px; }
   .status-form button { font: inherit; font-size: 13px; padding: 4px 10px; border-radius: 7px; cursor: pointer;
                         border: 1px solid var(--line); background: #fff; color: var(--soft); }
@@ -125,7 +123,7 @@
       <div class="small muted" style="margin-top:6px">看过 {{ progress.view_count }} 次</div>
     </div>
 
-    {% include "kb/_price_side.html" with groups=price_groups %}
+    {% include "kb/_price_side.html" with rows=price_rows %}
 
     {% if aliases %}
       <div class="card">

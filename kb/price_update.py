@@ -19,7 +19,7 @@ from . import models as m
 from . import price_catalog, price_fetch
 from .price_fetch import FetchError
 
-HISTORY_DAYS = 400      # 第一次抓期货时回补多少天的历史（画走势图用）
+HISTORY_DAYS = 20       # 往回取多少天（只为了算“比上一天涨跌多少”，不需要更多）
 REFRESH_BARS = 5        # 之后每次重写最近几根日线
 
 

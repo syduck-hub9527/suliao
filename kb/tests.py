@@ -592,8 +592,6 @@ class PriceUpdateTests(TestCase):
         self.assertEqual(m.PriceSeries.objects.count(), before)
         self.assertEqual(self.fut.entry, self.pp)
         self.assertEqual(self.fut.source.url[:8], "https://")
-        # 原油没有对应词条，也能建
-        self.assertIsNone(m.PriceSeries.objects.get(code="fut:SC").entry)
 
     def test_futures_history_and_dates(self):
         report = self._futures(_bj(2026, 11, 10, 10, 0))
@@ -670,6 +668,8 @@ class PriceUpdateTests(TestCase):
 
 @override_settings(STORAGES=NO_MANIFEST)
 class PricePageTests(TestCase):
+    """今日价格页：每个品种一个价格，带自己的日期。"""
+
     def setUp(self):
         from .price_update import sync_catalog
         self.pp = m.Entry.objects.create(kind=m.EntryKind.MATERIAL, name_zh="聚丙烯", abbr="PP")
@@ -678,11 +678,19 @@ class PricePageTests(TestCase):
         self.spot = m.PriceSeries.objects.get(code="spot:PP")
         self.today = timezone.localdate()
 
+    def _row(self):
+        return next(r for r in self.client.get("/prices/").context["rows"] if r["code"] == "PP")
+
     def test_pages_work_without_any_data(self):
-        for url in ["/prices/", "/prices/PP/", "/prices/SC/", "/"]:
+        for url in ["/prices/", "/"]:
             self.assertEqual(self.client.get(url).status_code, 200, url)
-        self.assertContains(self.client.get("/prices/"), "还没有抓到任何价格")
-        self.assertEqual(self.client.get("/prices/NOPE/").status_code, 404)
+        self.assertFalse(self._row()["has_price"])
+        self.assertContains(self.client.get("/prices/"), "暂无")
+
+    def test_one_row_per_product(self):
+        from .price_catalog import CATALOG
+        rows = self.client.get("/prices/").context["rows"]
+        self.assertEqual([r["code"] for r in rows], [item["group"] for item in CATALOG])
 
     def test_old_price_is_never_labelled_today(self):
         old = self.today - _dt.timedelta(days=4)
@@ -692,48 +700,36 @@ class PricePageTests(TestCase):
         self.assertContains(resp, "9,461")
         self.assertContains(resp, "不是今天")
         self.assertContains(resp, f"{old.month}月{old.day}日")
-        self.assertEqual(resp.context["status"]["today"], 0)
+        row = self._row()
+        self.assertFalse(row["is_today"])
+        self.assertEqual((row["direction"], row["diff_text"]), ("down", "35"))
 
-    def test_todays_price_is_labelled_today(self):
-        m.PricePoint.objects.create(series=self.fut, date=self.today - _dt.timedelta(days=1), price=9496)
+    def test_same_day_prefers_spot(self):
         m.PricePoint.objects.create(series=self.fut, date=self.today, price=9461)
         m.PricePoint.objects.create(series=self.spot, date=self.today, price=9520)
-        resp = self.client.get("/prices/")
-        self.assertEqual(resp.context["status"]["today"], 2)
-        group = next(g for g in resp.context["groups"] if g["code"] == "PP")
-        self.assertTrue(group["futures"]["is_today"])
-        self.assertEqual(group["futures"]["direction"], "down")
-        self.assertEqual((group["basis"]["sentence"], group["basis"]["text"]), ("现货比期货高", "59"))
-        detail = self.client.get("/prices/PP/")
-        self.assertContains(detail, "9,520")
-        self.assertIsNotNone(detail.context["chart"])
+        row = self._row()
+        self.assertEqual((row["price"], row["kind"], row["is_today"]), ("9,520", "spot", True))
 
-    def test_basis_needs_same_day(self):
-        m.PricePoint.objects.create(series=self.fut, date=self.today, price=9461)
+    def test_newer_price_wins(self):
         m.PricePoint.objects.create(series=self.spot, date=self.today - _dt.timedelta(days=1), price=9520)
-        group = next(g for g in self.client.get("/prices/").context["groups"] if g["code"] == "PP")
-        self.assertNotIn("basis", group)
+        m.PricePoint.objects.create(series=self.fut, date=self.today, price=9461)
+        row = self._row()
+        self.assertEqual((row["price"], row["kind"], row["is_today"]), ("9,461", "futures", True))
 
-    def test_failure_reason_is_shown(self):
+    def test_failure_reason_shown_only_when_no_price(self):
         self.fut.last_error = "新浪期货 PP0 没取到：连接超时"
-        self.fut.last_checked_at = timezone.now()
         self.fut.save()
         self.assertContains(self.client.get("/prices/"), "连接超时")
+        m.PricePoint.objects.create(series=self.fut, date=self.today, price=9461)
+        self.assertNotContains(self.client.get("/prices/"), "连接超时")
 
-    def test_why_not_today_messages(self):
-        from .price_views import _why_not_today
-        saturday = _dt.datetime(2026, 11, 7, 12, 0)
-        self.assertIn("周末", _why_not_today(self.fut, saturday))
-        self.assertIn("收盘后", _why_not_today(self.fut, _dt.datetime(2026, 11, 10, 10, 0)))
-        self.assertIn("还没有运行", _why_not_today(self.fut, _dt.datetime(2026, 11, 10, 16, 0)))
-
-    def test_entry_and_grade_pages_show_related_prices(self):
+    def test_entry_and_grade_pages_show_reference_price(self):
         m.PricePoint.objects.create(series=self.fut, date=self.today, price=9461)
         pph = m.Entry.objects.create(kind=m.EntryKind.MATERIAL, name_zh="均聚聚丙烯", abbr="PP-H", parent=self.pp)
         grade = m.Grade.objects.create(code="T30S", base_entry=pph, product_type=m.Grade.ProductType.RESIN,
                                        producers_note="多家企业")
-        for url in [f"/e/{self.pp.pk}/", f"/e/{pph.pk}/", f"/g/{grade.pk}/"]:
-            self.assertContains(self.client.get(url), "相关行情价", msg_prefix=url)
+        for url in [f"/e/{self.pp.pk}/", f"/e/{pph.pk}/", f"/g/{grade.pk}/", "/"]:
+            self.assertContains(self.client.get(url), "9,461", msg_prefix=url)
         self.assertContains(self.client.get(f"/g/{grade.pk}/"), "chinaprice_search_T30S.html")
 
     def test_scheduler_times(self):

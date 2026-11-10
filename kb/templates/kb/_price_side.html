@@ -1,22 +1,10 @@
-{# 侧边栏里的“相关价格”。用法：{% include "kb/_price_side.html" with groups=price_groups %} #}
-{% if groups %}
-  <div class="card pside">
-    <h3>相关行情价</h3>
-    {% for g in groups %}
-      <div class="pmini">
-        <a href="{% url 'kb:price_detail' g.code %}"><b>{{ g.title }}</b></a>
-        {% for snap in g.snaps %}{% if snap.has_data %}
-          <div class="prow small">
-            <span><i class="dot" style="background: {{ snap.color }}"></i>{{ snap.short }}</span>
-            <span><b>{{ snap.price }}</b> <span class="muted">{{ snap.unit }}</span></span>
-          </div>
-          <div class="pdate">
-            {% if snap.is_today %}<span class="badge green">{{ snap.date_label }}</span>
-            {% else %}<span class="badge amber">不是今天 · {{ snap.date_label }}</span>{% endif %}
-          </div>
-        {% endif %}{% endfor %}
-      </div>
+{# 侧边栏里的参考价。用法：{% include "kb/_price_side.html" with rows=price_rows %} #}
+{% if rows %}
+  <div class="card">
+    <h3>市场参考价</h3>
+    {% for r in rows %}
+      <div class="prow"><span>{{ r.title }}</span><span><b>{{ r.price }}</b> <span class="muted small">{{ r.unit }}</span></span></div>
+      <div class="pdate">{% if r.is_today %}<span class="badge green">今天</span>{% else %}<span class="badge amber">不是今天 · {{ r.date_label }}</span>{% endif %}</div>
     {% endfor %}
-    <div class="small muted">这是行情参考价，不是某个牌号的报价。<a href="{% url 'kb:prices' %}">全部行情 →</a></div>
   </div>
 {% endif %}
