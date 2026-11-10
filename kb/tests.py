@@ -512,3 +512,19 @@ class OverviewPageTests(TestCase):
         self.assertEqual(regions, ["中国大陆", "中国台湾", "欧洲"])
         company = m.Company.objects.get(name="巴斯夫")
         self.assertContains(self.client.get(f"/c/{company.pk}/"), "HP500N")
+
+
+class DeployFilesTests(TestCase):
+    """部署用的 docker-compose.yml 必须是合法的 YAML，否则服务器上 docker compose 一条命令都跑不了。"""
+
+    def test_compose_file_is_valid(self):
+        import yaml
+        from django.conf import settings
+        data = yaml.safe_load((settings.BASE_DIR / "docker-compose.yml").read_text(encoding="utf-8"))
+        self.assertEqual(list(data["services"]), ["web"])
+        web = data["services"]["web"]
+        self.assertEqual(web["image"], "suliao-web")
+        self.assertIn("suliao-data:/data", web["volumes"])
+        # 顶层 volumes 必须是“卷名: 设置”的映射，不能是列表
+        self.assertIsInstance(data["volumes"], dict)
+        self.assertIn("suliao-data", data["volumes"])

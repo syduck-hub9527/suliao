@@ -18,11 +18,4 @@ services:
     restart: unless-stopped
 
 volumes:
-      - suliao-data:/data
-    command: ["python", "manage.py", "run_price_scheduler"]
-    depends_on:
-      - web
-    restart: unless-stopped
-
-volumes:
   suliao-data:
