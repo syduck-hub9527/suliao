@@ -268,7 +268,7 @@ grades:
     grade_class: 透明通用级
     verify: partial
     aliases: [PA758, 奇美 PA-758, 奇美透明ABS]
-    summary: 国内最常见的透明 ABS 牌号之一，颜色稳定、流动性高、透明度好，用于空调面板、洗衣机盖、吸尘器外壳、文具。
+    summary: 奇美的透明 ABS（MABS），颜色稳定、流动性高、透明度好，用于空调面板、洗衣机盖、吸尘器外壳、文具。
     description: PA-758R 是耐化学品、带淡蓝色调的版本，多用于洗衣机盖、吸尘器外壳。
     sources:
       - {id: pa758, title: "POLYLAC 牌号列表（Material Data Center）", url: "https://www.materialdatacenter.com/ms/en/Polylac/Chi+Mei+Corporation/544", publisher: Material Data Center, kind: other, accessed: 2026-11-10}
@@ -284,7 +284,7 @@ grades:
     grade_class: 通用级
     verify: partial
     aliases: [KR-03, K胶 KR03]
-    summary: 俗称“K 胶”的代表牌号：透明度极好、刚韧平衡、表面光泽高，可注塑、吹瓶、挤片，用于食品包装、玩具、医疗器械。
+    summary: 俗称“K 胶”的 SBC：透明度极好、刚韧平衡、表面光泽高，可注塑、吹瓶、挤片，用于食品包装、玩具、医疗器械。
     description: K-Resin 原属雪佛龙菲利普斯，后归英力士苯领。KR03NW 是不含蜡、便于印刷的版本。
     sources:
       - {id: kr03, title: "K-Resin KR03（SpecialChem）", url: "https://www.specialchem.com/plastics/product/ineos-styrolution-ineos-group-k-resin-kr03", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
@@ -299,7 +299,7 @@ grades:
     grade_class: 通用透明级
     verify: partial
     aliases: [伊士曼 6763, PETG 6763, Eastar6763]
-    summary: 最经典的 PETG 牌号之一：透明、坚韧、熔体强度好，挤出、注塑、吹塑都能用。
+    summary: 伊士曼的通用 PETG：透明、坚韧、熔体强度好，挤出、注塑、吹塑都能用。
     sources:
       - {id: e6763, title: "Eastman 数据表目录（GlobalSpec）", url: "https://datasheets.globalspec.com/ds/1573/EastmanChemical", publisher: GlobalSpec, kind: other, accessed: 2026-11-10}
   - code: TX1001

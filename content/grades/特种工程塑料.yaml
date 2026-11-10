@@ -24,7 +24,7 @@ grades:
     material: PEEK
     grade_class: 通用级，标准黏度
     verify: verified
-    summary: PEEK 里名气最大的牌号之一，标准熔体黏度、中等分子量，用于注塑和挤出。
+    summary: 威格斯的标准 PEEK 牌号，标准熔体黏度、中等分子量，用于注塑和挤出。
     description: |
       厂家把 450G 定义为“标准熔体黏度”的通用 PEEK。威格斯的牌号数字代表黏度档次：
       **90 < 150 < 450 < 650**，数字越小越好流动（适合薄壁），数字越大分子量越高、越韧。
@@ -159,7 +159,7 @@ grades:
     material: PEEK
     grade_class: 高流动纯树脂
     verify: partial
-    summary: 国产 PEEK 代表企业中研股份的高流动纯 PEEK 粒料。
+    summary: 国产 PEEK 生产商中研股份的高流动纯 PEEK 粒料。
     description: |
       中研股份的牌号数字按流动性排：**770（低流动）→ 550（中流动）→ 330（高流动）**。
       后缀 G 是粒料，P 是粗粉，PF 是细粉，GL30 是 30% 玻纤，CA30 是 30% 碳纤。
@@ -194,7 +194,6 @@ grades:
     summary: 东丽的 40% 玻纤增强 PPS 标准牌号，用于开关、连接器、发电机部件和办公设备零件。
     description: |
       资料说明它是**支链型** PPS，40% 玻纤，耐热、阻燃、耐化学品，流动性和尺寸稳定性好。
-      国内做电子电器、汽车零件的 PPS，A504X90 是最常被拿来对比的牌号之一。
       东丽 PPS 牌号的规律：A5xx 多为支链型，A6xx 多为线型；X90、X95 这类后缀区分不同改进点（X95 是低毛边）。
     sources:
       - {id: tsc, title: "TORELINA A504X90（SpecialChem）", url: "https://www.specialchem.com/plastics/product/toray-torelina-a504x90", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
@@ -402,7 +401,7 @@ grades:
     grade_class: 纯树脂，标准流动
     verify: partial
     aliases: [ULTEM1000, Ultem 1000]
-    summary: PEI 的代表牌号：透明琥珀色、标准流动、本身阻燃，玻璃化温度 217°C。
+    summary: ULTEM 的基础牌号：透明琥珀色、标准流动、本身阻燃，玻璃化温度 217°C。
     description: |
       ULTEM 原属 GE 塑料，2007 年起归 SABIC。牌号规律：**1000 系列是纯树脂**（1000 标准流动，1010 流动更好），
       **2000 系列是玻纤增强**：2100 = 10%，2200 = 20%，2300 = 30%，2400 = 40% 玻纤。
@@ -452,7 +451,7 @@ grades:
     grade_class: 通用级纯树脂
     verify: partial
     aliases: [P1700, Udel P1700, P-1700 NT11]
-    summary: 最常见的 PSU 牌号：坚韧、刚性好，可长期在 149°C 使用，耐反复蒸汽消毒，有食品接触认证。
+    summary: Udel 的通用 PSU 牌号：坚韧、刚性好，可长期在 149°C 使用，耐反复蒸汽消毒，有食品接触认证。
     description: |
       厂家说明：耐无机酸、碱和盐溶液，耐洗涤剂和烃类油，**但会被酮类、氯代烃、芳香烃等极性溶剂侵蚀**。
       有透明（NT 11、NT 06）、白、黑、灰等颜色；P-1700 LCD 是专门做过滤膜的版本。
@@ -466,7 +465,7 @@ grades:
     grade_class: 透明注塑级
     verify: unverified
     aliases: [R5000, Radel R5000, R-5000 NT, R-5000 CL301]
-    summary: PPSU 的代表牌号：透明，耐水解、韧性极好，可反复高温消毒，医疗器械和奶瓶常用。
+    summary: Radel 的透明注塑级 PPSU：耐水解、韧性极好，可反复高温消毒，医疗器械和奶瓶常用。
     description: |
       Radel 系列分工（厂家资料原意）：**R-5000 透明注塑级，R-5100 不透明通用注塑级，
       R-5500 透明挤出级，R-5800 高流动（薄壁长流程）**。
@@ -575,9 +574,9 @@ grades:
     grade_class: 30% 玻纤增强，通用级
     verify: partial
     aliases: [Vectra A130, A130 VF3001]
-    summary: LCP 最经典的牌号之一：30% 玻纤，本身阻燃，综合性能均衡，用于气相回流焊的电子元件。
+    summary: VECTRA 的 30% 玻纤通用 LCP，本身阻燃，综合性能均衡，用于气相回流焊的电子元件。
     description: |
-      VECTRA 牌号规律：**字母代表基础树脂系列**（A 系列最通用；C、E 系列耐热更高、更适合 SMT 回流焊），
+      VECTRA 牌号规律：**字母代表基础树脂系列**（A 系列最通用；C 系列比 A 系列耐热更高、更好流动），
       **第一位数字代表填料**：1 = 玻纤，2 = 碳纤，4 = 含 PTFE，5 = 矿物，6 = 石墨；**后两位是填充量**，30 就是 30%。
       所以 A130 = A 系列 + 30% 玻纤，A230 = 30% 碳纤，A530 = 30% 矿物。
     sources:

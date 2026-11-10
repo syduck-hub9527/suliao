@@ -52,6 +52,25 @@ companies:
     types: [生产商]
     intro: 国内 PPS 树脂生产商，品牌 NHU-PPS（新和成主业还有维生素等精细化工）。
 
+  - name: 巴陵石化
+    name_zh: 中国石化巴陵石化分公司
+    name_en: Sinopec Baling Petrochemical
+    aliases: [巴陵, 岳化, Baling]
+    parent: 中国石化
+    country: 中国
+    city: 湖南岳阳
+    types: [生产商]
+    intro: 中国石化旗下企业，国内主要的 SBS、SEBS 等苯乙烯类热塑性弹性体生产商之一（牌号多以 YH 开头）。
+
+  - name: 万华化学
+    name_zh: 万华化学集团股份有限公司
+    name_en: Wanhua Chemical Group
+    aliases: [万华, Wanhua]
+    country: 中国
+    city: 山东烟台
+    types: [生产商]
+    intro: 全球最大的 MDI 生产商之一，品牌 WANNATE；也生产 TPU、PC、PMMA 等。
+
   - name: 扬子巴斯夫
     name_zh: 扬子石化-巴斯夫有限责任公司
     name_en: BASF-YPC Company Limited
@@ -90,6 +109,14 @@ companies:
     types: [生产商]
     website: https://en.fcfc-plastics.com/
     intro: 台塑集团旗下企业，ABS 品牌 TAIRILAC。在台湾和宁波都有工厂。
+
+  - name: 南亚塑胶
+    name_zh: 南亚塑胶工业股份有限公司
+    name_en: Nan Ya Plastics Corporation
+    aliases: [南亚, Nan Ya, Nanya]
+    country: 中国台湾
+    types: [生产商]
+    intro: 台塑集团旗下企业，产品很多，包括环氧树脂（NPEL 系列）、PET、PBT 等。
 
   - name: 台塑
     name_zh: 台湾塑胶工业股份有限公司
@@ -148,6 +175,22 @@ companies:
     country: 日本
     types: [生产商]
     intro: 日本大型化工企业。PMMA 品牌 ACRYPET，EVOH 品牌 SoarnoL。
+
+  - name: 住友电木
+    name_zh: 住友电木株式会社
+    name_en: Sumitomo Bakelite Co., Ltd.
+    aliases: [Sumitomo Bakelite, SBHPP, 住友电木]
+    country: 日本
+    types: [生产商]
+    intro: 日本酚醛等热固性材料企业，酚醛模塑料品牌 SUMIKON。
+
+  - name: 钟渊化学
+    name_zh: 株式会社钟化
+    name_en: Kaneka Corporation
+    aliases: [Kaneka, 钟化, 钟渊]
+    country: 日本
+    types: [生产商]
+    intro: 日本化工企业，PHBH 型生物降解塑料品牌 Green Planet。
 
   - name: 东丽
     name_zh: 东丽株式会社
@@ -318,6 +361,38 @@ companies:
     country: 美国
     types: [生产商]
     intro: 2015 年从杜邦分拆出来的化工公司，接手了杜邦的氟化工业务，PTFE、FEP、PFA 品牌 Teflon（特氟龙），ETFE 品牌 Tefzel。
+
+  - name: 科腾
+    name_zh: 科腾聚合物
+    name_en: Kraton Corporation
+    aliases: [Kraton, 科腾聚合物]
+    country: 美国
+    types: [生产商]
+    intro: 全球主要的苯乙烯类嵌段共聚物（SBS、SIS、SEBS）生产商，品牌 Kraton。
+
+  - name: 陶氏
+    name_zh: 陶氏公司
+    name_en: Dow Inc.
+    aliases: [Dow, 陶氏化学]
+    country: 美国
+    types: [生产商]
+    intro: 美国大型化工企业，POE 品牌 ENGAGE，聚乙烯品牌 DOWLEX 等。
+
+  - name: 欧林
+    name_zh: 欧林公司
+    name_en: Olin Corporation
+    aliases: [Olin, Olin Epoxy]
+    country: 美国
+    types: [生产商]
+    intro: 美国化工企业，2015 年接手陶氏的环氧业务，环氧树脂品牌 D.E.R.。
+
+  - name: NatureWorks
+    name_zh: NatureWorks
+    name_en: NatureWorks LLC
+    aliases: [Natureworks]
+    country: 美国
+    types: [生产商]
+    intro: 全球主要的 PLA 生产商，品牌 Ingeo。
 
   - name: 伊士曼
     name_zh: 伊士曼化工公司

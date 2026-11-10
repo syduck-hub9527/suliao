@@ -26,7 +26,7 @@ grades:
     grade_class: 无填充通用级（非阻燃）
     verify: partial
     aliases: [NORYL731, Noryl 731]
-    summary: 最经典的 NORYL 通用牌号之一，PPE+PS 共混，无填充、不阻燃；731S 是食品接触版。
+    summary: NORYL 的通用牌号，PPE+PS 共混，无填充、不阻燃；731S 是食品接触版。
     sources:
       - {id: n731, title: "SABIC PPE 产品列表（UL Prospector）", url: "https://betaplastics.ulprospector.com/plastics/fr/generics/40/manufacturers/44?page=6", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
       - *noryl_web
@@ -180,7 +180,7 @@ grades:
     grade_class: 33% 玻纤增强，热稳定
     verify: partial
     aliases: [A1133HS, A-1133HS, Amodel A1133]
-    summary: PPA 的代表牌号：33% 玻纤，热稳定，热变形温度高、刚性和强度高、吸水低、抗蠕变好。
+    summary: Amodel 的 33% 玻纤 PPA，热稳定，热变形温度高、刚性和强度高、吸水低、抗蠕变好。
     description: |
       Amodel 是 Syensqo（原索尔维）的 PPA 品牌。从厂家牌号可以归纳出规律：A-1xxx 是基础系列，
       **第二位数字代表填料（1 = 玻纤，5 = 玻纤加矿物，6 = 碳纤加玻纤），最后两位是填充量**：

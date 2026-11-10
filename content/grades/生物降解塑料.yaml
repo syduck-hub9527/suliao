@@ -1,0 +1,92 @@
+# 生物降解塑料（PLA、PBAT、PBS、PHA）常用厂商和牌号。查阅日期 2026-11-10。
+
+grades:
+  - code: 4032D
+    full_name: Ingeo 4032D
+    manufacturer: NatureWorks
+    brand: Ingeo
+    material: PLA
+    grade_class: 双向拉伸薄膜级
+    verify: partial
+    aliases: [Ingeo4032D, NatureWorks 4032D]
+    summary: NatureWorks 的 PLA 薄膜料，可做双向拉伸膜（使用温度可到 150°C），光学性好，用于复合包装，加工前必须干燥。
+    description: |
+      NatureWorks 是主要的 PLA 生产商，品牌 Ingeo。从牌号可以归纳出第一位大致代表用途：
+      **2 = 挤出/热成型片材，3 = 注塑，4 = 薄膜，6 = 纤维**；带 HP 的是加工中会结晶、耐热更高的牌号。
+    sources:
+      - &ingeo_ul {id: iul, title: "Ingeo 产品列表（UL Prospector）", url: "https://betaplastics.ulprospector.com/plastics/pt/generics/34/materials/1872", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+  - code: 2003D
+    full_name: Ingeo 2003D
+    manufacturer: NatureWorks
+    brand: Ingeo
+    material: PLA
+    grade_class: 透明通用挤出级
+    verify: partial
+    aliases: [Ingeo2003D, NatureWorks 2003D]
+    summary: 透明通用挤出级 PLA，高分子量，挤出片材后易热成型，用于乳品杯、透明食品盒、冷饮杯、餐具。
+    sources:
+      - *ingeo_ul
+      - {id: i2003, title: "Ingeo 2003D（Entec，转载厂家说明）", url: "https://entecpolymers.com/en-US/products/100150054-natureworks-ingeo-2003d", publisher: Entec Polymers, kind: other, accessed: 2026-11-10}
+  - code: 3001D
+    full_name: Ingeo 3001D
+    manufacturer: NatureWorks
+    brand: Ingeo
+    material: PLA
+    grade_class: 透明注塑级
+    verify: partial
+    aliases: [Ingeo3001D]
+    summary: 注塑用透明 PLA，适合热变形温度要求低于 49°C 的制品，如刀叉勺、杯、盘、化妆品包装。
+    sources: [*ingeo_ul]
+
+  - code: F Blend C1200
+    full_name: ecoflex F Blend C1200
+    manufacturer: 巴斯夫
+    brand: ecoflex
+    material: PBAT
+    grade_class: 吹膜/流延膜级
+    verify: partial
+    aliases: [C1200, ecoflex C1200, 巴斯夫 PBAT]
+    summary: 巴斯夫的 PBAT 牌号，由丁二醇、己二酸、对苯二甲酸聚合，熔点 110～120°C，韧、可吹薄膜，常与 PLA 共混做可降解袋。
+    description: 2024 年巴斯夫推出了生物质平衡版 ecoflex F Blend C1200 BMB，性能和认证与标准版相同，碳足迹低约 60%。
+    sources:
+      - {id: c1200s, title: "ecoflex 产品列表（SpecialChem）", url: "https://www.specialchem.com/plastics/supplier/basf/ecoflex", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+      - {id: c1200n, title: "BASF 新闻：生物质平衡 ecoflex（2024）", url: "https://www.basf.com/global/en/media/news-releases/2024/06/p-24-212.html", publisher: BASF, kind: maker_web, accessed: 2026-11-10}
+
+  - code: FZ91PM
+    full_name: BioPBS FZ91PM
+    manufacturer: 三菱化学
+    brand: BioPBS
+    material: PBS
+    grade_class: 吹膜/流延膜标准级
+    verify: partial
+    aliases: [FZ91, FZ91PB, BioPBS FZ91]
+    summary: 生物基 PBS（生物基丁二酸 + 1,4-丁二醇），像 LDPE 一样柔软，可在现有 LDPE 设备上吹膜，用于地膜、袋子，有食品接触认证。
+    description: BioPBS 牌号里 PM 是粒料、PB 是同一产品的另一种包装/形态；FD92 是含己二酸的 PBSA 柔软级，可做软包装热封层。
+    sources:
+      - {id: fz91, title: "BioPBS FZ91PM / FZ91PB（UL Prospector）", url: "https://plastics.ulprospector.com/plastics/en/datasheet/416743/biopbs-fz91pm---fz91pb", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+      - {id: pbsul, title: "BioPBS 产品列表（UL Prospector）", url: "https://betaplastics.ulprospector.com/plastics/fr/generics/37/materials/9518", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+  - code: FD92PM
+    full_name: BioPBS FD92PM
+    manufacturer: 三菱化学
+    brand: BioPBS
+    material: PBS
+    grade_class: 柔软级（PBSA）
+    verify: partial
+    aliases: [FD92, FD92PB]
+    summary: 生物基 PBSA，比 FZ91 更软，适合软包装热封层、袋子、地膜，有家庭堆肥和土壤降解认证。
+    sources:
+      - {id: fd92, title: "BioPBS FD92PM / FD92PB（UL Prospector）", url: "https://plastics.ulprospector.com/plastics/en/datasheet/416742/biopbs-fd92pm---fd92pb", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+
+  - code: X151A
+    full_name: Green Planet X151A
+    manufacturer: 钟渊化学
+    brand: Green Planet
+    material: PHA
+    grade_class: PHBH 树脂
+    verify: partial
+    aliases: [Kaneka X151A, PHBH X151A]
+    summary: 钟渊（Kaneka）的 PHBH 型 PHA，用植物油经微生物发酵生产，土壤和海水中都能降解，用于吸管、咖啡胶囊、薄膜、购物袋、餐具。
+    description: 厂家说明：高砂工厂 2011 年起生产 PHBH，日、欧、美等都列入食品接触“正面清单”。同系列还有 X131A、X331N（柔软级）。
+    sources:
+      - {id: kgp, title: "Green Planet 产品列表（SpecialChem）", url: "https://www.specialchem.com/plastics/supplier/kaneka/green-planet", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+      - {id: kgpw, title: Kaneka 生物降解聚合物 Green Planet, url: "https://www.kaneka.co.jp/en/business/material/nbd_001.html", publisher: Kaneka, kind: maker_web, accessed: 2026-11-10}

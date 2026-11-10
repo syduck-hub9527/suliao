@@ -1,0 +1,186 @@
+# 热塑性弹性体（SBS、SEBS、TPV、TPEE、POE）常用厂商和牌号。查阅日期 2026-11-10。
+# TPU 的牌号在 弹性体.yaml 里。
+
+grades:
+  # ================= SBS =================
+  - code: D1101
+    full_name: Kraton D1101
+    manufacturer: 科腾
+    brand: Kraton
+    material: SBS
+    grade_class: 线型 SBS，苯乙烯 31%
+    verify: partial
+    aliases: [D-1101, Kraton D1101]
+    summary: 科腾的经典线型 SBS，苯乙烯含量 31%，透明，用于胶粘剂、密封胶、沥青改性、鞋材和塑料增韧。
+    description: |
+      科腾牌号规律：**D 系列是不加氢的 SBS/SIS，G 系列是加氢的 SEBS/SEPS**。
+      牌号后面的字母（如 AIM、KIM、JO）只区分产地和形态（粉、颗粒、多孔粒、是否撒粉）。
+    sources:
+      - {id: d1101, title: "Kraton D1101 系列（SpecialChem）", url: "https://adhesives.specialchem.com/searchsites/searchproducts/pf-powder/s-kraton/z-north-america", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+      - {id: d1101k, title: Kraton D1101 产品页, url: "https://kraton.com/zh/polymers/d1101/", publisher: Kraton, kind: maker_web, accessed: 2026-11-10}
+  - code: YH-791
+    full_name: 巴陵石化 SBS YH-791（SBS1301）
+    manufacturer: 巴陵石化
+    material: SBS
+    grade_class: 线型 SBS，苯乙烯/丁二烯 30/70
+    verify: unverified
+    aliases: [SBS1301, YH791, 791, 791H, YH-791H]
+    summary: 巴陵石化的线型 SBS，苯乙烯/丁二烯约 30/70，用于沥青改性、胶粘剂、鞋材。
+    description: |
+      国内 SBS 有两套叫法：**巴陵石化的 YH-79x 系列** 和 **国标式的 SBS1301、SBS1401、SBS4402** 等，两者常对照使用：
+      YH-791 ≈ SBS1301（线型，30/70），YH-792 ≈ SBS1401（线型，40/60），YH-796 ≈ SBS1201（线型，20/80）；
+      SBS4xxx 多为星型（支化）结构。具体以厂家最新质量标准为准。
+    sources:
+      - {id: yh791, title: "SBS 牌号对照表（化工平台商家资料）", url: "https://m.chemicalbook.com/ProductDetail_EN_thermoplastic-styrene-butadiene-rubber-sbs_2842149.htm", publisher: ChemicalBook 商家, kind: trader, accessed: 2026-11-10}
+      - {id: yh791e, title: "Baling SBS YH-791E 资料（Palmer Holland）", url: "https://palmerholland.com/getmedia/18e93f52-cfc8-4507-b4d3-fc6d271cc59a/MITM15476", publisher: Palmer Holland, kind: other, accessed: 2026-11-10}
+
+  # ================= SEBS =================
+  - code: G1650
+    full_name: Kraton G1650
+    manufacturer: 科腾
+    brand: Kraton
+    material: SEBS
+    grade_class: 线型 SEBS，苯乙烯约 30%
+    verify: partial
+    aliases: [G-1650, Kraton G1650]
+    summary: 科腾的线型 SEBS，苯乙烯约 30%，耐候耐热比 SBS 好，用于胶粘剂、TPE 共混料、塑料改性，也能把矿物油“固化”成凝胶。
+    sources:
+      - {id: g1650, title: "Kraton G1650 E（Knowde 转载厂家说明）", url: "https://knowde.com/stores/kraton/products/kraton-g1650-e", publisher: Knowde, kind: other, accessed: 2026-11-10}
+      - {id: g1650c, title: "Kraton G 系列简介（CAMEO）", url: "https://cameo.mfa.org/wiki/Kraton_G_rubber", publisher: Museum of Fine Arts Boston, kind: other, accessed: 2026-11-10}
+  - code: G1652
+    full_name: Kraton G1652
+    manufacturer: 科腾
+    brand: Kraton
+    material: SEBS
+    grade_class: 线型 SEBS，较低分子量
+    verify: partial
+    aliases: [G-1652]
+    summary: 和 G1650 苯乙烯含量相近、但分子量更低（溶液黏度低）的 SEBS，好加工、分散好，常用于塑料改性和胶粘剂。
+    sources:
+      - {id: g1652, title: "Kraton G1652 系列（SpecialChem）", url: "https://adhesives.specialchem.com/searchsites/searchproducts/pf-powder/s-kraton/z-north-america", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+  - code: YH-503
+    full_name: 巴陵石化 SEBS YH-503
+    manufacturer: 巴陵石化
+    material: SEBS
+    grade_class: 线型 SEBS，高分子量
+    verify: unverified
+    aliases: [YH503, YH-503T, 503T]
+    summary: 巴陵石化的线型 SEBS，分子量较高，和聚烯烃及石蜡油相容性好，用于 TPE 共混料、胶粘剂。
+    description: 巴陵 SEBS 还有 YH-501、YH-502、YH-602（星型）等；具体参数请向厂家索取。
+    sources:
+      - {id: yh503, title: "Baling SEBS YH-503T 等（Palmer Holland）", url: "https://www.products.palmerholland.com/brands/dzbh/products", publisher: Palmer Holland, kind: other, accessed: 2026-11-10}
+
+  # ================= TPV =================
+  - code: 101-64
+    full_name: Santoprene 101-64
+    manufacturer: 塞拉尼斯
+    brand: Santoprene
+    material: TPV
+    grade_class: 软质通用级，黑色
+    verify: verified
+    aliases: [101-64, Santoprene 101-64]
+    summary: Santoprene 的软质黑色通用 TPV，邵氏 A 硬度约 70（15 秒），用于密封件、电器零件、汽车防尘罩。
+    description: |
+      Santoprene 原属埃克森美孚，2021 年底卖给塞拉尼斯。它是在 PP 里分散了完全硫化的 EPDM 橡胶颗粒。
+      牌号规律：**101 系列黑色通用，201 系列可配色**；横线后的数字大致是硬度档次（64、73、80、87…），数字越大越硬。
+    sources:
+      - {id: s10164, title: "SANTOPRENE 101-64 数据表（塞拉尼斯材料库，Protolabs 转载）", url: "https://protolabs.com/media/q2xlvfpk/santoprene-101-64-gb.pdf", publisher: Celanese, kind: maker_doc, accessed: 2026-11-10}
+      - {id: santo_w, title: "Thermoplastic vulcanizates（Wikipedia）", url: "https://en.wikipedia.org/wiki/Thermoplastic_vulcanizates", publisher: Wikipedia, kind: other, accessed: 2026-11-10}
+  - code: 101-87
+    full_name: Santoprene 101-87
+    manufacturer: 塞拉尼斯
+    brand: Santoprene
+    material: TPV
+    grade_class: 硬质通用级，黑色
+    verify: partial
+    aliases: [Santoprene 101-87]
+    summary: 硬质黑色 TPV，耐臭氧、耐化学品，常用于汽车玻璃导槽等密封系统的硬质部分。
+    sources:
+      - {id: s10187, title: "Santoprene 101-87（UL Prospector）", url: "https://betaplastics.ulprospector.com/plastics/en/datasheet/244476/santoprene-101-87", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+      - {id: s10187s, title: "SANTOPRENE 产品列表（SpecialChem）", url: "https://www.specialchem.com/plastics/supplier/celanese/santoprene", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+
+  # ================= TPEE =================
+  - code: "4056"
+    full_name: Hytrel 4056
+    manufacturer: 塞拉尼斯
+    brand: Hytrel
+    material: TPEE
+    grade_class: 邵氏 40D
+    verify: partial
+    aliases: [Hytrel 4056, Hytrel4056]
+    summary: Hytrel 系列里较软的通用牌号，邵氏硬度 40D。
+    description: |
+      Hytrel 原属杜邦，2022 年随杜邦工程塑料业务归塞拉尼斯。**牌号前两位就是邵氏 D 硬度**：
+      3078 = 30D，4056 = 40D，5526 = 55D，6356 = 63D，7246 = 72D，8238 = 82D。HS 是耐热老化，FG 是食品接触级。
+    sources:
+      - &hytrel_ul {id: hul, title: "Hytrel 产品列表（UL Prospector）", url: "https://plastics.ulprospector.com/plastics/en/generics/53/materials/340?page=1", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+  - code: "5526"
+    full_name: Hytrel 5526
+    manufacturer: 塞拉尼斯
+    brand: Hytrel
+    material: TPEE
+    grade_class: 邵氏 55D，高流动注塑级
+    verify: partial
+    aliases: [Hytrel 5526, Hytrel5526]
+    summary: 邵氏 55D 的高流动 TPEE，专为注塑设计。
+    sources:
+      - {id: h5526, title: "Celanese TPE 产品列表（UL Prospector）", url: "https://betaplastics.ulprospector.com/plastics/en/generics/53/manufacturers/66", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+  - code: "6356"
+    full_name: Hytrel 6356
+    manufacturer: 塞拉尼斯
+    brand: Hytrel
+    material: TPEE
+    grade_class: 邵氏 63D
+    verify: partial
+    aliases: [Hytrel 6356, Hytrel6356]
+    summary: 邵氏 63D 的中等模量 TPEE，不含增塑剂，用于软管、齿轮、密封件、线缆护套等。
+    sources: [*hytrel_ul]
+
+  # ================= POE =================
+  - code: "8150"
+    full_name: ENGAGE 8150
+    manufacturer: 陶氏
+    brand: ENGAGE
+    material: POE
+    grade_class: 乙烯-辛烯共聚物
+    verify: partial
+    aliases: [Engage 8150, 陶氏 8150]
+    summary: 陶氏的乙烯-辛烯 POE，流动性好，主要用作 PP、PE 的增韧剂，也用于电线电缆、TPO，可高填充、可过氧化物交联。
+    description: |
+      ENGAGE 是陶氏的 POE 品牌：**8xxx 是乙烯-辛烯共聚物，7xxx 是乙烯-丁烯共聚物**。
+      选 POE 主要看密度（越低越软、增韧效果越强）和熔指。
+    sources:
+      - &engage_sc {id: esc, title: "ENGAGE 产品列表（SpecialChem）", url: "https://www.specialchem.com/polymer-additives/supplier/dow/engage", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+      - {id: eng_brochure, title: ENGAGE POE 产品手册（Formerra 转载陶氏资料）, url: "https://www.formerra.com/sites/default/files/2021-07/0901b80380940420.pdf", publisher: Dow, kind: maker_doc, accessed: 2026-11-10}
+  - code: "8200"
+    full_name: ENGAGE 8200
+    manufacturer: 陶氏
+    brand: ENGAGE
+    material: POE
+    grade_class: 乙烯-辛烯共聚物，低密度
+    verify: partial
+    aliases: [Engage 8200, 陶氏 8200]
+    summary: 低密度乙烯-辛烯 POE，流动好，和 PP 共混增韧效果突出，汽车保险杠改性 PP 常用。
+    sources: [*engage_sc]
+  - code: "8842"
+    full_name: ENGAGE 8842
+    manufacturer: 陶氏
+    brand: ENGAGE
+    material: POE
+    grade_class: 超低密度乙烯-辛烯共聚物
+    verify: partial
+    aliases: [Engage 8842]
+    summary: 超低密度 POE，仍以粒料供货，在 PP、PE 中低温冲击改性效果好，用于 TPO。
+    sources:
+      - {id: e8842, title: "ENGAGE 产品列表（UL Prospector 中文）", url: "https://plastics.ulprospector.com/plastics/zh-cn/generics/53/materials/2628?page=2", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+  - code: DF810
+    full_name: TAFMER DF810
+    manufacturer: 三井化学
+    brand: TAFMER
+    material: POE
+    grade_class: 乙烯基 α-烯烃共聚物
+    verify: partial
+    aliases: [Tafmer DF810, 三井 DF810]
+    summary: 三井化学的乙烯类 α-烯烃弹性体，比重低、熔点低、柔软，用来提高 PE、PP 的抗冲击性和柔韧性，如汽车保险杠、仪表板。
+    sources:
+      - {id: df810, title: "TAFMER DF810（SpecialChem）", url: "https://www.specialchem.com/plastics/product/mitsui-chemicals-tafmer-df810", publisher: SpecialChem, kind: other, accessed: 2026-11-10}

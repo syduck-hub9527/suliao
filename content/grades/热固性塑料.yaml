@@ -1,0 +1,90 @@
+# 热固性塑料（环氧树脂、酚醛、聚氨酯原料）常用厂商和牌号。查阅日期 2026-11-10。
+# 热固性材料多由液态树脂 + 固化剂在加工时反应成型，所以“牌号”常指树脂、模塑料或原料（如 MDI）的牌号。
+
+grades:
+  # ================= 环氧树脂 =================
+  - code: NPEL-128
+    full_name: 南亚环氧树脂 NPEL-128
+    manufacturer: 南亚塑胶
+    material: 环氧树脂
+    grade_class: 液态双酚 A 型标准环氧
+    verify: verified
+    aliases: [NPEL128, 南亚 128, 128 环氧]
+    summary: 液态双酚 A 型环氧的标准品，用于层压板、缠绕、灌封、胶粘剂、涂料等，固化后强度高、耐化学品、耐热。
+    description: |
+      厂家规格：环氧当量 184～190 g/eq，25°C 黏度 12000～15000 cps。
+      换算成国内常用的“环氧值”约 0.53，和国内常说的 E-51 是同一类液态双酚 A 环氧。
+    sources:
+      - &npel {id: npel, title: NPEL-128 数据表（南亚，Knowde 转载）, url: "https://media.knowde.com/image/upload/v1733488545/DataSheet-NPEL-128.pdf20241206-1-on5rrr.pdf", publisher: Nan Ya Plastics, kind: maker_doc, accessed: 2026-11-10}
+      - {id: npel2, title: "NAN YA NPEL-128（Omya 产品页）", url: "https://products.omya.com/products/nan-ya-npel-128", publisher: Omya, kind: other, accessed: 2026-11-10}
+    properties:
+      - {prop: 密度, value: "1.16", unit: g/cm³, conditions: "25°C", source: npel2, verify: partial}
+  - code: D.E.R. 331
+    full_name: D.E.R. 331
+    manufacturer: 欧林
+    brand: D.E.R.
+    material: 环氧树脂
+    grade_class: 液态双酚 A 型标准环氧
+    verify: verified
+    aliases: [DER331, DER 331, 陶氏 331]
+    summary: 业内公认的标准液态双酚 A 环氧，用途最广，很多改性环氧都以它为基准。
+    description: |
+      厂家规格：环氧当量 182～192 g/eq，25°C 黏度 11000～14000 mPa·s。
+      D.E.R. 原是陶氏的环氧品牌，2015 年陶氏把环氧业务并入欧林（Olin），所以老资料写的是“陶氏 331”。
+    sources:
+      - {id: der, title: "Olin 亚太环氧产品目录（2020）", url: "https://olinepoxy.com/wp-content/uploads/2020/12/296-02137-1020_APAC_Epoxy_Product_Brochure_English.pdf", publisher: Olin, kind: maker_doc, accessed: 2026-11-10}
+
+  # ================= 酚醛 =================
+  - code: PM-9640
+    full_name: SUMIKON PM-9640
+    manufacturer: 住友电木
+    brand: SUMIKON
+    material: PF
+    grade_class: 玻纤 + 矿物填充酚醛模塑料
+    verify: partial
+    aliases: [PM9640, 住友 PM-9640]
+    summary: 住友电木的无卤玻纤加矿物填充酚醛模塑料（两阶/线型酚醛），强度高、尺寸稳定、耐热，可压制、注塑、传递模塑，用于电机外壳、电刷架、隔热件。
+    description: 酚醛模塑料按树脂分**一阶（甲阶，resol）**和**二阶（线型，novolac）**；住友 SUMIKON 带“non-ammonia”说明的是不放氨的一阶型，适合电气件。
+    sources:
+      - {id: pm9640, title: "SUMIKON PM-9640（SpecialChem）", url: "https://www.specialchem.com/plastics/product/sumitomo-bakelite-sumikon-pm-9640", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+      - {id: pm9640u, title: "Sumikon PM-9640（UL Prospector）", url: "https://betaplastics.ulprospector.com/plastics/en/datasheet/28747/sumikon-pm-9640", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+  - code: PM-9820
+    full_name: SUMIKON PM-9820
+    manufacturer: 住友电木
+    brand: SUMIKON
+    material: PF
+    grade_class: 有机纤维 + 无机填料，电气级
+    verify: partial
+    aliases: [PM9820]
+    summary: 有机纤维加无机填料的一阶（不放氨）酚醛模塑料，电性能和耐热好，UL94 V-0，注塑用。
+    sources:
+      - {id: pm9820, title: "Sumikon PM-9820（UL Prospector）", url: "https://betaplastics.ulprospector.com/plastics/en/datasheet/295134/sumikon-pm-9820", publisher: UL Prospector, kind: other, accessed: 2026-11-10}
+
+  # ================= 聚氨酯原料 =================
+  - code: PM-200
+    full_name: WANNATE PM-200
+    manufacturer: 万华化学
+    brand: WANNATE
+    material: PU
+    grade_class: 聚氨酯原料：聚合 MDI
+    verify: partial
+    aliases: [PM200, 万华 PM-200, 聚合MDI PM-200]
+    summary: 万华化学的聚合 MDI，棕色液体，官能度约 2.6～2.7，主要用于聚氨酯硬泡保温（冰箱、板材、管道），也用于涂料、胶粘剂等。
+    description: |
+      聚氨酯（PU）一般不是买“PU 粒子”，而是**异氰酸酯（MDI、TDI）+ 多元醇**在现场反应成型，所以 PU 的“牌号”多指这两类原料。
+      厂家规格：NCO 含量 30.5～32.0%，25°C 黏度 150～250 mPa·s。万华是全球最大的 MDI 生产商之一。
+    sources:
+      - {id: pm200, title: "WANNATE PM-200 技术资料（2013，Scribd 转载）", url: "https://www.scribd.com/document/319904531/WANNATE-PM-200-EN-20130606", publisher: Wanhua, kind: other, accessed: 2026-11-10}
+      - {id: pm200s, title: "Wanhua WANNATE 产品（SpecialChem）", url: "https://adhesives.specialchem.com/centers/benzoflex-non-phthalate-plasticizers/selectors/pf-liquid/s-wanhua-chemical", publisher: SpecialChem, kind: other, accessed: 2026-11-10}
+  - code: 44V20L
+    full_name: Desmodur 44V20L
+    manufacturer: 科思创
+    brand: Desmodur
+    material: PU
+    grade_class: 聚氨酯原料：聚合 MDI
+    verify: verified
+    aliases: [44 V 20 L, Desmodur 44V20, 科思创 44V20]
+    summary: 科思创的聚合 MDI，深棕色液体，和多元醇配合生产聚氨酯制品，最常见用途是硬泡保温。
+    description: 厂家规格：NCO 含量 30.5～32.5%，25°C 黏度 160～240 mPa·s，20°C 密度约 1.23 g/cm³。
+    sources:
+      - {id: d44, title: Desmodur 44 V 20 L 产品页, url: "https://solutions.covestro.com/en/products/desmodur/desmodur-44-v-20-l_05596408-17394712", publisher: Covestro, kind: maker_web, accessed: 2026-11-10}
